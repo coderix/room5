@@ -151,6 +151,9 @@
     <Compile Include="Models\IRoom5Repository.cs" />
     <Compile Include="Models\IRoomRepository.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Repository\Room5Context.cs" />
+    <Compile Include="Repository\SQLRoom5Repository.cs" />
+    <Compile Include="Repository\SQLRoomRepository.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
@@ -265,6 +268,7 @@
       <Name>Room5.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

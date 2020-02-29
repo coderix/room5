@@ -4,6 +4,9 @@ using Room5.Services;
 
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using Windows.Storage;
+using Microsoft.EntityFrameworkCore;
+using Room5.Repository;
 
 namespace Room5
 {
@@ -26,10 +29,12 @@ namespace Room5
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
+            SqliteDatabase();
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);
             }
+           
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -45,6 +50,18 @@ namespace Room5
         private UIElement CreateShell()
         {
             return new Views.ShellPage();
+        }
+
+        public static void SqliteDatabase()
+        {
+            // string demoDatabasePath = Package.Current.InstalledLocation.Path + @"\Assets\Repository.db";
+            string databasePath = ApplicationData.Current.LocalFolder.Path + @"\Room5.db";
+           /* if (!File.Exists(databasePath))
+            {
+                File.Copy(demoDatabasePath, databasePath);
+            }*/
+            var dbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + databasePath);
+            Repository = new SqlTutorialRepository(dbOptions);
         }
     }
 }
