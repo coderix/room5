@@ -7,11 +7,14 @@ using Windows.UI.Xaml;
 using Windows.Storage;
 using Microsoft.EntityFrameworkCore;
 using Room5.Repository;
+using Room5.Models;
 
 namespace Room5
 {
     public sealed partial class App : Application
     {
+        public static IRoom5Repository Repository { get; set; }
+
         private Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService
@@ -61,7 +64,7 @@ namespace Room5
                 File.Copy(demoDatabasePath, databasePath);
             }*/
             var dbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + databasePath);
-            Repository = new SqlTutorialRepository(dbOptions);
+            Repository = new SQLRoom5Repository(dbOptions);
         }
     }
 }

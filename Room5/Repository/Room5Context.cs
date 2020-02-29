@@ -8,7 +8,7 @@ using Room5.Models;
 
 namespace Room5.Repository
 {
-    class Room5Context : DbContext
+    public class Room5Context : DbContext
     {
         /// <summary>
         /// Creates a new DbContext.

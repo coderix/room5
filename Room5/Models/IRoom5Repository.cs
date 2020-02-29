@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Room5.Models
 {
-    interface IRoom5Repository
+    public interface IRoom5Repository
     {
         IRoomRepository Rooms { get; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Room5.Models
 {
-    class Room : IEquatable<Room>
+    public class Room : IEquatable<Room>
     {
         public string RoomName { get; set; }
        

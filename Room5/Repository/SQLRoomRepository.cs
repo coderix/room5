@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Room5.Repository
 {
-    class SQLRoomRepository : IRoomRepository
+    public class SQLRoomRepository : IRoomRepository
     {
         private Room5Context _db;
 
