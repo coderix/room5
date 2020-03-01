@@ -17,7 +17,7 @@ namespace Room5.Repository
         { }
 
         /// <summary>
-        /// Gets the customers DbSet.
+        /// Gets the rooms DbSet.
         /// </summary>
         public DbSet<Room> Rooms { get; set; }
     }

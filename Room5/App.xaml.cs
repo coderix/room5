@@ -8,6 +8,7 @@ using Windows.Storage;
 using Microsoft.EntityFrameworkCore;
 using Room5.Repository;
 using Room5.Models;
+using Windows.ApplicationModel;
 
 namespace Room5
 {
@@ -59,11 +60,11 @@ namespace Room5
         {
             // string demoDatabasePath = Package.Current.InstalledLocation.Path + @"\Assets\Repository.db";
             string databasePath = ApplicationData.Current.LocalFolder.Path + @"\Room5.db";
-           /* if (!File.Exists(databasePath))
-            {
-                File.Copy(demoDatabasePath, databasePath);
-            }*/
-            var dbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + databasePath);
+            /* if (!File.Exists(databasePath))
+             {
+                 File.Copy(demoDatabasePath, databasePath);
+             }*/
+            DbContextOptionsBuilder<Room5Context> dbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + databasePath);
             Repository = new SQLRoom5Repository(dbOptions);
         }
     }

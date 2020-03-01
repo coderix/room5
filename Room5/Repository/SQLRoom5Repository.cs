@@ -18,10 +18,11 @@ namespace Room5.Repository
             _dbOptions = dbOptionsBuilder.Options;
             using (var db = new Room5Context(_dbOptions))
             {
+              //  db.Database.Migrate();
                 db.Database.EnsureCreated();
             }
         }
 
-        public IRoomRepository Rooms => new SqlRoomRepository(new Room5Context(_dbOptions));
+        public IRoomRepository Rooms => new SQLRoomRepository(new Room5Context(_dbOptions));
     }
 }
