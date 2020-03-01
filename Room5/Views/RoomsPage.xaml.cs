@@ -9,11 +9,13 @@ namespace Room5.Views
 {
     public sealed partial class RoomsPage : Page
     {
-        public RoomsViewModel ViewModel { get; } = new RoomsViewModel();
+        public RoomsViewModel ViewModel { get; set; } =
+            new RoomsViewModel();
 
         public RoomsPage()
         {
             InitializeComponent();
+            DataContext = ViewModel;
             Loaded += RoomsPage_Loaded;
         }
 
