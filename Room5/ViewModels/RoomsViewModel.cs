@@ -1,47 +1,48 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
-using Microsoft.Toolkit.Uwp.UI.Controls;
-
-using Room5.Core.Models;
-using Room5.Core.Services;
-using Room5.Helpers;
+using Room5.Models;
 
 namespace Room5.ViewModels
 {
-    public class RoomsViewModel : Observable
+    public class RoomsViewModel
     {
-        private SampleOrder _selected;
-
-        public SampleOrder Selected
+        public RoomsViewModel(Room model)
         {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
+            Model = model ?? new Room();
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        /// <summary>
+        /// The underlying Room model. Internal so it is 
+        /// not visible to the RadDataGrid. 
+        /// </summary>
+        internal Room Model { get; set; }
 
-        public RoomsViewModel()
+        /// <summary>
+        /// Gets or sets whether the underlying model has been modified. 
+        /// This is used when sync'ing with the server to reduce load
+        /// and only upload the models that changed.
+        /// </summary>
+        internal bool IsModified { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Room's first name.
+        /// </summary>
+        public string RoomName
         {
-        }
-
-        public async Task LoadDataAsync(MasterDetailsViewState viewState)
-        {
-            SampleItems.Clear();
-
-            var data = await SampleDataService.GetMasterDetailDataAsync();
-
-            foreach (var item in data)
+            get => Model.RoomName;
+            set
             {
-                SampleItems.Add(item);
-            }
-
-            if (viewState == MasterDetailsViewState.Both)
-            {
-                Selected = SampleItems.First();
+                if (value != Model.RoomName)
+                {
+                    Model.RoomName = value;
+                    IsModified = true;
+                }
             }
         }
+
+     
+      
     }
 }

@@ -9,8 +9,7 @@ namespace Room5.Views
 {
     public sealed partial class RoomsPage : Page
     {
-        public RoomsViewModel ViewModel { get; set; } =
-            new RoomsViewModel();
+       
 
         public RoomsPage()
         {
@@ -19,9 +18,13 @@ namespace Room5.Views
             Loaded += RoomsPage_Loaded;
         }
 
+        public RoomsPageViewModel ViewModel { get; set; } =
+           new RoomsPageViewModel();
+
         private async void RoomsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
+            //    // await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
+            await ViewModel.GetRoomListAsync();
         }
     }
 }
