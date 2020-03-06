@@ -49,7 +49,7 @@
                     x:Name="headerText"
                     VerticalAlignment="Center"
                     Style="{StaticResource ListTitleStyle}"
-                    Text="{Binding}" />
+                    Text="Räume" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
