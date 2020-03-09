@@ -32,6 +32,7 @@
             </Grid>
         </DataTemplate>
 
+        
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
@@ -54,7 +55,12 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid x:Name="ContentArea">
+    <StackPanel x:Name="ContentArea">
+        <CommandBar>
+            <AppBarButton Icon="MailReply" Label="Reply" />
+            <AppBarButton Icon="MailReplyAll" Label="Reply All" />
+            <AppBarButton Icon="MailForward" Label="Forward" />
+        </CommandBar>
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
             x:Uid="Rooms"
@@ -62,10 +68,14 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
+            
             ItemsSource="{x:Bind ViewModel.Rooms}"
             ItemTemplate="{StaticResource ItemTemplate}"
             MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
-            SelectedItem="{x:Bind ViewModel.SelectedRoom, Mode=TwoWay}" />
-    </Grid>
+            SelectedItem="{x:Bind ViewModel.SelectedRoom, Mode=TwoWay}">
+
+           
+        </controls:MasterDetailsView>
+    </StackPanel>
 </Page>

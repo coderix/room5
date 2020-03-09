@@ -15,10 +15,7 @@
         VerticalScrollMode="Enabled">
         <StackPanel>
             <StackPanel Name="block" Padding="0,0,0,0">
-                <CommandBar>
-                <AppBarButton Icon="Add" Click="addRoom" HorizontalAlignment="Right" ToolTipService.ToolTip="Raum hinzufügen"></AppBarButton>
-            </CommandBar>   
-           
+                
                
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
             </StackPanel>

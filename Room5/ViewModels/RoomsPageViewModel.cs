@@ -87,7 +87,10 @@ namespace Room5.ViewModels
             AddingNewRoom = true;
         }
 
+        private void addTestRoom()
+        {
 
+        }
         public async Task DeleteRoomAsync()
         {
             // Update this method
