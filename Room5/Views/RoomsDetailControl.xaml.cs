@@ -1,7 +1,7 @@
 ﻿using System;
 
 using Room5.Core.Models;
-
+using Room5.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -9,13 +9,13 @@ namespace Room5.Views
 {
     public sealed partial class RoomsDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public RoomsViewModel MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
+            get { return GetValue(MasterMenuItemProperty) as RoomsViewModel; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(RoomsDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(RoomsViewModel), typeof(RoomsDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
 
         public RoomsDetailControl()
         {
