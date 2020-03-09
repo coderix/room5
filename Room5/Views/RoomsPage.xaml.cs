@@ -23,8 +23,7 @@ namespace Room5.Views
 
         private async void RoomsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //    // await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
-            await ViewModel.GetRoomListAsync();
+              await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
         }
     }
 }

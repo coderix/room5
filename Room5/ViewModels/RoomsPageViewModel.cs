@@ -15,13 +15,15 @@ namespace Room5.ViewModels
 {
     public class RoomsPageViewModel  : INotifyPropertyChanged
     {
+        private MasterDetailsViewState viewState;
         private ObservableCollection<RoomsViewModel> _rooms = new ObservableCollection<RoomsViewModel>();
 
         public ObservableCollection<RoomsViewModel> Rooms { get => _rooms; }
         public RoomsPageViewModel()
         {
-            Task.Run(GetRoomListAsync);
+         //   Task.Run(GetRoomListAsync);
         }
+       
         private bool _addingNewRoom = false;
 
         public bool AddingNewRoom
@@ -123,7 +125,13 @@ namespace Room5.ViewModels
                 {
                     Rooms.Add(new RoomsViewModel(c));
                 }
+                
             });
+            if (viewState == MasterDetailsViewState.Both)
+            {
+                SelectedRoom = Rooms.First();
+            }
+            SelectedRoom = Rooms.First();
         }
 
         public async Task SaveInitialChangesAsync()
@@ -143,21 +151,14 @@ namespace Room5.ViewModels
             await GetRoomListAsync();
         }
 
-        //public async Task LoadDataAsync(MasterDetailsViewState viewState)
-        //{
-        //    SampleItems.Clear();
+        public async Task LoadDataAsync(MasterDetailsViewState viewState)
+        {
+            await GetRoomListAsync();
 
-        //    var data = await SampleDataService.GetMasterDetailDataAsync();
-
-        //    foreach (var item in data)
-        //    {
-        //        SampleItems.Add(item);
-        //    }
-
-        //    if (viewState == MasterDetailsViewState.Both)
-        //    {
-        //        Selected = SampleItems.First();
-        //    }
-        //}
+            if (viewState == MasterDetailsViewState.Both)
+            {
+                SelectedRoom = Rooms.First();
+            }
+        }
     }
 }
