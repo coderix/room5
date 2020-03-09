@@ -20,12 +20,19 @@ namespace Room5.Views
         public RoomsDetailControl()
         {
             InitializeComponent();
+            
         }
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as RoomsDetailControl;
             control.ForegroundElement.ChangeView(0, 0, 1);
+            
+        }
+
+        private void addRoom(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

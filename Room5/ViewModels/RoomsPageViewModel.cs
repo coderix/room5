@@ -127,11 +127,7 @@ namespace Room5.ViewModels
                 }
                 
             });
-            if (viewState == MasterDetailsViewState.Both)
-            {
-                SelectedRoom = Rooms.First();
-            }
-            SelectedRoom = Rooms.First();
+           
         }
 
         public async Task SaveInitialChangesAsync()

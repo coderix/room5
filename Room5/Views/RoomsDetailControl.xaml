@@ -13,9 +13,12 @@
         HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         VerticalScrollMode="Enabled">
-        <StackPanel HorizontalAlignment="Left">
-            
-            <StackPanel Name="block" Padding="0,15,0,0">
+        <StackPanel>
+            <StackPanel Name="block" Padding="0,0,0,0">
+                <CommandBar>
+                <AppBarButton Icon="Add" Click="addRoom" HorizontalAlignment="Right" ToolTipService.ToolTip="Raum hinzufügen"></AppBarButton>
+            </CommandBar>   
+           
                
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
             </StackPanel>
