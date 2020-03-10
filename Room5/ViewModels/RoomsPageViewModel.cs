@@ -40,6 +40,21 @@ namespace Room5.ViewModels
             }
         }
 
+        private bool _editingRoom = false;
+
+        public bool EditingRoom
+        {
+            get => _editingRoom;
+            set
+            {
+                if (_editingRoom != value)
+                {
+                    _editingRoom = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public bool EnableCommandBar => !AddingNewRoom;
 
         private RoomsViewModel _newRoom;
@@ -57,7 +72,38 @@ namespace Room5.ViewModels
             }
         }
 
-       
+        private RoomsViewModel _editRoom;
+
+        public RoomsViewModel EditRoom
+        {
+            get => _editRoom;
+            set
+            {
+                if (_editRoom != value)
+                {
+                    _editRoom = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _roomName;
+        public string RoomName
+        {
+            get => _roomName;
+            set
+            {
+                if (_roomName != value)
+                {
+                    _roomName = value;
+                    
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+
 
 
         private RoomsViewModel _selectedRoom;
@@ -87,8 +133,14 @@ namespace Room5.ViewModels
             await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
             AddingNewRoom = true;
         }
+        public async Task EditRoomAsync()
+        {
+            RoomName = SelectedRoom.RoomName;
+            EditingRoom = true;
+            
+        }
 
-        
+
         public async Task DeleteRoomAsync()
         {
             // Update this method
@@ -154,6 +206,31 @@ namespace Room5.ViewModels
                 AddingNewRoom = false;
             }
            
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            if (String.IsNullOrEmpty(RoomName))
+            {
+                ContentDialog noWifiDialog = new ContentDialog
+                {
+                    Title = "Raumname",
+                    Content = "Bitte geben Sie einen Raumnamen ein.",
+                    CloseButtonText = "Ok"
+                };
+
+                ContentDialogResult result = await noWifiDialog.ShowAsync();
+
+            }
+            else
+            {
+                SelectedRoom.RoomName = RoomName;
+                await App.Repository.Rooms.UpsertAsync(SelectedRoom.Model);
+                await UpdateRoomsAsync();
+                SelectedRoom = Rooms.First();
+                EditingRoom = false;
+            }
+
         }
 
         public async Task UpdateRoomsAsync()
