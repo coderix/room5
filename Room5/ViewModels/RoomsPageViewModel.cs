@@ -199,14 +199,14 @@ namespace Room5.ViewModels
         {
             if (String.IsNullOrEmpty(RoomName))
             {
-                ContentDialog noWifiDialog = new ContentDialog
+                ContentDialog noRoomNameDialog = new ContentDialog
                 {
                     Title = "Raumname",
                     Content = "Bitte geben Sie einen Raumnamen ein.",
                     CloseButtonText = "Ok"
                 };
 
-                ContentDialogResult result = await noWifiDialog.ShowAsync();
+                ContentDialogResult result = await noRoomNameDialog.ShowAsync();
 
             }
             else
