@@ -57,10 +57,45 @@
 
     <StackPanel x:Name="ContentArea">
         <CommandBar>
-            <AppBarButton Icon="MailReply" Label="Reply" />
-            <AppBarButton Icon="MailReplyAll" Label="Reply All" />
-            <AppBarButton Icon="MailForward" Label="Forward" />
+            <AppBarButton
+                    Click="{x:Bind ViewModel.CreateNewRoomAsync}"
+                    Icon="Add"
+                    Label="Neu"
+                    ToolTipService.ToolTip="Neuer Raum"/>
+            
         </CommandBar>
+        <StackPanel
+                x:Name="newRoomPanel"
+                 Orientation="Horizontal"
+                 x:Load="{x:Bind ViewModel.AddingNewRoom, Mode=OneWay}"
+             >
+            <TextBlock
+                Text="Raumname"
+                Margin="8,8,16,8" VerticalAlignment="Center">
+                
+            </TextBlock>
+            <TextBox
+           
+             PlaceholderText="Name"
+             Margin="8,8,16,8"
+             MinWidth="120"
+             Text="{x:Bind ViewModel.NewRoom.RoomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <AppBarButton
+                  x:Name="DeleteNewRoom"
+                  Click="{x:Bind ViewModel.DeleteNewRoomAsync}"
+                  Icon="Cancel" VerticalAlignment="Center" Label="Abbruch" ToolTipService.ToolTip="Abbruch"/>
+
+            <AppBarButton
+                    x:Name="SaveNewRoom"
+                    Click="{x:Bind ViewModel.SaveInitialChangesAsync}"
+                    Icon="Save" VerticalAlignment="Bottom"
+                    Label="OK"
+                    ToolTipService.ToolTip="Speichern">
+
+            </AppBarButton>
+        </StackPanel>
+
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
             x:Uid="Rooms"
