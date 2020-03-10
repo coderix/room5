@@ -24,6 +24,10 @@ namespace Room5.ViewModels
         {
          //   Task.Run(GetRoomListAsync);
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         private bool _showRoomEditPanel = false;
         public bool ShowRoomEditPanel
@@ -88,20 +92,7 @@ namespace Room5.ViewModels
             }
         }
 
-        private RoomsViewModel _editRoom;
-
-        public RoomsViewModel EditRoom
-        {
-            get => _editRoom;
-            set
-            {
-                if (_editRoom != value)
-                {
-                    _editRoom = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+      
 
         private string _roomName;
         public string RoomName
@@ -118,16 +109,7 @@ namespace Room5.ViewModels
             }
         }
 
-
-
-
-
         private RoomsViewModel _selectedRoom;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public RoomsViewModel SelectedRoom
         {
@@ -150,11 +132,25 @@ namespace Room5.ViewModels
             RoomName = default;
             AddingNewRoom = true;
         }
-        public async Task EditRoomAsync()
+
+        public void EditRoomAsync()
         {
             RoomName = SelectedRoom.RoomName;
             EditingRoom = true;
             
+        }
+
+        public async void CancelEditRoom()
+        {
+            if (NewRoom != null)
+            {
+                await App.Repository.Rooms.DeleteAsync(_newRoom.Model.Id);
+                AddingNewRoom = false;
+            }
+            if (EditingRoom)
+            {
+                EditingRoom = false;
+            }
         }
 
 
@@ -172,26 +168,7 @@ namespace Room5.ViewModels
             }
         }
 
-       /* public async Task DeleteNewRoomAsync()
-        {
-            if (NewRoom != null)
-            {
-                await App.Repository.Rooms.DeleteAsync(_newRoom.Model.Id);
-                AddingNewRoom = false;
-            }
-        }*/
-        public async void CancelEditRoom()
-        {
-            if (NewRoom != null)
-            {
-                await App.Repository.Rooms.DeleteAsync(_newRoom.Model.Id);
-                AddingNewRoom = false;
-            }
-            if (EditingRoom)
-            {
-                EditingRoom = false;
-            }
-        }
+       
 
         public async Task GetRoomListAsync()
         {
@@ -211,31 +188,6 @@ namespace Room5.ViewModels
             });
            
         }
-
-        
-
-        /*public async Task SaveInitialChangesAsync()
-        {
-            if (String.IsNullOrEmpty(NewRoom.RoomName))
-            {
-                ContentDialog noWifiDialog = new ContentDialog
-                {
-                    Title = "Raumname",
-                    Content = "Bitte geben Sie einen Raumnamen ein.",
-                    CloseButtonText = "Ok"
-                };
-
-                ContentDialogResult result = await noWifiDialog.ShowAsync();
-                
-            }
-            else
-            {
-                await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
-                await UpdateRoomsAsync();
-                AddingNewRoom = false;
-            }
-           
-        }*/
 
         public async Task SaveChangesAsync()
         {
@@ -271,30 +223,6 @@ namespace Room5.ViewModels
                 }
             }
         }
-
-        /*public async Task SaveChangesAsync1()
-        {
-            if (String.IsNullOrEmpty(RoomName))
-            {
-                ContentDialog noWifiDialog = new ContentDialog
-                {
-                    Title = "Raumname",
-                    Content = "Bitte geben Sie einen Raumnamen ein.",
-                    CloseButtonText = "Ok"
-                };
-
-                ContentDialogResult result = await noWifiDialog.ShowAsync();
-
-            }
-            else
-            {
-                SelectedRoom.RoomName = RoomName;
-                await App.Repository.Rooms.UpsertAsync(SelectedRoom.Model);
-                await UpdateRoomsAsync();
-                SelectedRoom = Rooms.First();
-                EditingRoom = false;
-            }
-        }*/
 
         public async Task UpdateRoomsAsync()
         {
