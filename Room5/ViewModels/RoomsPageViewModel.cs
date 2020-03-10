@@ -120,10 +120,10 @@ namespace Room5.ViewModels
                 {
                     _selectedRoom = value;
                     /*
-                     * EditingRoom and AddingNewRoom set to false to hide the form after selecting another room
-                     */ 
-                    EditingRoom = false;
-                    AddingNewRoom = false;
+                     * hide the form after selecting another room
+                     */
+                    CancelEditRoom();
+                   
                     OnPropertyChanged();
                 }
             }
