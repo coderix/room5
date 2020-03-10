@@ -24,6 +24,20 @@ namespace Room5.ViewModels
         {
          //   Task.Run(GetRoomListAsync);
         }
+
+        private bool _showRoomEditPanel = false;
+        public bool ShowRoomEditPanel
+        {
+            get => _showRoomEditPanel;
+            set
+            {
+                if (_showRoomEditPanel != value)
+                {
+                    _showRoomEditPanel = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
        
         private bool _addingNewRoom = false;
 
@@ -35,6 +49,7 @@ namespace Room5.ViewModels
                 if (_addingNewRoom != value)
                 {
                     _addingNewRoom = value;
+                    ShowRoomEditPanel = value;
                     OnPropertyChanged();
                 }
             }
@@ -50,6 +65,7 @@ namespace Room5.ViewModels
                 if (_editingRoom != value)
                 {
                     _editingRoom = value;
+                    ShowRoomEditPanel = value;
                     OnPropertyChanged();
                 }
             }
@@ -131,6 +147,7 @@ namespace Room5.ViewModels
             RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
             NewRoom = newRoom;
             await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
+            RoomName = default;
             AddingNewRoom = true;
         }
         public async Task EditRoomAsync()
@@ -155,12 +172,24 @@ namespace Room5.ViewModels
             }
         }
 
-        public async Task DeleteNewRoomAsync()
+       /* public async Task DeleteNewRoomAsync()
         {
             if (NewRoom != null)
             {
                 await App.Repository.Rooms.DeleteAsync(_newRoom.Model.Id);
                 AddingNewRoom = false;
+            }
+        }*/
+        public async void CancelEditRoom()
+        {
+            if (NewRoom != null)
+            {
+                await App.Repository.Rooms.DeleteAsync(_newRoom.Model.Id);
+                AddingNewRoom = false;
+            }
+            if (EditingRoom)
+            {
+                EditingRoom = false;
             }
         }
 
@@ -185,7 +214,7 @@ namespace Room5.ViewModels
 
         
 
-        public async Task SaveInitialChangesAsync()
+        /*public async Task SaveInitialChangesAsync()
         {
             if (String.IsNullOrEmpty(NewRoom.RoomName))
             {
@@ -206,9 +235,44 @@ namespace Room5.ViewModels
                 AddingNewRoom = false;
             }
            
-        }
+        }*/
 
         public async Task SaveChangesAsync()
+        {
+            if (String.IsNullOrEmpty(RoomName))
+            {
+                ContentDialog noWifiDialog = new ContentDialog
+                {
+                    Title = "Raumname",
+                    Content = "Bitte geben Sie einen Raumnamen ein.",
+                    CloseButtonText = "Ok"
+                };
+
+                ContentDialogResult result = await noWifiDialog.ShowAsync();
+
+            }
+            else
+            {
+                if (EditingRoom == true)
+                {
+                    SelectedRoom.RoomName = RoomName;
+                    await App.Repository.Rooms.UpsertAsync(SelectedRoom.Model);
+                    await UpdateRoomsAsync();
+                    SelectedRoom = Rooms.First();
+                    EditingRoom = false;
+                }
+                else if (AddingNewRoom == true)
+                {
+                    NewRoom.RoomName = RoomName;
+                    await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
+                    NewRoom.RoomName = RoomName;
+                    await UpdateRoomsAsync();
+                    AddingNewRoom = false;
+                }
+            }
+        }
+
+        /*public async Task SaveChangesAsync1()
         {
             if (String.IsNullOrEmpty(RoomName))
             {
@@ -230,8 +294,7 @@ namespace Room5.ViewModels
                 SelectedRoom = Rooms.First();
                 EditingRoom = false;
             }
-
-        }
+        }*/
 
         public async Task UpdateRoomsAsync()
         {

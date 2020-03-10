@@ -70,46 +70,11 @@
             
         </CommandBar>
         <StackPanel
-                x:Name="newRoomPanel"
-                 Orientation="Horizontal"
-                 x:Load="{x:Bind ViewModel.AddingNewRoom, Mode=OneWay}"
-             >
-            <TextBlock
-                Text="Neuer Raum:"
-                Margin="8,8,16,8" VerticalAlignment="Center">
-                
-            </TextBlock>
-            <TextBox
-           
-             PlaceholderText="Name"
-             Margin="8,8,16,8"
-             MinWidth="120"
-             Text="{x:Bind ViewModel.NewRoom.RoomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <AppBarButton
-                  x:Name="DeleteNewRoom"
-                  Click="{x:Bind ViewModel.DeleteNewRoomAsync}"
-                  Icon="Cancel" VerticalAlignment="Center" Label="Abbruch" ToolTipService.ToolTip="Abbruch"/>
-
-            <AppBarButton
-                    x:Name="SaveNewRoom"
-                    Click="{x:Bind ViewModel.SaveInitialChangesAsync}"
-                    Icon="Save" VerticalAlignment="Bottom"
-                    Label="OK"
-                    ToolTipService.ToolTip="Speichern">
-
-            </AppBarButton>
-        </StackPanel>
-        <StackPanel
                 x:Name="editRoomPanel"
                  Orientation="Horizontal"
-                 x:Load="{x:Bind ViewModel.EditingRoom, Mode=OneWay}"
+                x:Load="{x:Bind ViewModel.ShowRoomEditPanel, Mode=OneWay}"
              >
-            <TextBlock
-                Text="Raum ändern:"
-                Margin="8,8,16,8" VerticalAlignment="Center">
-
-            </TextBlock>
+           
             <TextBox
            
              PlaceholderText="Name"
@@ -119,10 +84,11 @@
 
             <AppBarButton
                   x:Name="BtnCancelEditRoom"
+                  Click="{x:Bind ViewModel.CancelEditRoom}"
                   Icon="Cancel" VerticalAlignment="Center" Label="Abbruch" ToolTipService.ToolTip="Abbruch"/>
 
             <AppBarButton
-                    x:Name="BtnSaveEditRoom"
+                    x:Name="SaveNewRoom"
                     Click="{x:Bind ViewModel.SaveChangesAsync}"
                     Icon="Save" VerticalAlignment="Bottom"
                     Label="OK"
@@ -130,6 +96,9 @@
 
             </AppBarButton>
         </StackPanel>
+
+      
+        
 
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
