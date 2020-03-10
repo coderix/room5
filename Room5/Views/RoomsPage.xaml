@@ -21,7 +21,8 @@
                     Grid.Column="1"
                     Margin="{StaticResource SmallLeftMargin}"
                     VerticalAlignment="Center">
-                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind RoomName}" />
+                    <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind RoomName}"  />
+                    <Button  Content="{x:Bind RoomName}"  />
                    </StackPanel>
             </Grid>
         </DataTemplate>

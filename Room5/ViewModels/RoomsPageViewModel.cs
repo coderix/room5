@@ -16,7 +16,7 @@ namespace Room5.ViewModels
 {
     public class RoomsPageViewModel  : INotifyPropertyChanged
     {
-        private MasterDetailsViewState viewState;
+       // private MasterDetailsViewState viewState;
         private ObservableCollection<RoomsViewModel> _rooms = new ObservableCollection<RoomsViewModel>();
 
         public ObservableCollection<RoomsViewModel> Rooms { get => _rooms; }
@@ -119,6 +119,11 @@ namespace Room5.ViewModels
                 if (_selectedRoom != value)
                 {
                     _selectedRoom = value;
+                    /*
+                     * EditingRoom and AddingNewRoom set to false to hide the form after selecting another room
+                     */ 
+                    EditingRoom = false;
+                    AddingNewRoom = false;
                     OnPropertyChanged();
                 }
             }
@@ -137,6 +142,7 @@ namespace Room5.ViewModels
         {
             RoomName = SelectedRoom.RoomName;
             EditingRoom = true;
+            
             
         }
 
