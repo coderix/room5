@@ -70,7 +70,7 @@
                  x:Load="{x:Bind ViewModel.AddingNewRoom, Mode=OneWay}"
              >
             <TextBlock
-                Text="Raumname"
+                Text="Neuer Raum:"
                 Margin="8,8,16,8" VerticalAlignment="Center">
                 
             </TextBlock>

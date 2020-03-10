@@ -10,6 +10,7 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using Room5.Core.Models;
 using Room5.Core.Services;
 using Room5.Helpers;
+using Windows.UI.Xaml.Controls;
 
 namespace Room5.ViewModels
 {
@@ -87,10 +88,7 @@ namespace Room5.ViewModels
             AddingNewRoom = true;
         }
 
-        private void addTestRoom()
-        {
-
-        }
+        
         public async Task DeleteRoomAsync()
         {
             // Update this method
@@ -133,11 +131,29 @@ namespace Room5.ViewModels
            
         }
 
+        
+
         public async Task SaveInitialChangesAsync()
         {
-            await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
-            await UpdateRoomsAsync();
-            AddingNewRoom = false;
+            if (String.IsNullOrEmpty(NewRoom.RoomName))
+            {
+                ContentDialog noWifiDialog = new ContentDialog
+                {
+                    Title = "Raumname",
+                    Content = "Bitte geben Sie einen Raumnamen ein.",
+                    CloseButtonText = "Ok"
+                };
+
+                ContentDialogResult result = await noWifiDialog.ShowAsync();
+                
+            }
+            else
+            {
+                await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
+                await UpdateRoomsAsync();
+                AddingNewRoom = false;
+            }
+           
         }
 
         public async Task UpdateRoomsAsync()
