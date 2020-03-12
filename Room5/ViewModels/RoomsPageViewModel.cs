@@ -244,8 +244,9 @@ namespace Room5.ViewModels
         {
             await GetRoomListAsync();
 
-            if (viewState == MasterDetailsViewState.Both)
+            if ((viewState == MasterDetailsViewState.Both) && (Rooms.Count > 0))
             {
+
                 SelectedRoom = Rooms.First();
             }
         }
