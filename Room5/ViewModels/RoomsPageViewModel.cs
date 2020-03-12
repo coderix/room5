@@ -233,6 +233,8 @@ namespace Room5.ViewModels
         public async Task UpdateRoomsAsync()
         {
             foreach (var modifiedRoom in Rooms
+                // TODO: dont't save whene name is empty
+
             .Where(x => x.IsModified).Select(x => x.Model))
             {
                 await App.Repository.Rooms.UpsertAsync(modifiedRoom);
