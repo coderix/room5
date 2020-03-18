@@ -68,7 +68,12 @@
                     Icon="Edit"
                     Label="Bearbeiten"
                     ToolTipService.ToolTip="Raum ändern"/>
-            
+            <AppBarButton
+                    Click="{x:Bind ViewModel.DeleteAndUpdateAsync}"
+                    Icon="Delete"   
+                    Label="Löschen"
+                    ToolTipService.ToolTip="Raum löschen"/>
+
         </CommandBar>
         <StackPanel
                 x:Name="editRoomPanel"

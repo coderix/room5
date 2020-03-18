@@ -171,7 +171,9 @@ namespace Room5.ViewModels
             if (SelectedRoom != null)
             {
                 await App.Repository.Rooms.DeleteAsync(_selectedRoom.Model.Id);
-                await UpdateRoomsAsync();
+                // await UpdateRoomsAsync();
+                await GetRoomListAsync();
+                SelectedRoom = Rooms.First();
             }
         }
 
