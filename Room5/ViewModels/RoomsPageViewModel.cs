@@ -133,7 +133,7 @@ namespace Room5.ViewModels
         {
             RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
             NewRoom = newRoom;
-            await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
+          //  await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
             RoomName = default;
             AddingNewRoom = true;
         }
