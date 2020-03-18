@@ -178,18 +178,19 @@ namespace Room5.ViewModels
 
             ContentDialogResult result = await deleteFileDialog.ShowAsync();
 
-            
-            if (result == ContentDialogResult.Primary)
+
+            if (result == ContentDialogResult.Primary && SelectedRoom != null)
             {
-                if (SelectedRoom != null)
+                await App.Repository.Rooms.DeleteAsync(_selectedRoom.Model.Id);
+                // await UpdateRoomsAsync();
+                await GetRoomListAsync();
+                if (Rooms.Count() > 0)
                 {
-                    await App.Repository.Rooms.DeleteAsync(_selectedRoom.Model.Id);
-                    // await UpdateRoomsAsync();
-                    await GetRoomListAsync();
                     SelectedRoom = Rooms.First();
                 }
+               
             }
-           
+
         }
 
        
