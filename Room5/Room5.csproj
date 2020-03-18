@@ -142,6 +142,7 @@
     <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\IRoom5Repository.cs" />
     <Compile Include="Models\IRoomRepository.cs" />
     <Compile Include="Models\Room.cs" />
