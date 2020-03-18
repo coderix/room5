@@ -161,20 +161,35 @@ namespace Room5.ViewModels
         }
 
 
-        public async Task DeleteRoomAsync()
+       /* public async Task DeleteRoomAsync()
         {
             // Update this method
-        }
+        }*/
 
         public async void DeleteAndUpdateAsync()
         {
-            if (SelectedRoom != null)
+            ContentDialog deleteFileDialog = new ContentDialog
             {
-                await App.Repository.Rooms.DeleteAsync(_selectedRoom.Model.Id);
-                // await UpdateRoomsAsync();
-                await GetRoomListAsync();
-                SelectedRoom = Rooms.First();
+                Title = "Soll der Raum gelöscht werden?",
+                Content = "Er kann nicht wiederhergestellt werden",
+                PrimaryButtonText = "Löschen",
+                CloseButtonText = "Abbruch"
+            };
+
+            ContentDialogResult result = await deleteFileDialog.ShowAsync();
+
+            
+            if (result == ContentDialogResult.Primary)
+            {
+                if (SelectedRoom != null)
+                {
+                    await App.Repository.Rooms.DeleteAsync(_selectedRoom.Model.Id);
+                    // await UpdateRoomsAsync();
+                    await GetRoomListAsync();
+                    SelectedRoom = Rooms.First();
+                }
             }
+           
         }
 
        
