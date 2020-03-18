@@ -26,6 +26,10 @@ namespace Room5.ViewModels
         /// </summary>
         internal bool IsModified { get; set; }
 
+        public string Id
+        {
+            get => Model.Id.ToString();
+        }
         /// <summary>
         /// Gets or sets the Room's first name.
         /// </summary>

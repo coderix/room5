@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -214,17 +215,35 @@ namespace Room5.ViewModels
                 if (EditingRoom == true)
                 {
                     SelectedRoom.RoomName = RoomName;
+                    string id = SelectedRoom.Id;
                     await App.Repository.Rooms.UpsertAsync(SelectedRoom.Model);
                     await UpdateRoomsAsync();
-                    SelectedRoom = Rooms.First();
+                   
+                    // in Rooms den Room mit ID finden und auswählen
+                    IEnumerable<RoomsViewModel> query = from room in Rooms
+                                                where room.Id == id
+                                                select room;
+                    if (query.Count() > 0)
+                    {
+                        SelectedRoom = query.First();
+                    }
+                    
                     EditingRoom = false;
                 }
                 else if (AddingNewRoom == true)
                 {
                     NewRoom.RoomName = RoomName;
+                    string id = NewRoom.Id;
                     await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
                     NewRoom.RoomName = RoomName;
                     await UpdateRoomsAsync();
+                    IEnumerable<RoomsViewModel> query = from room in Rooms
+                                                        where room.Id == id
+                                                        select room;
+                    if (query.Count() > 0)
+                    {
+                        SelectedRoom = query.First();
+                    }
                     AddingNewRoom = false;
                 }
             }
@@ -233,9 +252,7 @@ namespace Room5.ViewModels
         public async Task UpdateRoomsAsync()
         {
             foreach (var modifiedRoom in Rooms
-                // TODO: dont't save whene name is empty
-
-            .Where(x => x.IsModified).Select(x => x.Model))
+                .Where(x => x.IsModified).Select(x => x.Model))
             {
                 await App.Repository.Rooms.UpsertAsync(modifiedRoom);
             }
