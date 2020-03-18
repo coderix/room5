@@ -73,7 +73,7 @@
         <StackPanel
                 x:Name="editRoomPanel"
                  Orientation="Horizontal"
-                x:Load="{x:Bind ViewModel.ShowRoomEditPanel, Mode=OneWay}"
+                x:Load="{x:Bind ViewModel.ShowRoomEditPanel, Mode=OneWay}" Margin="50,50,0,50"
              >
            
             <TextBox
