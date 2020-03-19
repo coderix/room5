@@ -156,6 +156,8 @@
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="ViewModels\BookingsRowModel.cs" />
+    <Compile Include="ViewModels\BookingsViewModel.cs" />
     <Compile Include="ViewModels\RoomListViewModel.cs" />
     <Compile Include="ViewModels\RoomsPageViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />

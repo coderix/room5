@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -19,6 +20,23 @@
                
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
             </StackPanel>
+
+            <controls:DataGrid x:Name="dataGrid"
+                               ItemsSource="{x:Bind BookingRows}"
+                                AutoGenerateColumns="False"
+                               HeadersVisibility="All"
+                               >
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn
+                        Header="Stunde"
+                        Binding="{Binding LessonNumber.Info}"/>
+                    <controls:DataGridTextColumn
+                        Header="Montag"
+                        Binding="{Binding Monday.Info}"/>
+                </controls:DataGrid.Columns>
+
+            </controls:DataGrid>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>
