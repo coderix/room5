@@ -59,7 +59,7 @@
     <StackPanel x:Name="ContentArea">
         <CommandBar>
             <AppBarButton
-                    Click="{x:Bind ViewModel.CreateNewRoomAsync}"
+                    Click="{x:Bind ViewModel.CreateNewRoom}"
                     Icon="Add"
                     Label="Neu"
                     ToolTipService.ToolTip="Neuer Raum"/>

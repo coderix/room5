@@ -130,7 +130,7 @@ namespace Room5.ViewModels
             }
         }
 
-        public async Task CreateNewRoomAsync()
+        public  void CreateNewRoom()
         {
             RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
             NewRoom = newRoom;
