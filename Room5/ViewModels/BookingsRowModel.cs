@@ -10,7 +10,7 @@ namespace Room5.ViewModels
     public class BookingsRowModel
     {
         
-        public BookingsViewModel LessonNumber { get; set; }
+        public int LessonNumber { get; set; }
         public BookingsViewModel Monday { get; set; }
         public BookingsViewModel Tuesday { get; set; }
         public BookingsViewModel Wednesday { get; set; }

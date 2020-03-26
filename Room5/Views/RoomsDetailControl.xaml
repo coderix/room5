@@ -29,7 +29,7 @@
                 <controls:DataGrid.Columns>
                     <controls:DataGridTextColumn
                         Header="Stunde"
-                        Binding="{Binding LessonNumber.Info}"/>
+                        Binding="{Binding LessonNumber}"/>
                     <controls:DataGridTextColumn
                         Header="Montag"
                         Binding="{Binding Monday.Info}"/>

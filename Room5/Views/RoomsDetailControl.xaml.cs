@@ -30,8 +30,9 @@ namespace Room5.Views
         public RoomsDetailControl()
         {
             BookingsRowModel r1 = new BookingsRowModel();
-            r1.LessonNumber = new BookingsViewModel("1");
-            r1.LessonNumber.LessonOutput = 1;
+            // r1.LessonNumber = new BookingsViewModel("1");
+            //  r1.LessonNumber.LessonOutput = 1;
+            r1.LessonNumber = 1;
             r1.Monday = new BookingsViewModel("1a und noch vieeeel mehr");
             r1.Tuesday = new BookingsViewModel("1a");
             r1.Wednesday = new BookingsViewModel("1a");
@@ -41,8 +42,9 @@ namespace Room5.Views
             BookingRows.Add(r1);
 
             BookingsRowModel r2 = new BookingsRowModel();
-            r2.LessonNumber = new BookingsViewModel("2");
-            r2.LessonNumber.LessonOutput = 2;
+            /*r2.LessonNumber = new BookingsViewModel("2");
+            r2.LessonNumber.LessonOutput = 2;*/
+            r2.LessonNumber = 2;
             r2.Monday = new BookingsViewModel("1a");
             r2.Tuesday = new BookingsViewModel("1a");
             r2.Wednesday = new BookingsViewModel("1a");
@@ -52,14 +54,14 @@ namespace Room5.Views
             BookingRows.Add(r2);
 
 
-            for (int i = 0; i < 5; i++)
+            /*for (int i = 0; i < 5; i++)
             {
                 Bookings.Add(new BookingsViewModel("a" + i));
             }
             for (int i = 0; i < 5; i++)
             {
                 Bookings.Add(new BookingsViewModel("b" + i));
-            }
+            }*/
            
 
 
