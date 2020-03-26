@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -20,6 +21,27 @@
                
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
             </StackPanel>
+
+            <telerikGrid:RadDataGrid ItemsSource="{x:Bind BookingRows}"
+                                     UserEditMode="None"
+                                     x:Name="grid"  AutoGenerateColumns="False"
+                                     UserGroupMode="Disabled"
+                                     VerticalAlignment="Center"
+                                     Width="300" UserFilterMode="Disabled">
+                <telerikGrid:RadDataGrid.Columns>
+                    <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde">
+                        <telerikGrid:DataGridTextColumn.CellContentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Red"/>
+                                <Setter Property="FontStyle" Value="Italic"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </telerikGrid:DataGridTextColumn.CellContentStyle>
+                    </telerikGrid:DataGridTextColumn>
+                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag" />
+                </telerikGrid:RadDataGrid.Columns>
+            </telerikGrid:RadDataGrid>
 
             <controls:DataGrid x:Name="dataGrid"
                                ItemsSource="{x:Bind BookingRows}"
