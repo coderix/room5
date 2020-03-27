@@ -5,8 +5,11 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Room5.Core.Models;
 using Room5.ViewModels;
+using Telerik.UI.Xaml.Controls.Grid;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Linq;
+using Windows.UI.Popups;
 
 namespace Room5.Views
 {
@@ -81,5 +84,20 @@ namespace Room5.Views
         public void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+      
+       
+
+        private  async void GridTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            var physicalPoint = e.GetPosition(sender as RadDataGrid);
+            var cell = (sender as RadDataGrid).HitTestService.CellInfoFromPoint(physicalPoint);
+
+            if (cell != null)
+            {
+                System.Diagnostics.Debug.WriteLine(cell.Value);
+                var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + cell.Item, "COLUMN HEADER: ");
+                await dialog.ShowAsync();
+            }
+        }
     }
 }

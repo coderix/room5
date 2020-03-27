@@ -24,10 +24,11 @@
 
             <telerikGrid:RadDataGrid ItemsSource="{x:Bind BookingRows}"
                                      UserEditMode="None"
-                                     x:Name="grid"  AutoGenerateColumns="False"
+                                     x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
                                      VerticalAlignment="Center"
-                                     Width="300" UserFilterMode="Disabled">
+                                     Width="300" UserFilterMode="Disabled" SelectionUnit="Cell"  Tapped="GridTapped"
+                                     >
                 <telerikGrid:RadDataGrid.Columns>
                     <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde">
                         <telerikGrid:DataGridTextColumn.CellContentStyle>
@@ -39,7 +40,7 @@
                             </Style>
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
                     </telerikGrid:DataGridTextColumn>
-                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag" />
+                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag"/>
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
 
