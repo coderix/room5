@@ -9,5 +9,6 @@ namespace Room5.Models
     public interface IRoom5Repository
     {
         IRoomRepository Rooms { get; }
+        IBookingRepository Bookings { get; }
     }
 }

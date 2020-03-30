@@ -20,5 +20,6 @@ namespace Room5.Repository
         /// Gets the rooms DbSet.
         /// </summary>
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
     }
 }

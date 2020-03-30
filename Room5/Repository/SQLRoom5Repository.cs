@@ -23,6 +23,8 @@ namespace Room5.Repository
             }
         }
 
+       // public Room5Context room5Context = new Room5Context(_dbOptions);
         public IRoomRepository Rooms => new SQLRoomRepository(new Room5Context(_dbOptions));
+        public IBookingRepository Bookings => new SQLBookingRepository(new Room5Context(_dbOptions));
     }
 }
