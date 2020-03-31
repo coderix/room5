@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -26,7 +27,7 @@ namespace Room5.ViewModels
         /// </summary>
         internal bool IsModified { get; set; }
 
-        public string Id
+        public string RoomId
         {
             get => Model.RoomId.ToString();
         }
@@ -44,6 +45,11 @@ namespace Room5.ViewModels
                     IsModified = true;
                 }
             }
+        }
+        public List<Booking> Bookings
+        {
+            get => Model.Bookings;
+
         }
 
      
