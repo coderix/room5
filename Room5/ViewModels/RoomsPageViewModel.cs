@@ -151,7 +151,7 @@ namespace Room5.ViewModels
         {
             if (NewRoom != null)
             {
-                await App.Repository.Rooms.DeleteAsync(_newRoom.Model.Id);
+                await App.Repository.Rooms.DeleteAsync(_newRoom.Model.RoomId);
                 AddingNewRoom = false;
             }
             if (EditingRoom)
@@ -181,7 +181,7 @@ namespace Room5.ViewModels
 
             if (result == ContentDialogResult.Primary && SelectedRoom != null)
             {
-                await App.Repository.Rooms.DeleteAsync(_selectedRoom.Model.Id);
+                await App.Repository.Rooms.DeleteAsync(_selectedRoom.Model.RoomId);
                 // await UpdateRoomsAsync();
                 await GetRoomListAsync();
                 if (Rooms.Count() > 0)

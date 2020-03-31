@@ -28,7 +28,7 @@ namespace Room5.ViewModels
 
         public string Id
         {
-            get => Model.Id.ToString();
+            get => Model.RoomId.ToString();
         }
         /// <summary>
         /// Gets or sets the Room's first name.

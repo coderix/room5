@@ -29,7 +29,7 @@ namespace Room5.Repository
         {
             return await _db.Bookings
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.BookingId == id);
         }
 
         public async Task<IEnumerable<Booking>> GetAsync(string value)
@@ -48,7 +48,7 @@ namespace Room5.Repository
 
         public async Task<Booking> UpsertAsync(Booking Booking)
         {
-            var current = await _db.Bookings.FirstOrDefaultAsync(x => x.Id == Booking.Id);
+            var current = await _db.Bookings.FirstOrDefaultAsync(x => x.BookingId == Booking.BookingId);
             if (null == current)
             {
                 _db.Bookings.Add(Booking);
@@ -63,7 +63,7 @@ namespace Room5.Repository
 
         public async Task DeleteAsync(Guid id)
         {
-            var Booking = await _db.Bookings.FirstOrDefaultAsync(x => x.Id == id);
+            var Booking = await _db.Bookings.FirstOrDefaultAsync(x => x.BookingId == id);
             if (null != Booking)
             {
                 _db.Bookings.Remove(Booking);

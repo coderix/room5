@@ -10,11 +10,13 @@ namespace Room5.Models
     {
         public string Title { get; set; }
 
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid BookingId { get; set; } = Guid.NewGuid();
+        public int RoomId { get; set; }
+        public Room room { get; set; }
         public bool Equals(Booking other)
         {
             return
-                this.Id == other.Id;
+                BookingId == other.BookingId;
         }
     }
 }
