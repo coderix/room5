@@ -192,7 +192,6 @@ namespace Room5.ViewModels
             }
 
         }
-
        
 
         public async Task GetRoomListAsync()
@@ -233,13 +232,13 @@ namespace Room5.ViewModels
                 if (EditingRoom == true)
                 {
                     SelectedRoom.RoomName = RoomName;
-                    string id = SelectedRoom.Id;
+                    string id = SelectedRoom.RoomId;
                     await App.Repository.Rooms.UpsertAsync(SelectedRoom.Model);
                     await UpdateRoomsAsync();
                    
                     // in Rooms den Room mit ID finden und auswählen
                     IEnumerable<RoomsViewModel> query = from room in Rooms
-                                                where room.Id == id
+                                                where room.RoomId == id
                                                 select room;
                     if (query.Count() > 0)
                     {
@@ -251,12 +250,12 @@ namespace Room5.ViewModels
                 else if (AddingNewRoom == true)
                 {
                     NewRoom.RoomName = RoomName;
-                    string id = NewRoom.Id;
+                    string id = NewRoom.RoomId;
                     await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
                     NewRoom.RoomName = RoomName;
                     await UpdateRoomsAsync();
                     IEnumerable<RoomsViewModel> query = from room in Rooms
-                                                        where room.Id == id
+                                                        where room.RoomId == id
                                                         select room;
                     if (query.Count() > 0)
                     {
@@ -286,6 +285,11 @@ namespace Room5.ViewModels
 
                 SelectedRoom = Rooms.First();
             }
+        }
+
+        public void WriteTestData()
+        {
+
         }
     }
 }
