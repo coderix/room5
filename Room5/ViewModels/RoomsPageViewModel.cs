@@ -290,6 +290,9 @@ namespace Room5.ViewModels
         public async Task WriteTestDataAsync()
         {
             await App.Repository.Rooms.DeleteAllRoomsAsync();
+            RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
+            newRoom.RoomName = "Computerraum";
+            await App.Repository.Rooms.UpsertAsync(newRoom.Model);
             await GetRoomListAsync();
 
         }
