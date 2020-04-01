@@ -292,6 +292,7 @@ namespace Room5.ViewModels
             await App.Repository.Rooms.DeleteAllRoomsAsync();
             RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
             newRoom.RoomName = "Computerraum";
+
             await App.Repository.Rooms.UpsertAsync(newRoom.Model);
             await GetRoomListAsync();
 

@@ -53,7 +53,7 @@ namespace Room5.ViewModels
         /// </summary>
         internal bool IsModified { get; set; }
 
-        public string Id
+        public string BookingId
         {
             get => Model.BookingId.ToString();
         }
@@ -73,6 +73,111 @@ namespace Room5.ViewModels
             }
         }
         public int LessonOutput = 0;
+
+        public Room Room
+        {
+            get => Model.Room;
+            set
+            {
+                if (value != Model.Room)
+                {
+                    Model.Room = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public int Day
+        {
+            get => Model.Day;
+            set
+            {
+                if (value != Model.Day)
+                {
+                    Model.Day = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public int Lesson
+        {
+            get => Model.Lesson;
+            set
+            {
+                if (value != Model.Lesson)
+                {
+                    Model.Lesson = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public bool IsRecurrent
+        {
+            get => Model.IsRecurrent;
+            set
+            {
+                if (value != Model.IsRecurrent)
+                {
+                    Model.IsRecurrent = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public int Repeat
+        {
+            get => Model.Repeat;
+            set
+            {
+                if (value != Model.Repeat)
+                {
+                    Model.Repeat = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public DateTime StartDate
+        {
+            get => Model.StartDate;
+            set
+            {
+                if (value != Model.StartDate)
+                {
+                    Model.StartDate = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public DateTime EndDate
+        {
+            get => Model.EndDate;
+            set
+            {
+                if (value != Model.EndDate)
+                {
+                    Model.EndDate = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public string Remarks
+        {
+            get => Model.Remarks;
+            set
+            {
+                if (value != Model.Remarks)
+                {
+                    Model.Remarks = value;
+                    IsModified = true;
+                }
+            }
+        }
+
 
     }
 }
