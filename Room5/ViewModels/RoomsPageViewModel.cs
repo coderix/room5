@@ -287,8 +287,10 @@ namespace Room5.ViewModels
             }
         }
 
-        public void WriteTestData()
+        public async Task WriteTestDataAsync()
         {
+            await App.Repository.Rooms.DeleteAllRoomsAsync();
+            await GetRoomListAsync();
 
         }
     }

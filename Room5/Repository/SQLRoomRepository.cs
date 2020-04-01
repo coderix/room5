@@ -70,5 +70,19 @@ namespace Room5.Repository
                 await _db.SaveChangesAsync();
             }
         }
+
+        public async Task DeleteAllRoomsAsync()
+        {
+            var rooms = await _db.Rooms.ToListAsync();
+            if (null != rooms)
+            {
+                foreach (var room in rooms)
+                {
+                    _db.Rooms.Remove(room);
+                }
+               
+                await _db.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Room5.Models
         /// <summary>
         /// Returns all rooms. 
         /// </summary>
-         Task<IEnumerable<Room>> GetAsync();
+        Task<IEnumerable<Room>> GetAsync();
 
         /// <summary>
         /// Returns all rooms with a data field matching the start of the given string. 
@@ -33,6 +33,9 @@ namespace Room5.Models
         /// Deletes a room.
         /// </summary>
         Task DeleteAsync(Guid roomId);
+
+        Task DeleteAllRoomsAsync();
     }
+      
 }
 

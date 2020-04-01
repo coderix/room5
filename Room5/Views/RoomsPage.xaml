@@ -73,6 +73,12 @@
                     Icon="Delete"   
                     Label="Löschen"
                     ToolTipService.ToolTip="Raum löschen"/>
+            <AppBarButton
+                    Click="{x:Bind ViewModel.WriteTestDataAsync}"
+                    Icon="Clear"  
+                    Label="Testdaten"
+                    ToolTipService.ToolTip="Alles Löschen und Testdaten schreiben"/>
+
 
         </CommandBar>
         <StackPanel
