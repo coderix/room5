@@ -291,8 +291,13 @@ namespace Room5.ViewModels
         {
             await App.Repository.Rooms.DeleteAllRoomsAsync();
             RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
-            newRoom.RoomName = "Computerraum";
-
+            newRoom.RoomName = "Computerraum8";
+            BookingsViewModel newBooking = new BookingsViewModel(title: "test2",
+                day: 0,
+                lesson: 1,
+                model: new Models.Booking()
+                );
+           newRoom.Bookings.Add(newBooking.Model);
             await App.Repository.Rooms.UpsertAsync(newRoom.Model);
             await GetRoomListAsync();
 

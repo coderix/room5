@@ -11,7 +11,21 @@ namespace Room5.ViewModels
     {
         public RoomsViewModel(Room model)
         {
-            Model = model ?? new Room();
+            if (model == null)
+            {
+                Model = new Room();
+               
+            }
+            else
+            {
+                Model = model;
+            }
+            if (Bookings == null)
+            {
+                Bookings = new List<Booking>();
+            }
+            
+            
         }
 
         /// <summary>
@@ -49,6 +63,7 @@ namespace Room5.ViewModels
         public List<Booking> Bookings
         {
             get => Model.Bookings;
+            set => Model.Bookings = value;
 
         }
 

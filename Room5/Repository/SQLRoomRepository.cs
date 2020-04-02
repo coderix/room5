@@ -73,16 +73,24 @@ namespace Room5.Repository
 
         public async Task DeleteAllRoomsAsync()
         {
-            var rooms = await _db.Rooms.ToListAsync();
-            if (null != rooms)
+            try
             {
-                foreach (var room in rooms)
+                var rooms = await _db.Rooms.ToListAsync();
+                if (null != rooms)
                 {
-                    _db.Rooms.Remove(room);
-                }
-               
-                await _db.SaveChangesAsync();
+                    foreach (var room in rooms)
+                    {
+                        _db.Rooms.Remove(room);
+                    }
+
+                       await _db.SaveChangesAsync();
+                 }
             }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Fehler: {ex.InnerException.Message}");
+            }
+         
         }
     }
 }

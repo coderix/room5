@@ -9,31 +9,47 @@ namespace Room5.ViewModels
 {
     public class BookingsViewModel
     {
-        private string _info;
-        public string Info
-        {
-            get
-            {
-                if (LessonOutput > 0)
-                {
-                    return LessonOutput.ToString();
-                }
-                else
-                {
-                    return Title;
-                }
-            }
-            set
-            {
-                _info = value;
-            }
-        }
-        public BookingsViewModel(string title)
-        {
-           // Title = title;
-            Model = new Booking();
-            Model.Title = title;
+       
+        /* public BookingsViewModel(string title)
+         {
+            // Title = title;
+             Model = new Booking();
+             Model.Title = title;
+
+         }*/
+
+       // internal Booking Model { get; set; }
+
+        public BookingsViewModel(
+            
+            string title = default,
+            int day = 0,
+            int lesson = 1,
+            bool isReccurent = true,
+            int repeat = 0,
+            string remarks = default,
+            Booking model = null
            
+            )
+        {
+            // Title = title;
+            /*  Model = new Booking();
+              Model.Title = title;
+              Model.Day = day;
+              Model.Lesson = lesson;
+              Model.IsRecurrent = isReccurent;
+              Model.Repeat = repeat;
+              Model.Remarks = remarks;*/
+            Model = model ?? new Booking();
+            Title = title;
+            Day = day;
+            Lesson = lesson;
+           IsRecurrent = isReccurent;
+            Repeat = repeat;
+            Remarks = remarks;
+            
+
+
         }
 
         public BookingsViewModel(Booking model)
@@ -56,6 +72,26 @@ namespace Room5.ViewModels
         public string BookingId
         {
             get => Model.BookingId.ToString();
+        }
+
+        private string _info;
+        public string Info
+        {
+            get
+            {
+                if (LessonOutput > 0)
+                {
+                    return LessonOutput.ToString();
+                }
+                else
+                {
+                    return Title;
+                }
+            }
+            set
+            {
+                _info = value;
+            }
         }
         /// <summary>
         /// Gets or sets the Room's first name.

@@ -36,7 +36,7 @@ namespace Room5.Views
             // r1.LessonNumber = new BookingsViewModel("1");
             //  r1.LessonNumber.LessonOutput = 1;
             r1.LessonNumber = 1;
-            r1.Monday = new BookingsViewModel("1a und noch vieeeel mehr");
+            r1.Monday = new BookingsViewModel(title : "1a und noch vieeeel mehr");
             r1.Tuesday = new BookingsViewModel("1a");
             r1.Wednesday = new BookingsViewModel("1a");
             r1.Friday = new BookingsViewModel("1a");
