@@ -27,7 +27,7 @@
                                      x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
                                      VerticalAlignment="Center"
-                                     Width="300" UserFilterMode="Disabled" SelectionUnit="Cell"  Tapped="GridTapped"
+                                     Width="600" UserFilterMode="Disabled" SelectionUnit="Cell"  Tapped="GridTapped"
                                      >
                 <telerikGrid:RadDataGrid.Columns>
                     <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde">
@@ -43,6 +43,11 @@
                     <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag"/>
                     <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag"/>
                     <telerikGrid:DataGridTextColumn PropertyName="Wednesday.Info" Header="Mittwoch"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Thursday.Info" Header="Donnerstag"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Saturday.Info" Header="Samstag" IsVisible="TRue"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Sunday.Info" Header="Sonntag"
+                                                    IsVisible="True"/>
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
 

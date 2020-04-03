@@ -71,36 +71,38 @@ namespace Room5.Views
                     BookingsRowModel r1 = new BookingsRowModel();
                     
                     r1.LessonNumber = i;
-                    r1.Monday = new BookingsViewModel("1a");
-                    r1.Tuesday = new BookingsViewModel("1a");
-                    r1.Wednesday = new BookingsViewModel("1a");
-                    r1.Thursday = new BookingsViewModel("1a");
-                    r1.Friday = new BookingsViewModel("1a");
-                    r1.Saturday = new BookingsViewModel("1a");
-                    r1.Sunday = new BookingsViewModel("1a");
+                    r1.Monday = new BookingsViewModel("");
+                    r1.Tuesday = new BookingsViewModel("");
+                    r1.Wednesday = new BookingsViewModel("");
+                    r1.Thursday = new BookingsViewModel("");
+                    r1.Friday = new BookingsViewModel("");
+                    r1.Saturday = new BookingsViewModel("");
+                    r1.Sunday = new BookingsViewModel("");
                     // in Buchungsliste suchen
-                    roomBookings = from b in control.MasterMenuItem.Bookings
-                                   where b.Day == 1 && b.Lesson == i
-                                   select b;
-                    if (roomBookings.Count() > 0)
-                    {
-                        r1.Monday = new BookingsViewModel(model: roomBookings.First());
-                    }else
-                    {
-                        r1.Monday = new BookingsViewModel(title: "");
-                    }
-                    roomBookings = from b in control.MasterMenuItem.Bookings
-                                   where b.Day == 2 && b.Lesson == i
-                                   select b;
-                    if (roomBookings.Count() > 0)
-                    {
-                        r1.Tuesday = new BookingsViewModel(model: roomBookings.First());
-                    }
-                    else
-                    {
-                        r1.Tuesday = new BookingsViewModel(title: "");
-                    }
 
+                    for(int i2 = 1; i2 < 8; i2++)
+                    {
+                        roomBookings = from b in control.MasterMenuItem.Bookings
+                                       where b.Day == i2 && b.Lesson == i
+                                       select b;
+                        if(i2 == 1)
+                        {
+                            if (roomBookings.Count() > 0)
+                            {
+                                r1.Monday = new BookingsViewModel(model: roomBookings.First());
+                            }
+                          
+                        }
+                        else if (i2 == 2)
+                        {
+                            if (roomBookings.Count() > 0)
+                            {
+                                r1.Tuesday = new BookingsViewModel(model: roomBookings.First());
+                            }
+                          
+                        }
+                    }
+                    
                    
                     control.BookingRows.Add(r1);
                 }
