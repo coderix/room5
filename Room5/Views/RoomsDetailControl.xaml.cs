@@ -10,6 +10,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Linq;
 using Windows.UI.Popups;
+using Room5.Models;
 
 namespace Room5.Views
 {
@@ -32,29 +33,9 @@ namespace Room5.Views
 
         public RoomsDetailControl()
         {
-            BookingsRowModel r1 = new BookingsRowModel();
-            // r1.LessonNumber = new BookingsViewModel("1");
-            //  r1.LessonNumber.LessonOutput = 1;
-            r1.LessonNumber = 1;
-            r1.Monday = new BookingsViewModel(title : "1a und noch vieeeel mehr");
-            r1.Tuesday = new BookingsViewModel("1a");
-            r1.Wednesday = new BookingsViewModel("1a");
-            r1.Friday = new BookingsViewModel("1a");
-            r1.Saturday = new BookingsViewModel("1a");
-            r1.Sunday = new BookingsViewModel("1a");
-            BookingRows.Add(r1);
-
-            BookingsRowModel r2 = new BookingsRowModel();
-            /*r2.LessonNumber = new BookingsViewModel("2");
-            r2.LessonNumber.LessonOutput = 2;*/
-            r2.LessonNumber = 2;
-            r2.Monday = new BookingsViewModel("1a");
-            r2.Tuesday = new BookingsViewModel("1a");
-            r2.Wednesday = new BookingsViewModel("1a");
-            r2.Friday = new BookingsViewModel("1a");
-            r2.Saturday = new BookingsViewModel("1a");
-            r2.Sunday = new BookingsViewModel("1a");
-            BookingRows.Add(r2);
+           
+            
+           
 
 
             /*for (int i = 0; i < 5; i++)
@@ -74,7 +55,27 @@ namespace Room5.Views
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+           
             var control = d as RoomsDetailControl;
+            if (control.MasterMenuItem != null)
+            {
+                control.BookingRows.Clear();
+                for (int i = 0;  i < 2; i++)
+                {
+                    BookingsRowModel r1 = new BookingsRowModel();
+                    
+                    r1.LessonNumber = i + 1;
+                    r1.Monday = new BookingsViewModel(title: "1a und noch vieeeel mehr");
+                    r1.Tuesday = new BookingsViewModel("1a");
+                    r1.Wednesday = new BookingsViewModel("1a");
+                    r1.Friday = new BookingsViewModel("1a");
+                    r1.Saturday = new BookingsViewModel("1a");
+                    r1.Sunday = new BookingsViewModel("1a");
+                    control.BookingRows.Add(r1);
+                }
+                
+                List<Booking> roomBookings = control.MasterMenuItem.Bookings;
+            }
             control.ForegroundElement.ChangeView(0, 0, 1);
             
         }

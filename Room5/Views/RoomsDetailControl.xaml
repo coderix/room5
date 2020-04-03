@@ -44,22 +44,7 @@
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
 
-            <controls:DataGrid x:Name="dataGrid"
-                               ItemsSource="{x:Bind BookingRows}"
-                                AutoGenerateColumns="False"
-                               HeadersVisibility="All"
-                               >
-                <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn
-                        Header="Stunde"
-                        Binding="{Binding LessonNumber}"/>
-                    <controls:DataGridTextColumn
-                        Header="Montag"
-                        Binding="{Binding Monday.Info}"/>
-                </controls:DataGrid.Columns>
-
-            </controls:DataGrid>
-
+            
         </StackPanel>
     </ScrollViewer>
 </UserControl>

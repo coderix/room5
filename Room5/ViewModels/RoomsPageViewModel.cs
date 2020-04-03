@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -194,24 +195,7 @@ namespace Room5.ViewModels
         }
        
 
-        public async Task GetRoomListAsync()
-        {
-            var R = await App.Repository.Rooms.GetAsync();
-            if (R == null)
-            {
-                return;
-            }
-            await DispatcherHelper.ExecuteOnUIThreadAsync(() =>
-            {
-                Rooms.Clear();
-                foreach (var c in R)
-                {
-                    Rooms.Add(new RoomsViewModel(c));
-                }
-                
-            });
-           
-        }
+        
 
         public async Task SaveChangesAsync()
         {
@@ -287,6 +271,25 @@ namespace Room5.ViewModels
             }
         }
 
+        public async Task GetRoomListAsync()
+        {
+            var R = await App.Repository.Rooms.GetAsync();
+            if (R == null)
+            {
+                return;
+            }
+            await DispatcherHelper.ExecuteOnUIThreadAsync(() =>
+            {
+                Rooms.Clear();
+                foreach (var c in R)
+                {
+                    Rooms.Add(new RoomsViewModel(c));
+                }
+
+            });
+
+        }
+
         public async Task WriteTestDataAsync()
         {
             await App.Repository.Rooms.DeleteAllRoomsAsync();
@@ -300,6 +303,7 @@ namespace Room5.ViewModels
            newRoom.Bookings.Add(newBooking.Model);
             await App.Repository.Rooms.UpsertAsync(newRoom.Model);
             await GetRoomListAsync();
+            Debug.WriteLine($"Bookings: {newRoom.Bookings.Count}");
 
         }
     }

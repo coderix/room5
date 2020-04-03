@@ -20,6 +20,7 @@ namespace Room5.Repository
         public async Task<IEnumerable<Room>> GetAsync()
         {
             return await _db.Rooms
+                .Include(room => room.Bookings )
                 .OrderBy(a => a.RoomName)
                 .AsNoTracking()
                 .ToListAsync();
