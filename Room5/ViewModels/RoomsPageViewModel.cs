@@ -301,6 +301,12 @@ namespace Room5.ViewModels
                 model: new Models.Booking()
                 );
            newRoom.Bookings.Add(newBooking.Model);
+            BookingsViewModel newBooking2 = new BookingsViewModel(title: "Dienstag 2",
+                day: 2,
+                lesson: 2,
+                model: new Models.Booking()
+                );
+            newRoom.Bookings.Add(newBooking2.Model);
             await App.Repository.Rooms.UpsertAsync(newRoom.Model);
             await GetRoomListAsync();
             Debug.WriteLine($"Bookings: {newRoom.Bookings.Count}");

@@ -41,6 +41,8 @@
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
                     </telerikGrid:DataGridTextColumn>
                     <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Wednesday.Info" Header="Mittwoch"/>
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
 

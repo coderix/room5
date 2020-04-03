@@ -82,8 +82,19 @@ namespace Room5.Views
                     {
                         r1.Monday = new BookingsViewModel(title: "");
                     }
-                    
-                    r1.Tuesday = new BookingsViewModel("1a");
+                    roomBookings = from b in control.MasterMenuItem.Bookings
+                                   where b.Day == 2 && b.Lesson == i
+                                   select b;
+                    if (roomBookings.Count() > 0)
+                    {
+                        r1.Tuesday = new BookingsViewModel(model: roomBookings.First());
+                    }
+                    else
+                    {
+                        r1.Tuesday = new BookingsViewModel(title: "");
+                    }
+
+                  //  r1.Tuesday = new BookingsViewModel("1a");
                     r1.Wednesday = new BookingsViewModel("1a");
                     r1.Friday = new BookingsViewModel("1a");
                     r1.Saturday = new BookingsViewModel("1a");
