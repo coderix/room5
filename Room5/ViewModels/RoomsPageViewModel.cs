@@ -296,7 +296,7 @@ namespace Room5.ViewModels
             RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
             newRoom.RoomName = "Computerraum8";
             BookingsViewModel newBooking = new BookingsViewModel(title: "test2",
-                day: 0,
+                day: 1,
                 lesson: 1,
                 model: new Models.Booking()
                 );

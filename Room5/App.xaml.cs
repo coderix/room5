@@ -16,6 +16,13 @@ namespace Room5
     {
         public static IRoom5Repository Repository { get; set; }
 
+        public enum Weekdays
+        {
+            Monday,
+            Tusesday,
+            Wednesday
+        }
+
         private Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService

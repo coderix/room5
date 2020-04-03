@@ -60,12 +60,29 @@ namespace Room5.Views
             if (control.MasterMenuItem != null)
             {
                 control.BookingRows.Clear();
-                for (int i = 0;  i < 2; i++)
+                // List<Booking> roomBookings = control.MasterMenuItem.Bookings;
+                // List<Booking> roomBookings;
+                  IEnumerable<Booking> roomBookings;
+                // Booking [] roomBookings;
+                Booking booking;
+                
+                for (int i = 1;  i < 3; i++)
                 {
                     BookingsRowModel r1 = new BookingsRowModel();
                     
-                    r1.LessonNumber = i + 1;
-                    r1.Monday = new BookingsViewModel(title: "1a und noch vieeeel mehr");
+                    r1.LessonNumber = i;
+                    // in Buchungsliste suchen
+                    roomBookings = from b in control.MasterMenuItem.Bookings
+                                   where b.Day == 1 && b.Lesson == i
+                                   select b;
+                    if (roomBookings.Count() > 0)
+                    {
+                        r1.Monday = new BookingsViewModel(model: roomBookings.First());
+                    }else
+                    {
+                        r1.Monday = new BookingsViewModel(title: "");
+                    }
+                    
                     r1.Tuesday = new BookingsViewModel("1a");
                     r1.Wednesday = new BookingsViewModel("1a");
                     r1.Friday = new BookingsViewModel("1a");
@@ -74,7 +91,7 @@ namespace Room5.Views
                     control.BookingRows.Add(r1);
                 }
                 
-                List<Booking> roomBookings = control.MasterMenuItem.Bookings;
+                
             }
             control.ForegroundElement.ChangeView(0, 0, 1);
             
