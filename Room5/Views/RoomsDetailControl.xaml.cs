@@ -71,6 +71,13 @@ namespace Room5.Views
                     BookingsRowModel r1 = new BookingsRowModel();
                     
                     r1.LessonNumber = i;
+                    r1.Monday = new BookingsViewModel("1a");
+                    r1.Tuesday = new BookingsViewModel("1a");
+                    r1.Wednesday = new BookingsViewModel("1a");
+                    r1.Thursday = new BookingsViewModel("1a");
+                    r1.Friday = new BookingsViewModel("1a");
+                    r1.Saturday = new BookingsViewModel("1a");
+                    r1.Sunday = new BookingsViewModel("1a");
                     // in Buchungsliste suchen
                     roomBookings = from b in control.MasterMenuItem.Bookings
                                    where b.Day == 1 && b.Lesson == i
@@ -94,11 +101,7 @@ namespace Room5.Views
                         r1.Tuesday = new BookingsViewModel(title: "");
                     }
 
-                  //  r1.Tuesday = new BookingsViewModel("1a");
-                    r1.Wednesday = new BookingsViewModel("1a");
-                    r1.Friday = new BookingsViewModel("1a");
-                    r1.Saturday = new BookingsViewModel("1a");
-                    r1.Sunday = new BookingsViewModel("1a");
+                   
                     control.BookingRows.Add(r1);
                 }
                 
