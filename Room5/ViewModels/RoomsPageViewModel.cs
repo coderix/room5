@@ -218,7 +218,8 @@ namespace Room5.ViewModels
                     SelectedRoom.RoomName = RoomName;
                     string id = SelectedRoom.RoomId;
                     await App.Repository.Rooms.UpsertAsync(SelectedRoom.Model);
-                    await UpdateRoomsAsync();
+                    await GetRoomListAsync();
+                  //  await UpdateRoomsAsync();
                    
                     // in Rooms den Room mit ID finden und auswählen
                     IEnumerable<RoomsViewModel> query = from room in Rooms
@@ -237,7 +238,8 @@ namespace Room5.ViewModels
                     string id = NewRoom.RoomId;
                     await App.Repository.Rooms.UpsertAsync(NewRoom.Model);
                     NewRoom.RoomName = RoomName;
-                    await UpdateRoomsAsync();
+                    await GetRoomListAsync();
+                  //  await UpdateRoomsAsync();
                     IEnumerable<RoomsViewModel> query = from room in Rooms
                                                         where room.RoomId == id
                                                         select room;
