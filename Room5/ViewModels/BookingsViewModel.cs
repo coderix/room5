@@ -155,6 +155,28 @@ namespace Room5.ViewModels
             }
         }
 
+        public string DayAndLessonOutput
+        {
+            get
+            {
+                string day;
+                switch (Day)
+                {
+                    case 1: day = "Montag"; break;
+                    case 2: day = "Dientag"; break;
+                    case 3: day = "Mittwoch"; break;
+                    case 4: day = "Donnerstag"; break;
+                    case 5: day = "Freitag"; break;
+                    case 6: day = "Samtag"; break;
+                    case 7: day = "Sonntag"; break;
+
+                    default:
+                        return ("");
+                }
+                return day + " " + Lesson + ". Stunde";
+            }
+        }
+
         public int Lesson
         {
             get => Model.Lesson;
