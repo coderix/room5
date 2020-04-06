@@ -16,11 +16,25 @@
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         VerticalScrollMode="Enabled">
         <StackPanel>
-            <StackPanel Name="block" Padding="0,0,0,0">
+          
+
+
+             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Buchung" />
+                <TextBox Text="{x:Bind SelectedBooking.DayOutput,  Mode=OneWay}"/>
+            </StackPanel>
+           
+            <StackPanel>
                 
-               
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
-                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
+                
+                <TextBox Header ="Info" Margin="0,24,0,0" MaxLength="32" Width="400" HorizontalAlignment="Left" Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="OK" Margin="0,24" Click="{x:Bind SaveButtonClicked}"/>
+                    <Button Content="Abbruch" Margin="24" Click="CancelButtonClicked"/>
+                </StackPanel>
+
             </StackPanel>
 
             <telerikGrid:RadDataGrid ItemsSource="{x:Bind BookingRows}"

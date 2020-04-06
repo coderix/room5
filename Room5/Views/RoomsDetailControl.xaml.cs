@@ -160,5 +160,17 @@ namespace Room5.Views
                 await dialog.ShowAsync();*/
             }
         }
+
+        private  void SaveButtonClicked(object sender, RoutedEventArgs e)
+        {
+          
+        }
+        public void CancelButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+      
     }
+
 }
