@@ -18,6 +18,7 @@ namespace Room5.Views
     {
         public ObservableCollection<BookingsViewModel> Bookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<BookingsRowModel> BookingRows = new ObservableCollection<BookingsRowModel>();
+        public BookingsViewModel SelectedBooking;
         public RoomsViewModel MasterMenuItem
         {
             get { return GetValue(MasterMenuItemProperty) as RoomsViewModel; }
@@ -106,12 +107,45 @@ namespace Room5.Views
             if (cell != null)
             {
                 /*
+                 * Set a reference to the selected Booking
 
                  */
-                System.Diagnostics.Debug.WriteLine(cell.Value);
+                  
+              //  System.Diagnostics.Debug.WriteLine(cell.Value);
                 BookingsRowModel bm = cell.Item as BookingsRowModel;
-                var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + App.Weekdays[cell.Column.Header.ToString()] + " "   + bm.LessonNumber, "COLUMN HEADER: ");
-                await dialog.ShowAsync();
+                string columnHeader = string.Format(cell.Column.Header.ToString());
+                int lessonNumber = bm.LessonNumber;
+                switch (columnHeader)
+                {
+                    case "Montag":
+                        SelectedBooking = bm.Monday;
+                        break;
+                    case "Dienstag":
+                        SelectedBooking = bm.Tuesday;
+                        break;
+                    case "Mittwoch":
+                        SelectedBooking = bm.Wednesday;
+                        break;
+                    case "Donnerstag":
+                        SelectedBooking = bm.Thursday;
+                        break;
+                    case "Freitag":
+                        SelectedBooking = bm.Friday;
+                        break;
+                    case "Samstag":
+                        SelectedBooking = bm.Saturday;
+                        break;
+                    case "Sonntag":
+                        SelectedBooking = bm.Sunday;
+                        break;
+                    default:
+                        break;
+                }
+               /* var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + App.Weekdays[cell.Column.Header.ToString()] + " "   + bm.LessonNumber, "COLUMN HEADER: ");
+                await dialog.ShowAsync();*/
+
+               /* var dialog = new MessageDialog($"Info: {SelectedBooking.Info}");
+                await dialog.ShowAsync();*/
             }
         }
     }
