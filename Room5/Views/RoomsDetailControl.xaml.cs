@@ -18,7 +18,18 @@ namespace Room5.Views
     {
         public ObservableCollection<BookingsViewModel> Bookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<BookingsRowModel> BookingRows = new ObservableCollection<BookingsRowModel>();
-        public BookingsViewModel SelectedBooking;
+        private BookingsViewModel _selectedBooking;
+
+        public BookingsViewModel SelectedBooking
+        {
+            get => _selectedBooking;
+            set
+            {
+                _selectedBooking = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool ShowBookingForm = false;
         public RoomsViewModel MasterMenuItem
         {
             get { return GetValue(MasterMenuItemProperty) as RoomsViewModel; }
@@ -141,6 +152,7 @@ namespace Room5.Views
                     default:
                         break;
                 }
+                ShowBookingForm = true;
                /* var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + App.Weekdays[cell.Column.Header.ToString()] + " "   + bm.LessonNumber, "COLUMN HEADER: ");
                 await dialog.ShowAsync();*/
 

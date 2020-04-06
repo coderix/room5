@@ -20,6 +20,7 @@
                 
                
                 <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
             </StackPanel>
 
             <telerikGrid:RadDataGrid ItemsSource="{x:Bind BookingRows}"
