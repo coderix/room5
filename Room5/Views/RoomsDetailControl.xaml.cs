@@ -16,11 +16,6 @@ namespace Room5.Views
 {
     public sealed partial class RoomsDetailControl : UserControl, INotifyPropertyChanged
     {
-        /* private ObservableCollection<BookingsViewModel> _bookings = new ObservableCollection<BookingsViewModel>();
-         public ObservableCollection<BookingsViewModel> Bookings { get => _bookings; }*/
-
-       //   private <BookingsViewModel> _bookings = new ObservableCollection<BookingsViewModel>();
-       // public List<BookingsViewModel> Bookings = new List<BookingsViewModel>();
         public ObservableCollection<BookingsViewModel> Bookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<BookingsRowModel> BookingRows = new ObservableCollection<BookingsRowModel>();
         public RoomsViewModel MasterMenuItem
@@ -33,24 +28,7 @@ namespace Room5.Views
 
         public RoomsDetailControl()
         {
-           
-            
-           
-
-
-            /*for (int i = 0; i < 5; i++)
-            {
-                Bookings.Add(new BookingsViewModel("a" + i));
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                Bookings.Add(new BookingsViewModel("b" + i));
-            }*/
-           
-
-
             InitializeComponent();
-            
         }
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -60,8 +38,7 @@ namespace Room5.Views
             if (control.MasterMenuItem != null)
             {
                 control.BookingRows.Clear();
-                // List<Booking> roomBookings = control.MasterMenuItem.Bookings;
-                // List<Booking> roomBookings;
+               
                   IEnumerable<Booking> roomBookings;
                 // Booking [] roomBookings;
                 Booking booking;
@@ -71,13 +48,13 @@ namespace Room5.Views
                     BookingsRowModel r1 = new BookingsRowModel();
                     
                     r1.LessonNumber = i;
-                    r1.Monday = new BookingsViewModel("");
-                    r1.Tuesday = new BookingsViewModel("");
-                    r1.Wednesday = new BookingsViewModel("");
-                    r1.Thursday = new BookingsViewModel("");
-                    r1.Friday = new BookingsViewModel("");
-                    r1.Saturday = new BookingsViewModel("");
-                    r1.Sunday = new BookingsViewModel("");
+                    r1.Monday = new BookingsViewModel(title: "",day:1,lesson:i);
+                    r1.Tuesday = new BookingsViewModel(title: "", day: 2, lesson: i);
+                    r1.Wednesday = new BookingsViewModel(title: "", day: 3, lesson: i);
+                    r1.Thursday = new BookingsViewModel(title: "", day: 4, lesson: i);
+                    r1.Friday = new BookingsViewModel(title: "", day: 5, lesson: i);
+                    r1.Saturday = new BookingsViewModel(title: "", day: 6, lesson: i);
+                    r1.Sunday = new BookingsViewModel(title: "", day: 7, lesson: i);
                     // in Buchungsliste suchen
 
                     for(int i2 = 1; i2 < 8; i2++)
