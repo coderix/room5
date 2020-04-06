@@ -29,7 +29,17 @@ namespace Room5.Views
                 OnPropertyChanged();
             }
         }
-        public bool ShowBookingForm = false;
+        private bool _showBookingForm = false;
+        public bool ShowBookingForm
+        {
+            get => _showBookingForm;
+            set
+            {
+                _showBookingForm = value;
+                OnPropertyChanged();
+            }
+        }
+
         public RoomsViewModel MasterMenuItem
         {
             get { return GetValue(MasterMenuItemProperty) as RoomsViewModel; }
@@ -163,11 +173,11 @@ namespace Room5.Views
 
         private  void SaveButtonClicked(object sender, RoutedEventArgs e)
         {
-          
+            ShowBookingForm = false;
         }
         public void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            ShowBookingForm = false;
         }
 
       
