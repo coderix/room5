@@ -128,8 +128,12 @@ namespace Room5.Views
 
             if (cell != null)
             {
+                /*
+
+                 */
                 System.Diagnostics.Debug.WriteLine(cell.Value);
-                var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + cell.Item, "COLUMN HEADER: ");
+                BookingsRowModel bm = cell.Item as BookingsRowModel;
+                var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + App.Weekdays[cell.Column.Header.ToString()] + " "   + bm.LessonNumber, "COLUMN HEADER: ");
                 await dialog.ShowAsync();
             }
         }

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Room5.Repository;
 using Room5.Models;
 using Windows.ApplicationModel;
+using System.Collections.Generic;
 
 namespace Room5
 {
@@ -16,12 +17,19 @@ namespace Room5
     {
         public static IRoom5Repository Repository { get; set; }
 
-        public enum Weekdays
+
+        
+        public static IDictionary<string, int> Weekdays = new Dictionary<string, int>()
         {
-            Monday,
-            Tusesday,
-            Wednesday
-        }
+            {"Montag", 1 },
+            {"Dienstag",2 },
+            {"Mittwoch", 3},
+            {"Donnerstag",4 },
+            {"Freitag",5 },
+            {"Samstag",6 },
+            {"Sonntag",7 }
+        };
+
 
         private Lazy<ActivationService> _activationService;
 
@@ -33,6 +41,7 @@ namespace Room5
         public App()
         {
             InitializeComponent();
+           
 
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
