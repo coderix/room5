@@ -11,7 +11,7 @@ namespace Room5.Models
     {
         public Guid RoomId { get; set; }
 
-        [ForeignKey("RoomId")]
+     //   [ForeignKey("RoomId")]
         public Room Room { get; set; }
 
         public Guid BookingId { get; set; } = Guid.NewGuid();

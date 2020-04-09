@@ -9,7 +9,7 @@ namespace Room5.Models
 {
     public class Room : IEquatable<Room>
     {
-        [Required]
+      //  [Required]
         public string RoomName { get; set; }
        
         public Guid RoomId { get; set; } = Guid.NewGuid();

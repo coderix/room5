@@ -310,8 +310,16 @@ namespace Room5.ViewModels
                 );
             newRoom.Bookings.Add(newBooking2.Model);
             await App.Repository.Rooms.UpsertAsync(newRoom.Model);
-            await GetRoomListAsync();
+           // await GetRoomListAsync();
             Debug.WriteLine($"Bookings: {newRoom.Bookings.Count}");
+
+            RoomsViewModel newRoom2 = new RoomsViewModel(new Models.Room());
+            newRoom2.RoomName = "Bibliothek";
+            await App.Repository.Rooms.UpsertAsync(newRoom2.Model);
+            await GetRoomListAsync();
+
+
+
 
         }
     }
