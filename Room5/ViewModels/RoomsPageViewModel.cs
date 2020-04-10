@@ -12,6 +12,7 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using Room5.Core.Models;
 using Room5.Core.Services;
 using Room5.Helpers;
+using Room5.Models;
 using Windows.UI.Xaml.Controls;
 
 namespace Room5.ViewModels
@@ -315,8 +316,18 @@ namespace Room5.ViewModels
 
             RoomsViewModel newRoom2 = new RoomsViewModel(new Models.Room());
             newRoom2.RoomName = "Bibliothek";
+            Guid key = newRoom2.Model.RoomId;
             await App.Repository.Rooms.UpsertAsync(newRoom2.Model);
+            Room bibliothek = await App.Repository.Rooms.GetAsync(key);
+            BookingsViewModel newBooking3 = new BookingsViewModel(title: "Dienstag 2",
+                day: 2,
+                lesson: 2,
+                model: new Models.Booking()
+                );
+            bibliothek.Bookings.Add(newBooking3.Model);
+            await App.Repository.Rooms.UpsertAsync(bibliothek);
             await GetRoomListAsync();
+
 
 
 

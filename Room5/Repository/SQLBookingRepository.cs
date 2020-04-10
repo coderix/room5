@@ -21,14 +21,12 @@ namespace Room5.Repository
         {
             return await _db.Bookings
                // .OrderBy(a => a.BookingName)
-                .AsNoTracking()
-                .ToListAsync();
+                  .ToListAsync();
         }
 
         public async Task<Booking> GetAsync(Guid id)
         {
             return await _db.Bookings
-                .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.BookingId == id);
         }
 
@@ -42,7 +40,6 @@ namespace Room5.Repository
                 .OrderByDescending(x =>
                     parameters.Count(y =>
                         x.BookingName.StartsWith(y) ))*/
-                .AsNoTracking()
                 .ToListAsync();
         }
 
