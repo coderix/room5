@@ -198,11 +198,27 @@ namespace Room5.Views
             }
         }
 
-        private  void SaveButtonClicked(object sender, RoutedEventArgs e)
+        private async void SaveButtonClicked(object sender, RoutedEventArgs e)
         {
-            App.Repository.Bookings.UpsertAsync(SelectedBooking.Model);
-            buildBookingRows();
-            ShowBookingForm = false;
+            if (String.IsNullOrEmpty(SelectedBooking.Title))
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Titel",
+                    Content = "Bitte geben Sie der Buchung einen Titel",
+                    CloseButtonText = "Ok"
+                };
+
+                ContentDialogResult result = await dialog.ShowAsync();
+
+            }
+            else
+            {
+                await App.Repository.Bookings.UpsertAsync(SelectedBooking.Model);
+                buildBookingRows();
+                ShowBookingForm = false;
+            }
+            
         }
         private async void DeleteButtonClicked(object sender, RoutedEventArgs e)
         {
