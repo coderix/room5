@@ -20,6 +20,7 @@ namespace Room5.Views
         public ObservableCollection<BookingsRowModel> BookingRows = new ObservableCollection<BookingsRowModel>();
         private BookingsViewModel _selectedBooking;
 
+
         public BookingsViewModel SelectedBooking
         {
             get => _selectedBooking;
@@ -36,6 +37,17 @@ namespace Room5.Views
             set
             {
                 _showBookingForm = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _showDeleteButton = false;
+        public bool ShowDeleteButton
+        {
+            get => _showDeleteButton;
+            set
+            {
+                _showDeleteButton = value;
                 OnPropertyChanged();
             }
         }
@@ -169,6 +181,14 @@ namespace Room5.Views
                     default:
                         break;
                 }
+                if (SelectedBooking.Model.Title == "")
+                {
+                    ShowDeleteButton = false;
+                }
+                else
+                {
+                    ShowDeleteButton = true;
+                }
                 ShowBookingForm = true;
                /* var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + App.Weekdays[cell.Column.Header.ToString()] + " "   + bm.LessonNumber, "COLUMN HEADER: ");
                 await dialog.ShowAsync();*/
@@ -182,6 +202,27 @@ namespace Room5.Views
         {
             App.Repository.Bookings.UpsertAsync(SelectedBooking.Model);
             buildBookingRows();
+            ShowBookingForm = false;
+        }
+        private async void DeleteButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Soll die Buchung gelöscht werden?",
+                Content = "Sie kann nicht wiederhergestellt werden",
+                PrimaryButtonText = "Löschen",
+                CloseButtonText = "Abbruch"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+
+            if (result == ContentDialogResult.Primary && SelectedBooking != null)
+            {
+                await App.Repository.Bookings.DeleteAsync(SelectedBooking.Model.BookingId);
+                buildBookingRows();
+            }
+              
             ShowBookingForm = false;
         }
         public void CancelButtonClicked(object sender, RoutedEventArgs e)

@@ -25,16 +25,13 @@
                  x:Load="{x:Bind ShowBookingForm, Mode=OneWay}"
                 Orientation="Vertical" Margin="0,30,0,0">
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
-           
-           
-           
-                
                 
                 <TextBox Header ="Info" Margin="0,24,0,0" MaxLength="32" Width="400" HorizontalAlignment="Left" Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="FormButtons" Orientation="Horizontal">
                     <Button Content="OK" Margin="0,24" Click="{x:Bind SaveButtonClicked}"/>
                     <Button Content="Abbruch" Margin="24" Click="CancelButtonClicked"/>
+                    <Button x:Name="DeleteButton" Content="Löschen" Margin="24" Click="DeleteButtonClicked"  x:Load="{x:Bind ShowDeleteButton, Mode=OneWay}"/>
                 </StackPanel>
 
             </StackPanel>
