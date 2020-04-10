@@ -19,6 +19,11 @@ namespace Room5.Models
         Task<IEnumerable<Booking>> GetAsync(string search);
 
         /// <summary>
+        /// Returns all bookings of a room
+        /// </summary>
+        IEnumerable<Booking> Get(Room room);
+        /// <summary>
+        /// 
         /// Returns the booking with the given id. 
         /// </summary>
         Task<Booking> GetAsync(Guid id);

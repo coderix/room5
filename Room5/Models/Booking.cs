@@ -9,15 +9,8 @@ namespace Room5.Models
 {
     public class Booking : IEquatable<Booking>
     {
+        public Guid BookingId { get; set; }
         public Guid RoomId { get; set; }
-
-     //   [ForeignKey("RoomId")]
-        public Room Room { get; set; }
-
-        public Guid BookingId { get; set; } = Guid.NewGuid();
-      //  public string RoomId { get; set; }
-      //  public Room Room { get; set; }
-
         public string Title { get; set; }
         public int Day { get; set; }
         public int Lesson { get; set; }

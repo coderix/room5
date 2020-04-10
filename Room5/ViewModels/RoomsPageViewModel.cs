@@ -297,37 +297,43 @@ namespace Room5.ViewModels
         {
             await App.Repository.Rooms.DeleteAllRoomsAsync();
             RoomsViewModel newRoom = new RoomsViewModel(new Models.Room());
-            newRoom.RoomName = "Computerraum8";
+            newRoom.RoomName = "Computerraum";
+            await App.Repository.Rooms.UpsertAsync(newRoom.Model);
+
             BookingsViewModel newBooking = new BookingsViewModel(title: "test2",
                 day: 1,
                 lesson: 1,
+                roomId: newRoom.Model.RoomId,
                 model: new Models.Booking()
                 );
-           newRoom.Bookings.Add(newBooking.Model);
-            BookingsViewModel newBooking2 = new BookingsViewModel(title: "Dienstag 2",
-                day: 2,
-                lesson: 2,
-                model: new Models.Booking()
-                );
-            newRoom.Bookings.Add(newBooking2.Model);
-            await App.Repository.Rooms.UpsertAsync(newRoom.Model);
-           // await GetRoomListAsync();
-            Debug.WriteLine($"Bookings: {newRoom.Bookings.Count}");
-
-            RoomsViewModel newRoom2 = new RoomsViewModel(new Models.Room());
-            newRoom2.RoomName = "Bibliothek";
-            Guid key = newRoom2.Model.RoomId;
-            await App.Repository.Rooms.UpsertAsync(newRoom2.Model);
-            Room bibliothek = await App.Repository.Rooms.GetAsync(key);
-            BookingsViewModel newBooking3 = new BookingsViewModel(title: "Dienstag 2",
-                day: 2,
-                lesson: 2,
-                model: new Models.Booking()
-                );
-            bibliothek.Bookings.Add(newBooking3.Model);
-            await App.Repository.Rooms.UpsertAsync(bibliothek);
+            await App.Repository.Bookings.UpsertAsync(newBooking.Model);
             await GetRoomListAsync();
 
+            /* newRoom.Bookings.Add(newBooking.Model);
+              BookingsViewModel newBooking2 = new BookingsViewModel(title: "Dienstag 2",
+                  day: 2,
+                  lesson: 2,
+                  model: new Models.Booking()
+                  );
+              newRoom.Bookings.Add(newBooking2.Model);
+              await App.Repository.Rooms.UpsertAsync(newRoom.Model);
+             // await GetRoomListAsync();
+              Debug.WriteLine($"Bookings: {newRoom.Bookings.Count}");
+
+              RoomsViewModel newRoom2 = new RoomsViewModel(new Models.Room());
+              newRoom2.RoomName = "Bibliothek";
+              Guid key = newRoom2.Model.RoomId;
+              await App.Repository.Rooms.UpsertAsync(newRoom2.Model);
+              Room bibliothek = await App.Repository.Rooms.GetAsync(key);
+              BookingsViewModel newBooking3 = new BookingsViewModel(title: "Dienstag 2",
+                  day: 2,
+                  lesson: 2,
+                  model: new Models.Booking()
+                  );
+              bibliothek.Bookings.Add(newBooking3.Model);
+              await App.Repository.Rooms.UpsertAsync(bibliothek);
+              await GetRoomListAsync();
+  */
 
 
 

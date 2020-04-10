@@ -13,7 +13,6 @@ namespace Room5.Models
         public string RoomName { get; set; }
        
         public Guid RoomId { get; set; } = Guid.NewGuid();
-        public List<Booking> Bookings { get; set; }
         public bool Equals(Room other)
         {
             return

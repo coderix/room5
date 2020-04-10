@@ -20,10 +20,7 @@ namespace Room5.ViewModels
             {
                 Model = model;
             }
-            if (Bookings == null)
-            {
-                Bookings = new List<Booking>();
-            }
+           
             
             
         }
@@ -60,12 +57,9 @@ namespace Room5.ViewModels
                 }
             }
         }
-        public List<Booking> Bookings
-        {
-            get => Model.Bookings;
-            set => Model.Bookings = value;
 
-        }
+        private List<Booking> _roomBookins;
+       
 
      
       

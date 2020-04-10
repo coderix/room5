@@ -28,6 +28,7 @@ namespace Room5.ViewModels
             bool isReccurent = true,
             int repeat = 0,
             string remarks = default,
+            Guid roomId = default,
             Booking model = null
            
             )
@@ -47,6 +48,7 @@ namespace Room5.ViewModels
            IsRecurrent = isReccurent;
             Repeat = repeat;
             Remarks = remarks;
+            RoomId = roomId;
             
 
 
@@ -72,6 +74,19 @@ namespace Room5.ViewModels
         public string BookingId
         {
             get => Model.BookingId.ToString();
+        }
+
+        public Guid RoomId
+        {
+            get => Model.RoomId;
+            set
+            {
+                if (value != Model.RoomId)
+                {
+                    Model.RoomId = value;
+                    IsModified = true;
+                }
+            }
         }
 
         private string _info;
@@ -110,7 +125,7 @@ namespace Room5.ViewModels
         }
         public int LessonOutput = 0;
 
-        public Room Room
+        /*public Room Room
         {
             get => Model.Room;
             set
@@ -121,7 +136,7 @@ namespace Room5.ViewModels
                     IsModified = true;
                 }
             }
-        }
+        }*/
 
         public int Day
         {

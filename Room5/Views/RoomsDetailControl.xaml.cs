@@ -60,10 +60,11 @@ namespace Room5.Views
             if (control.MasterMenuItem != null)
             {
                 control.BookingRows.Clear();
+                IEnumerable<Booking> bookings = App.Repository.Bookings.Get(control.MasterMenuItem.Model);
                
                   IEnumerable<Booking> roomBookings;
                 // Booking [] roomBookings;
-                Booking booking;
+              //  Booking booking;
                 
                 for (int i = 1;  i < 3; i++)
                 {
@@ -81,7 +82,7 @@ namespace Room5.Views
 
                     for(int i2 = 1; i2 < 8; i2++)
                     {
-                        roomBookings = from b in control.MasterMenuItem.Bookings
+                        roomBookings = from b in bookings
                                        where b.Day == i2 && b.Lesson == i
                                        select b;
                         if(i2 == 1)

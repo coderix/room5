@@ -30,6 +30,13 @@ namespace Room5.Repository
                 .FirstOrDefaultAsync(x => x.BookingId == id);
         }
 
+        public IEnumerable<Booking> Get(Room room)
+        {
+            return _db.Bookings
+                  .Where(booking => booking.RoomId == room.RoomId)
+                  .ToList();
+        }
+
         public async Task<IEnumerable<Booking>> GetAsync(string value)
         {
             string[] parameters = value.Split(' ');

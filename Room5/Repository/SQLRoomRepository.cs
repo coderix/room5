@@ -20,7 +20,6 @@ namespace Room5.Repository
         public async Task<IEnumerable<Room>> GetAsync()
         {
             return await _db.Rooms
-                .Include(room => room.Bookings )
                 .OrderBy(a => a.RoomName)
                 .ToListAsync();
         }
@@ -28,7 +27,6 @@ namespace Room5.Repository
         public async Task<Room> GetAsync(Guid id)
         {
             return await _db.Rooms
-                .Include(room => room.Bookings)
                 .FirstOrDefaultAsync(x => x.RoomId == id);
         }
 
@@ -36,7 +34,6 @@ namespace Room5.Repository
         {
             string[] parameters = value.Split(' ');
             return await _db.Rooms
-                .Include(room => room.Bookings)
                 .Where(x =>
                     parameters.Any(y =>
                         x.RoomName.StartsWith(y) ))
@@ -49,7 +46,6 @@ namespace Room5.Repository
         public async Task<Room> UpsertAsync(Room Room)
         {
             var current = await _db.Rooms
-                .Include(room => room.Bookings)
                 .FirstOrDefaultAsync(x => x.RoomId == Room.RoomId);
             if (null == current)
             {
@@ -65,12 +61,16 @@ namespace Room5.Repository
 
         public async Task DeleteAsync(Guid id)
         {
-            var Room = await _db.Rooms
-                .Include(room => room.Bookings)
+            var room = await _db.Rooms
                 .FirstOrDefaultAsync(x => x.RoomId == id);
-            if (null != Room)
+            if (null != room)
             {
-                _db.Rooms.Remove(Room);
+                IEnumerable<Booking> bookings = App.Repository.Bookings.Get(room);
+                foreach (Booking booking in bookings)
+                {
+                    await App.Repository.Bookings.DeleteAsync(booking.BookingId);
+                }
+                _db.Rooms.Remove(room);
                 await _db.SaveChangesAsync();
             }
         }
@@ -80,13 +80,13 @@ namespace Room5.Repository
             try
             {
                 var rooms = await _db.Rooms
-                    .Include(room => room.Bookings)
                     .ToListAsync();
                 if (null != rooms)
                 {
                     foreach (var room in rooms)
                     {
-                        _db.Rooms.Remove(room);
+                        await DeleteAsync(room.RoomId);
+                       // _db.Rooms.Remove(room);
                     }
 
                        await _db.SaveChangesAsync();
