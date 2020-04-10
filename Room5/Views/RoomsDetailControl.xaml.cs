@@ -78,7 +78,7 @@ namespace Room5.Views
                 // Booking [] roomBookings;
                 //  Booking booking;
 
-                for (int i = 1; i < 3; i++)
+                for (int i = 1; i < 11; i++)
                 {
                     BookingsRowModel r1 = new BookingsRowModel();
 
@@ -97,24 +97,23 @@ namespace Room5.Views
                         roomBookings = from b in bookings
                                        where b.Day == i2 && b.Lesson == i
                                        select b;
-                        if (i2 == 1)
+                        if (roomBookings.Count() > 0)
                         {
-                            if (roomBookings.Count() > 0)
+                            switch (i2)
                             {
-                                r1.Monday = new BookingsViewModel(model: roomBookings.First());
-                            }
+                                case 1: r1.Monday = new BookingsViewModel(model: roomBookings.First()); break;
+                                case 2: r1.Tuesday = new BookingsViewModel(model: roomBookings.First());break;
+                                case 3: r1.Wednesday = new BookingsViewModel(model: roomBookings.First()); break;
+                                case 4: r1.Thursday = new BookingsViewModel(model: roomBookings.First()); break;
+                                case 5: r1.Friday = new BookingsViewModel(model: roomBookings.First()); break;
+                                case 6: r1.Saturday = new BookingsViewModel(model: roomBookings.First()); break;
+                                case 7: r1.Sunday = new BookingsViewModel(model: roomBookings.First()); break;
 
-                        }
-                        else if (i2 == 2)
-                        {
-                            if (roomBookings.Count() > 0)
-                            {
-                                r1.Tuesday = new BookingsViewModel(model: roomBookings.First());
+                                default:
+                                    break;
                             }
-
                         }
                     }
-
 
                     control.BookingRows.Add(r1);
                 }
@@ -139,7 +138,7 @@ namespace Room5.Views
       
        
 
-        private  async void GridTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private   void GridTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             var physicalPoint = e.GetPosition(sender as RadDataGrid);
             var cell = (sender as RadDataGrid).HitTestService.CellInfoFromPoint(physicalPoint);
