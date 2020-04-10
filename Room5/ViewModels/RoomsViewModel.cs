@@ -58,7 +58,7 @@ namespace Room5.ViewModels
             }
         }
 
-        private List<Booking> _roomBookins;
+       
        
 
      

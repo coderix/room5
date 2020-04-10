@@ -53,45 +53,45 @@ namespace Room5.Views
             InitializeComponent();
         }
 
-        private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static RoomsDetailControl control;
+
+        private static void buildBookingRows()
         {
-           
-            var control = d as RoomsDetailControl;
             if (control.MasterMenuItem != null)
             {
                 control.BookingRows.Clear();
                 IEnumerable<Booking> bookings = App.Repository.Bookings.Get(control.MasterMenuItem.Model);
-               
-                  IEnumerable<Booking> roomBookings;
+
+                IEnumerable<Booking> roomBookings;
                 // Booking [] roomBookings;
-              //  Booking booking;
-                
-                for (int i = 1;  i < 3; i++)
+                //  Booking booking;
+
+                for (int i = 1; i < 3; i++)
                 {
                     BookingsRowModel r1 = new BookingsRowModel();
-                    
+
                     r1.LessonNumber = i;
-                    r1.Monday = new BookingsViewModel(title: "",day:1,lesson:i);
-                    r1.Tuesday = new BookingsViewModel(title: "", day: 2, lesson: i);
-                    r1.Wednesday = new BookingsViewModel(title: "", day: 3, lesson: i);
-                    r1.Thursday = new BookingsViewModel(title: "", day: 4, lesson: i);
-                    r1.Friday = new BookingsViewModel(title: "", day: 5, lesson: i);
-                    r1.Saturday = new BookingsViewModel(title: "", day: 6, lesson: i);
-                    r1.Sunday = new BookingsViewModel(title: "", day: 7, lesson: i);
+                    r1.Monday = new BookingsViewModel(title: "", day: 1, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
+                    r1.Tuesday = new BookingsViewModel(title: "", day: 2, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
+                    r1.Wednesday = new BookingsViewModel(title: "", day: 3, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
+                    r1.Thursday = new BookingsViewModel(title: "", day: 4, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
+                    r1.Friday = new BookingsViewModel(title: "", day: 5, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
+                    r1.Saturday = new BookingsViewModel(title: "", day: 6, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
+                    r1.Sunday = new BookingsViewModel(title: "", day: 7, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
                     // in Buchungsliste suchen
 
-                    for(int i2 = 1; i2 < 8; i2++)
+                    for (int i2 = 1; i2 < 8; i2++)
                     {
                         roomBookings = from b in bookings
                                        where b.Day == i2 && b.Lesson == i
                                        select b;
-                        if(i2 == 1)
+                        if (i2 == 1)
                         {
                             if (roomBookings.Count() > 0)
                             {
                                 r1.Monday = new BookingsViewModel(model: roomBookings.First());
                             }
-                          
+
                         }
                         else if (i2 == 2)
                         {
@@ -99,16 +99,22 @@ namespace Room5.Views
                             {
                                 r1.Tuesday = new BookingsViewModel(model: roomBookings.First());
                             }
-                          
+
                         }
                     }
-                    
-                   
+
+
                     control.BookingRows.Add(r1);
                 }
-                
-                
             }
+        }
+
+        private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+           
+            control = d as RoomsDetailControl;
+            buildBookingRows();
+            
             control.ForegroundElement.ChangeView(0, 0, 1);
             
         }
@@ -174,6 +180,8 @@ namespace Room5.Views
 
         private  void SaveButtonClicked(object sender, RoutedEventArgs e)
         {
+            App.Repository.Bookings.UpsertAsync(SelectedBooking.Model);
+            buildBookingRows();
             ShowBookingForm = false;
         }
         public void CancelButtonClicked(object sender, RoutedEventArgs e)

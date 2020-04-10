@@ -94,18 +94,12 @@ namespace Room5.ViewModels
         {
             get
             {
-                if (LessonOutput > 0)
-                {
-                    return LessonOutput.ToString();
-                }
-                else
-                {
                     return Title;
-                }
-            }
+             }
             set
             {
                 _info = value;
+                Title = value;
             }
         }
         /// <summary>
