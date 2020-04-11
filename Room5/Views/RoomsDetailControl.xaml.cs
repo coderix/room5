@@ -79,7 +79,7 @@ namespace Room5.Views
                 //  Booking booking;
 
                 for (int i = 1; i < 11; i++)
-                {
+                {   
                     BookingsRowModel r1 = new BookingsRowModel();
 
                     r1.LessonNumber = i;
@@ -245,7 +245,18 @@ namespace Room5.Views
             ShowBookingForm = false;
         }
 
-      
+        private async void PreviousClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Soll die Buchung gelöscht werden?",
+                Content = "Sie kann nicht wiederhergestellt werden",
+                PrimaryButtonText = "Löschen",
+                CloseButtonText = "Abbruch"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
+        }
     }
 
 }

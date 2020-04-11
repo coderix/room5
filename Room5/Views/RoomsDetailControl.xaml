@@ -35,6 +35,15 @@
                 </StackPanel>
 
             </StackPanel>
+            
+           
+            
+            <StackPanel Orientation="Horizontal" Margin="0,40,0,40" VerticalAlignment="Center" HorizontalAlignment="Center">
+               
+                <SymbolIcon Symbol="Previous" Tapped="PreviousClicked"/>
+                <TextBlock Text="Woche"></TextBlock>
+                <SymbolIcon Symbol="Next" Tapped="PreviousClicked"/>
+            </StackPanel>
 
             <telerikGrid:RadDataGrid ItemsSource="{x:Bind BookingRows}"
                                      UserEditMode="None"
@@ -64,8 +73,8 @@
                                                     IsVisible="True"/>
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
+           
 
-            
         </StackPanel>
     </ScrollViewer>
 </UserControl>
