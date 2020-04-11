@@ -36,8 +36,6 @@
 
             </StackPanel>
             
-           
-            
             <StackPanel Orientation="Horizontal" Margin="0,40,0,40" VerticalAlignment="Center" HorizontalAlignment="Center">
                
                 <SymbolIcon Symbol="Previous" Tapped="PreviousClicked"/>
