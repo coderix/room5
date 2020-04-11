@@ -48,10 +48,10 @@
                                      x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
                                      VerticalAlignment="Center"
-                                     Width="600" UserFilterMode="Disabled" SelectionUnit="Cell"  Tapped="GridTapped"
+                                     Width="820" UserFilterMode="Disabled" SelectionUnit="Cell"  Tapped="GridTapped"
                                      >
-                <telerikGrid:RadDataGrid.Columns>
-                    <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde">
+                <telerikGrid:RadDataGrid.Columns >
+                    <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
                         <telerikGrid:DataGridTextColumn.CellContentStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Foreground" Value="Red"/>
@@ -61,14 +61,15 @@
                             </Style>
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
                     </telerikGrid:DataGridTextColumn>
-                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag"/>
-                    <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag"/>
-                    <telerikGrid:DataGridTextColumn PropertyName="Wednesday.Info" Header="Mittwoch"/>
-                    <telerikGrid:DataGridTextColumn PropertyName="Thursday.Info" Header="Donnerstag"/>
-                    <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag"/>
-                    <telerikGrid:DataGridTextColumn PropertyName="Saturday.Info" Header="Samstag" IsVisible="TRue"/>
+                    
+                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag" SizeMode="Fixed"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag" SizeMode="Fixed"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Wednesday.Info" Header="Mittwoch" SizeMode="Fixed"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Thursday.Info" Header="Donnerstag" SizeMode="Fixed"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag" SizeMode="Fixed"/>
+                    <telerikGrid:DataGridTextColumn PropertyName="Saturday.Info" Header="Samstag" IsVisible="True" SizeMode="Fixed"/>
                     <telerikGrid:DataGridTextColumn PropertyName="Sunday.Info" Header="Sonntag"
-                                                    IsVisible="True"/>
+                                                    IsVisible="True" SizeMode="Stretch" />
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
            
