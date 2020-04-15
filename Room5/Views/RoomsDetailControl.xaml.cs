@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls;
 using System.Linq;
 using Windows.UI.Popups;
 using Room5.Models;
+using Room5.Helpers;
 
 namespace Room5.Views
 {
@@ -19,7 +20,30 @@ namespace Room5.Views
         public ObservableCollection<BookingsViewModel> Bookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<BookingsRowModel> BookingRows = new ObservableCollection<BookingsRowModel>();
         private BookingsViewModel _selectedBooking;
+        // public DateHelper DH = new DateHelper();
+        public DateTime FirstMonday;
+        public Week FirstWeek;
+        private Week _currentWeek;
+        public Week CurrentWeek
+        {
+            get => _currentWeek;
+            set
+            {
+                _currentWeek = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _lb;
+        public string LB
+        {
+            get => _lb;
+            set
+            {
+                _lb = value;
+                OnPropertyChanged();
+            }
+        }
 
         public BookingsViewModel SelectedBooking
         {
@@ -63,6 +87,10 @@ namespace Room5.Views
         public RoomsDetailControl()
         {
             InitializeComponent();
+            FirstMonday = DateHelper.FirstMonday(DateTime.Now);
+            FirstWeek = DateHelper.getWeek(FirstMonday);
+            CurrentWeek = DateHelper.getWeek(FirstMonday);
+            LB = "Montag &#x0a; weiter";
         }
 
         private static RoomsDetailControl control;
@@ -71,6 +99,7 @@ namespace Room5.Views
         {
             if (control.MasterMenuItem != null)
             {
+                
                 control.BookingRows.Clear();
                 IEnumerable<Booking> bookings = App.Repository.Bookings.Get(control.MasterMenuItem.Model);
 

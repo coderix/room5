@@ -8,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace Room5.Helpers
 {
-    class DateHelper
+    public static class DateHelper
     {
-        public DateTime today = DateTime.Now;
-        
+      //  public static DateTime today = DateTime.Now;
+
         /// <summary>
         /// Gets or sets the Date of this week's Monday.
         /// </summary>
-        public DateTime FirstMonday
+        public static DateTime FirstMonday(DateTime today)
         {
-            get
-            {
+           
                 //Get the date of this week's monday
                 DateTime d;
                 switch ((int)today.DayOfWeek)
@@ -34,7 +33,12 @@ namespace Room5.Helpers
                         break;
                 }
                 return d;
-            }
+            
+        }
+
+        public static Week getWeek(DateTime monday)
+        {
+            return new Week(monday);
         }
 
         static void dates()
