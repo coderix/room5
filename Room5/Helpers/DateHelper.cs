@@ -41,6 +41,16 @@ namespace Room5.Helpers
             return new Week(monday);
         }
 
+        public static Week NextWeek(DateTime monday)
+        {
+            return new Week(monday.AddDays(7));
+        }
+
+        public static Week PreviousWeek(DateTime monday)
+        {
+            return new Week(monday.AddDays(-7));
+        }
+
         static void dates()
         {
             DateTime date1 = DateTime.Now;

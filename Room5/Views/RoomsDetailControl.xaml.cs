@@ -30,17 +30,28 @@ namespace Room5.Views
             set
             {
                 _currentWeek = value;
-                OnPropertyChanged();
+               CurrentWeekOutput = $"{CurrentWeek.Monday.Day}.{CurrentWeek.Monday.Month}. - {CurrentWeek.Sunday.Day}.{CurrentWeek.Sunday.Month}.";
+
+                if (CurrentWeek.Monday.Day == FirstMonday.Day)
+                {
+                    ShowPreviousButton = false;
+                }
+                else
+                {
+                    ShowPreviousButton = true;
+                }
+                    OnPropertyChanged();
             }
         }
 
-        private string _lb;
-        public string LB
+        private string _currentWeekOutput;
+        public string CurrentWeekOutput
         {
-            get => _lb;
+            get => _currentWeekOutput;
+          
             set
             {
-                _lb = value;
+                _currentWeekOutput = value;
                 OnPropertyChanged();
             }
         }
@@ -61,6 +72,17 @@ namespace Room5.Views
             set
             {
                 _showBookingForm = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _showPreviousButton = false;
+        public bool ShowPreviousButton
+        {
+            get => _showPreviousButton;
+            set
+            {
+                _showPreviousButton = value;
                 OnPropertyChanged();
             }
         }
@@ -90,8 +112,7 @@ namespace Room5.Views
             FirstMonday = DateHelper.FirstMonday(DateTime.Now);
             FirstWeek = DateHelper.getWeek(FirstMonday);
             CurrentWeek = DateHelper.getWeek(FirstMonday);
-            LB = "Montag &#x0a; weiter";
-        }
+         }
 
         private static RoomsDetailControl control;
 
@@ -274,17 +295,17 @@ namespace Room5.Views
             ShowBookingForm = false;
         }
 
-        private async void PreviousClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+       
+        private  void NextClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            ContentDialog dialog = new ContentDialog
-            {
-                Title = "Soll die Buchung gelöscht werden?",
-                Content = "Sie kann nicht wiederhergestellt werden",
-                PrimaryButtonText = "Löschen",
-                CloseButtonText = "Abbruch"
-            };
+            CurrentWeek = DateHelper.NextWeek(CurrentWeek.Monday);
+            buildBookingRows();
+        }
 
-            ContentDialogResult result = await dialog.ShowAsync();
+        private void PreviousClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            CurrentWeek = DateHelper.PreviousWeek(CurrentWeek.Monday);
+            buildBookingRows();
         }
     }
 
