@@ -9,7 +9,7 @@ namespace Room5.ViewModels
 {
     public class BookingsViewModel
     {
-       
+
         /* public BookingsViewModel(string title)
          {
             // Title = title;
@@ -18,17 +18,21 @@ namespace Room5.ViewModels
 
          }*/
 
-       // internal Booking Model { get; set; }
+        // internal Booking Model { get; set; }
 
         public BookingsViewModel(
-            
+
             string title = default,
             int day = 0,
             int lesson = 1,
             bool isReccurent = true,
             int repeat = 0,
+            DateTime startDate = new DateTime(),
+            DateTime endDate = new DateTime(),
+            int duration = 1,
             string remarks = default,
             Guid roomId = default,
+            Guid belongsTo = default,
             Booking model = null
            
             )
@@ -46,9 +50,13 @@ namespace Room5.ViewModels
             Day = day;
             Lesson = lesson;
            IsRecurrent = isReccurent;
+            StartDate = startDate;
+            EndDate = endDate;
+            Duration = duration;
             Repeat = repeat;
             Remarks = remarks;
             RoomId = roomId;
+            BelongsTo = belongsTo;
             
 
 
@@ -84,6 +92,19 @@ namespace Room5.ViewModels
                 if (value != Model.RoomId)
                 {
                     Model.RoomId = value;
+                    IsModified = true;
+                }
+            }
+        }
+
+        public Guid BelongsTo
+        {
+            get => Model.BelongsTo;
+            set
+            {
+                if (value != Model.BelongsTo)
+                {
+                    Model.BelongsTo = value;
                     IsModified = true;
                 }
             }
@@ -251,6 +272,20 @@ namespace Room5.ViewModels
             }
         }
 
+       
+
+        public int Duration
+        {
+            get => Model.Duration;
+            set
+            {
+                if (value != Model.Duration)
+                {
+                    Model.Duration = value;
+                    IsModified = true;
+                }
+            }
+        }
         public string Remarks
         {
             get => Model.Remarks;

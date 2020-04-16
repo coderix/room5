@@ -11,6 +11,7 @@ namespace Room5.Models
     {
         public Guid BookingId { get; set; }
         public Guid RoomId { get; set; }
+        public Guid BelongsTo { get; set; }
         public string Title { get; set; }
         public int Day { get; set; }
         public int Lesson { get; set; }
@@ -23,6 +24,7 @@ namespace Room5.Models
 
         public DateTime StartDate  { get; set; }
         public DateTime EndDate { get; set; }
+        public int Duration { get; set; }
         public string Remarks { get; set; }
 
         public bool Equals(Booking other)

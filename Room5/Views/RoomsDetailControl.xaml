@@ -63,7 +63,7 @@
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
                     </telerikGrid:DataGridTextColumn>
 
-                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info"  SizeMode="Fixed">
+                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag" SizeMode="Fixed">
                         <telerikGrid:DataGridTextColumn.CellContentStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextWrapping" Value="Wrap"/>
@@ -71,16 +71,7 @@
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                             </Style>
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
-                        <telerikGrid:DataGridTextColumn.Header>
-                            <TextBlock>
-                                <TextBlock.Inlines>
-                                    
-                                    <Run Text="Montag" />
-                                    <LineBreak />
-                                    <Run Text="{x:Bind CurrentWeek.getShortDate(CurrentWeek.Monday)}" />
-                                </TextBlock.Inlines>
-                            </TextBlock>
-                        </telerikGrid:DataGridTextColumn.Header>
+                       
                         <telerikGrid:DataGridTextColumn.HeaderStyle>
                             <Style TargetType="gridPrimitives:DataGridColumnHeader">
                                 <Setter Property="Background" Value="#58622D"/>

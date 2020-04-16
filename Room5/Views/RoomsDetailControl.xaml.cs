@@ -56,7 +56,7 @@ namespace Room5.Views
             }
         }
 
-        public BookingsViewModel SelectedBooking
+        public BookingsViewModel SelectedBooking 
         {
             get => _selectedBooking;
             set
@@ -112,6 +112,7 @@ namespace Room5.Views
             FirstMonday = DateHelper.FirstMonday(DateTime.Now);
             FirstWeek = DateHelper.getWeek(FirstMonday);
             CurrentWeek = DateHelper.getWeek(FirstMonday);
+         //   SelectedBooking = new BookingsViewModel();
          }
 
         private static RoomsDetailControl control;
