@@ -299,6 +299,38 @@ namespace Room5.ViewModels
             }
         }
 
+        public string DateOutputVisibility
+        {
+            get
+            {
+                if (IsRecurrent == true)
+                {
+                    return "Collapsed";
+                }
+                else
+                {
+                    return "Visible";
+                }
+            }
+        }
+
+        public string DateOutput
+        {
+            get
+            {
+                if (IsRecurrent == false)
+                {
+                    return StartDate.Day + "." + StartDate.Month + ".";
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+
+        
+
 
     }
 }

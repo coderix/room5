@@ -80,8 +80,24 @@
                             </Style>
                         </telerikGrid:DataGridTextColumn.HeaderStyle>
                     </telerikGrid:DataGridTextColumn>
+
+                    
                     <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag" SizeMode="Fixed"/>
-                    <telerikGrid:DataGridTextColumn PropertyName="Wednesday.Info" Header="Mittwoch" SizeMode="Fixed"/>
+
+                    <telerikGrid:DataGridTemplateColumn  Header="Mittwoch" SizeMode="Fixed">
+                        <telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                            <DataTemplate>
+                                <StackPanel x:Name="WednesdayPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Wednesday.Info}"/>
+                                    <TextBlock Text="{Binding Wednesday.DateOutput}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+
+                       
+
+                    </telerikGrid:DataGridTemplateColumn>
+                    
                     <telerikGrid:DataGridTextColumn PropertyName="Thursday.Info" Header="Donnerstag" SizeMode="Fixed"/>
                     <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag" SizeMode="Fixed"/>
                     <telerikGrid:DataGridTextColumn  PropertyName="Saturday.Info" Header="Samstag"  SizeMode="Fixed" IsVisible="False"/>
