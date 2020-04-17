@@ -134,13 +134,33 @@ namespace Room5.Views
                     BookingsRowModel r1 = new BookingsRowModel();
 
                     r1.LessonNumber = i;
-                    r1.Monday = new BookingsViewModel(title: "", day: 1, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
-                    r1.Tuesday = new BookingsViewModel(title: "", day: 2, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
-                    r1.Wednesday = new BookingsViewModel(title: "", day: 3, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
-                    r1.Thursday = new BookingsViewModel(title: "", day: 4, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
-                    r1.Friday = new BookingsViewModel(title: "", day: 5, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
-                    r1.Saturday = new BookingsViewModel(title: "", day: 6, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
-                    r1.Sunday = new BookingsViewModel(title: "", day: 7, lesson: i, roomId: control.MasterMenuItem.Model.RoomId);
+                    r1.Monday = new BookingsViewModel(title: "", day: 1, lesson: i, roomId: control.MasterMenuItem.Model.RoomId,
+                        startDate: control.CurrentWeek.Monday,
+                        endDate: control.CurrentWeek.Monday
+                    );
+                    r1.Tuesday = new BookingsViewModel(title: "", day: 2, lesson: i, roomId: control.MasterMenuItem.Model.RoomId,
+                        startDate: control.CurrentWeek.Tuesday,
+                         endDate: control.CurrentWeek.Tuesday
+                        );
+                    r1.Wednesday = new BookingsViewModel(title: "", day: 3, lesson: i, roomId: control.MasterMenuItem.Model.RoomId,
+                        startDate: control.CurrentWeek.Wednesday,
+                         endDate: control.CurrentWeek.Wednesday
+                        );
+                    r1.Thursday = new BookingsViewModel(title: "", day: 4, lesson: i, roomId: control.MasterMenuItem.Model.RoomId,
+                        startDate: control.CurrentWeek.Thursday,
+                         endDate: control.CurrentWeek.Thursday
+                    );
+                    r1.Friday = new BookingsViewModel(title: "", day: 5, lesson: i, roomId: control.MasterMenuItem.Model.RoomId,
+                        startDate: control.CurrentWeek.Friday,
+                         endDate: control.CurrentWeek.Friday);
+                    r1.Saturday = new BookingsViewModel(title: "", day: 6, lesson: i, roomId: control.MasterMenuItem.Model.RoomId,
+                        startDate: control.CurrentWeek.Saturday,
+                         endDate: control.CurrentWeek.Saturday
+                        );
+                    r1.Sunday = new BookingsViewModel(title: "", day: 7, lesson: i, roomId: control.MasterMenuItem.Model.RoomId,
+                        startDate: control.CurrentWeek.Sunday,
+                         endDate: control.CurrentWeek.Sunday
+                        );
                     // in Buchungsliste suchen
 
                     for (int i2 = 1; i2 < 8; i2++)
