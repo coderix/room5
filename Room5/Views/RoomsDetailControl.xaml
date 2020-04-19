@@ -27,14 +27,18 @@
                  Margin="0,30,0,0">
                 <RelativePanel>
                 <TextBlock x:Name="FormHeader" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
-                    <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader">
+                    <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader" Orientation="Vertical">
                          <TextBox Header ="Info"
                              Margin="0,24,0,0"
                              MaxLength="32"
                              Width="400"
-                             InputScope="AlphanumericFullWidth"
+                            
                              HorizontalAlignment="Left"
                             Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
+                        <CheckBox x:Name="FormIsCurrent" Content="Wiederholt sich jede Woche"
+                                  IsChecked="{x:Bind SelectedBooking.IsRecurrent, Mode=TwoWay}"
+                                  IsThreeState="False"/>
+
                     </StackPanel>
                     <TextBlock x:Name="FormMessages" RelativePanel.RightOf="FormLeft"
                                Text="Hallo"
