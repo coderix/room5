@@ -21,21 +21,31 @@
 
 
              <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
-            <StackPanel
+            <Grid Background="White"
                 x:Name="BookingForm"
                  x:Load="{x:Bind ShowBookingForm, Mode=OneWay}"
-                Orientation="Vertical" Margin="0,30,0,0">
-                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
-                
-                <TextBox Header ="Info" Margin="0,24,0,0" MaxLength="32" Width="400" HorizontalAlignment="Left" Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
-
-                <StackPanel x:Name="FormButtons" Orientation="Horizontal">
+                 Margin="0,30,0,0">
+                <RelativePanel>
+                <TextBlock x:Name="FormHeader" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
+                    <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader">
+                         <TextBox Header ="Info"
+                             Margin="0,24,0,0"
+                             MaxLength="32"
+                             Width="400"
+                             InputScope="AlphanumericFullWidth"
+                             HorizontalAlignment="Left"
+                            Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
+                    </StackPanel>
+                    <TextBlock x:Name="FormMessages" RelativePanel.RightOf="FormLeft"
+                               Text="Hallo"
+                               Margin="20"/>
+                    <StackPanel x:Name="FormButtons" Orientation="Horizontal" RelativePanel.Below="FormLeft">
                     <Button Content="OK" Margin="0,24" Click="{x:Bind SaveButtonClicked}"/>
                     <Button Content="Abbruch" Margin="24" Click="CancelButtonClicked"/>
                     <Button x:Name="DeleteButton" Content="Löschen" Margin="24" Click="DeleteButtonClicked"  x:Load="{x:Bind ShowDeleteButton, Mode=OneWay}"/>
                 </StackPanel>
-
-            </StackPanel>
+                </RelativePanel>
+            </Grid>
             
             <StackPanel Orientation="Horizontal" Margin="0,40,0,40" VerticalAlignment="Center" HorizontalAlignment="Center">
                
