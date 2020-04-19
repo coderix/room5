@@ -7,6 +7,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
     xmlns:gridPrimitives="using:Telerik.UI.Xaml.Controls.Grid.Primitives"
+    xmlns:local="using:Room5.Views"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -65,6 +66,30 @@
                                      VerticalAlignment="Center"
                                      Width="610" UserFilterMode="Disabled" SelectionUnit="Cell"  Tapped="GridTapped"
                                      >
+
+                <telerikGrid:RadDataGrid.Resources>
+                    <local:BookingTemplateSelector x:Key="BookingTemplateSelector">
+                        <local:BookingTemplateSelector.NoBookingTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                   
+                                    <TextBlock Text="keine Buchung"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </local:BookingTemplateSelector.NoBookingTemplate>
+
+                        <local:BookingTemplateSelector.RecurrentBookingTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+
+                                    <TextBlock Text="{Binding Thursday.Info}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </local:BookingTemplateSelector.RecurrentBookingTemplate>
+
+                    </local:BookingTemplateSelector>
+                </telerikGrid:RadDataGrid.Resources>
+
                 <telerikGrid:RadDataGrid.Columns>
                     <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
                         <telerikGrid:DataGridTextColumn.CellContentStyle>
@@ -112,7 +137,10 @@
 
                     </telerikGrid:DataGridTemplateColumn>
                     
-                    <telerikGrid:DataGridTextColumn PropertyName="Thursday.Info" Header="Donnerstag" SizeMode="Fixed"/>
+                    <telerikGrid:DataGridTemplateColumn
+                        Header="Donnerstag"
+                        CellContentTemplateSelector="{StaticResource BookingTemplateSelector}"
+                        SizeMode="Fixed"/>
                     <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag" SizeMode="Fixed"/>
                     <telerikGrid:DataGridTextColumn  PropertyName="Saturday.Info" Header="Samstag"  SizeMode="Fixed" IsVisible="False"/>
                     <telerikGrid:DataGridTextColumn PropertyName="Sunday.Info" Header="Sonntag"
