@@ -98,6 +98,27 @@ namespace Room5.Views
             }
         }
 
+        private bool _isRadioButtonOneTimeChecked = true;
+        public bool IsRadioButtonOneTimeChecked
+        {
+            get => _isRadioButtonOneTimeChecked;
+            set
+            {
+                _isRadioButtonOneTimeChecked = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _isRadioButtonWeeklyChecked = true;
+        public bool IsRadioButtonWeeklyChecked
+        {
+            get => _isRadioButtonWeeklyChecked;
+            set
+            {
+                _isRadioButtonWeeklyChecked = value;
+                OnPropertyChanged();
+            }
+        }
+
         public RoomsViewModel MasterMenuItem
         {
             get { return GetValue(MasterMenuItemProperty) as RoomsViewModel; }
@@ -259,6 +280,17 @@ namespace Room5.Views
                 {
                     ShowDeleteButton = true;
                 }
+
+                if (SelectedBooking.Repeat == (int)App.Repeat.Weekly)
+                {
+                    IsRadioButtonOneTimeChecked = false;
+                    IsRadioButtonWeeklyChecked = true;
+                }
+                else
+                {
+                    IsRadioButtonOneTimeChecked = true;
+                    IsRadioButtonWeeklyChecked = false;
+                }
                 ShowBookingForm = true;
                /* var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + App.Weekdays[cell.Column.Header.ToString()] + " "   + bm.LessonNumber, "COLUMN HEADER: ");
                 await dialog.ShowAsync();*/
@@ -331,7 +363,23 @@ namespace Room5.Views
 
         private void RepeatRadioButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            RadioButton rb = sender as RadioButton;
+            if (rb != null && rb.Tag != null)
+            {
+                string mode = rb.Tag.ToString();
+                switch (mode)
+                {
+                    case "OneTime":
+                        SelectedBooking.Repeat = (int)App.Repeat.OneTime;
+                        break;
+                    case "Weekly":
+                        SelectedBooking.Repeat = (int)App.Repeat.Weekly;
+                        break;
+                    default:
+                        SelectedBooking.Repeat = (int)App.Repeat.Weekly;
+                        break;
+                }
+            }
         }
     }
 

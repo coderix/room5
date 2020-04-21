@@ -26,7 +26,7 @@ namespace Room5.ViewModels
             int day = 0,
             int lesson = 1,
             bool isReccurent = true,
-            int repeat = 0,
+            int repeat = (int)App.Repeat.Weekly,
             DateTime startDate = new DateTime(),
             DateTime endDate = new DateTime(),
             int duration = 1,

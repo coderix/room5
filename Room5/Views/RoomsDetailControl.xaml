@@ -38,8 +38,10 @@
                             Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
                         <TextBlock Text="Häufigkeit" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
                         <StackPanel Orientation="Horizontal">
-                            <RadioButton x:Name="RepeatRadioButtonOnce" Content="Einmalig" Tag="OneTime" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked" />
-                            <RadioButton x:Name="RepeatRadioButtonWeekly" Content="Wöchentlich" Tag="Weekly" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked" />
+                            <RadioButton x:Name="RepeatRadioButtonOnce" Content="Einmalig" Tag="OneTime" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked"
+                      IsChecked="{x:Bind IsRadioButtonOneTimeChecked, Mode=OneWay}"/>
+                            <RadioButton x:Name="RepeatRadioButtonWeekly" Content="Wöchentlich" Tag="Weekly" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked"
+                                         IsChecked="{x:Bind IsRadioButtonWeeklyChecked, Mode=OneWay}"/>
                         </StackPanel>
                     
                         <CheckBox x:Name="FormIsCurrent" Content="Wiederholt sich jede Woche"
