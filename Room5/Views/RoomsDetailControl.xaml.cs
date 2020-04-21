@@ -328,6 +328,11 @@ namespace Room5.Views
             CurrentWeek = DateHelper.PreviousWeek(CurrentWeek.Monday);
             buildBookingRows();
         }
+
+        private void RepeatRadioButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

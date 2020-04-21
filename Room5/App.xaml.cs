@@ -30,6 +30,13 @@ namespace Room5
             {"Sonntag",7 }
         };
 
+        public enum Repeat
+        {
+            OneTime,
+            Weekly,
+            Biweekly,
+            Monthly
+        }
 
         private Lazy<ActivationService> _activationService;
 

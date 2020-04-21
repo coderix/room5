@@ -28,14 +28,20 @@
                  Margin="0,30,0,0">
                 <RelativePanel>
                 <TextBlock x:Name="FormHeader" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
-                    <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader" Orientation="Vertical">
-                         <TextBox Header ="Info"
+                <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader" Orientation="Vertical">
+                    <TextBox Header ="Info"
                              Margin="0,24,0,0"
                              MaxLength="32"
                              Width="400"
                             
                              HorizontalAlignment="Left"
                             Text="{x:Bind SelectedBooking.Info, Mode=TwoWay}" />
+                        <TextBlock Text="Häufigkeit" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="RepeatRadioButtonOnce" Content="Einmalig" Tag="OneTime" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked" />
+                            <RadioButton x:Name="RepeatRadioButtonWeekly" Content="Wöchentlich" Tag="Weekly" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked" />
+                        </StackPanel>
+                    
                         <CheckBox x:Name="FormIsCurrent" Content="Wiederholt sich jede Woche"
                                   IsChecked="{x:Bind SelectedBooking.IsRecurrent, Mode=TwoWay}"
                                   IsThreeState="False"/>
