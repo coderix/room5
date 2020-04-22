@@ -300,10 +300,11 @@ namespace Room5.ViewModels
             newRoom.RoomName = "Computerraum";
             await App.Repository.Rooms.UpsertAsync(newRoom.Model);
 
-            BookingsViewModel newBooking = new BookingsViewModel(title: "test2",
+            BookingsViewModel newBooking = new BookingsViewModel(title: "Mo1 weekly ",
                 day: 1,
                 lesson: 1,
                 roomId: newRoom.Model.RoomId,
+                repeat: (int)App.Repeat.Weekly,
                 model: new Models.Booking()
                 );
             await App.Repository.Bookings.UpsertAsync(newBooking.Model);

@@ -76,25 +76,32 @@
                                      >
 
                 <telerikGrid:RadDataGrid.Resources>
-                    <local:BookingTemplateSelector x:Key="BookingTemplateSelector">
+                    
+                    <local:BookingTemplateSelector x:Key="ThursdayTemplateSelector">
                         <local:BookingTemplateSelector.NoBookingTemplate>
+                            
                             <DataTemplate>
                                 <StackPanel>
-                                   
-                                    <TextBlock Text="keine Buchung"/>
+                                    <TextBlock Style="{StaticResource BodyTextStyle}" />
                                 </StackPanel>
                             </DataTemplate>
                         </local:BookingTemplateSelector.NoBookingTemplate>
-
                         <local:BookingTemplateSelector.RecurrentBookingTemplate>
                             <DataTemplate>
-                                <StackPanel>
-
-                                    <TextBlock Text="{Binding Thursday.Info}"/>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Thursday.Info}"    Style="{StaticResource BodyTextStyle}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </local:BookingTemplateSelector.RecurrentBookingTemplate>
-
+                    
+                        <local:BookingTemplateSelector.OneTimeBookingTemplate>
+                            <DataTemplate>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="OneTime" Style="{StaticResource BodyTextStyle}"/>
+                             </StackPanel>
+                            </DataTemplate>
+                        </local:BookingTemplateSelector.OneTimeBookingTemplate>
+                        
                     </local:BookingTemplateSelector>
                 </telerikGrid:RadDataGrid.Resources>
 
@@ -136,7 +143,7 @@
                             <DataTemplate>
                                 <StackPanel x:Name="WednesdayPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Wednesday.Info}"/>
-                                    <TextBlock Text="{Binding Wednesday.DateOutput}"/>
+                                   
                                 </StackPanel>
                             </DataTemplate>
                         </telerikGrid:DataGridTemplateColumn.CellContentTemplate>
@@ -144,11 +151,13 @@
                        
 
                     </telerikGrid:DataGridTemplateColumn>
-                    
+
                     <telerikGrid:DataGridTemplateColumn
                         Header="Donnerstag"
-                        CellContentTemplateSelector="{StaticResource BookingTemplateSelector}"
-                        SizeMode="Fixed"/>
+                        CellContentTemplateSelector="{StaticResource ThursdayTemplateSelector}"
+                        SizeMode="Fixed">
+                       
+                    </telerikGrid:DataGridTemplateColumn>
                     <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag" SizeMode="Fixed"/>
                     <telerikGrid:DataGridTextColumn  PropertyName="Saturday.Info" Header="Samstag"  SizeMode="Fixed" IsVisible="False"/>
                     <telerikGrid:DataGridTextColumn PropertyName="Sunday.Info" Header="Sonntag"
