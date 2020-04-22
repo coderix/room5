@@ -88,8 +88,9 @@
                         </local:BookingTemplateSelector.NoBookingTemplate>
                         <local:BookingTemplateSelector.RecurrentBookingTemplate>
                             <DataTemplate>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Thursday.Info}"    Style="{StaticResource BodyTextStyle}"/>
+                                <StackPanel HorizontalAlignment="left" VerticalAlignment="Center" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7A6;"/>
+                                    <TextBlock Text="{Binding Thursday.Info}"  TextWrapping="Wrap"  />
                                 </StackPanel>
                             </DataTemplate>
                         </local:BookingTemplateSelector.RecurrentBookingTemplate>
