@@ -74,5 +74,13 @@ namespace Room5.Repository
                 await _db.SaveChangesAsync();
             }
         }
+
+        public async Task <IEnumerable<Booking>> GetFutureBookingsAsync(Booking booking)
+        {
+            return await _db.Bookings
+                .Where(b =>
+                b.RoomId == booking.RoomId && b.Day == booking.Day && b.Lesson == booking.Lesson)
+                .ToListAsync();
+        }
     }
 }
