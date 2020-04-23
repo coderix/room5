@@ -76,7 +76,22 @@
                                      >
 
                 <telerikGrid:RadDataGrid.Resources>
-                    
+
+                    <local:TuesdayStyleSelector x:Key="TuesdaySelector">
+                        <local:TuesdayStyleSelector.RecurrentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="Margin" Value="10"/>
+                            </Style>
+                        </local:TuesdayStyleSelector.RecurrentStyle>
+                        <local:TuesdayStyleSelector.OneTimeStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="10"/>
+                            </Style>
+                        </local:TuesdayStyleSelector.OneTimeStyle>
+                    </local:TuesdayStyleSelector>
+
                     <local:BookingTemplateSelector x:Key="ThursdayTemplateSelector">
                         <local:BookingTemplateSelector.NoBookingTemplate>
                             
@@ -136,8 +151,8 @@
                         </telerikGrid:DataGridTextColumn.HeaderStyle>
                     </telerikGrid:DataGridTextColumn>
 
-                    
-                    <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag" SizeMode="Fixed"/>
+
+                    <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag" CellContentStyleSelector="{StaticResource TuesdaySelector}" SizeMode="Fixed"/>
 
                     <telerikGrid:DataGridTemplateColumn  Header="Mittwoch" SizeMode="Fixed">
                         <telerikGrid:DataGridTemplateColumn.CellContentTemplate>
