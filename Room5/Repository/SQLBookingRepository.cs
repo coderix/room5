@@ -79,7 +79,7 @@ namespace Room5.Repository
         {
             return await _db.Bookings
                 .Where(b =>
-                b.RoomId == booking.RoomId && b.Day == booking.Day && b.Lesson == booking.Lesson)
+                b.RoomId == booking.RoomId && b.Day == booking.Day && b.Lesson == booking.Lesson && b.StartDate > booking.StartDate)
                 .ToListAsync();
         }
     }
