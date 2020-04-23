@@ -43,11 +43,7 @@
                             <RadioButton x:Name="RepeatRadioButtonWeekly" Content="Wöchentlich" Tag="Weekly" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked"
                                          IsChecked="{x:Bind IsRadioButtonWeeklyChecked, Mode=OneWay}"/>
                         </StackPanel>
-                    
-                        <CheckBox x:Name="FormIsCurrent" Content="Wiederholt sich jede Woche"
-                                  IsChecked="{x:Bind SelectedBooking.IsRecurrent, Mode=TwoWay}"
-                                  IsThreeState="False"/>
-
+                      
                     </StackPanel>
                     <TextBlock x:Name="FormMessages" RelativePanel.RightOf="FormLeft"
                                Text="Hallo"

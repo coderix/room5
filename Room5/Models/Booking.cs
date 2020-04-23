@@ -15,7 +15,7 @@ namespace Room5.Models
         public string Title { get; set; }
         public int Day { get; set; }
         public int Lesson { get; set; }
-        public bool IsRecurrent { get; set; }
+        public bool IsEndless { get; set; }
 
         /// <summary>
         /// Type of recurrency, daily, weekly ....

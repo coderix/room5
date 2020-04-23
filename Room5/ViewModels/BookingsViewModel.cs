@@ -25,7 +25,7 @@ namespace Room5.ViewModels
             string title = default,
             int day = 0,
             int lesson = 1,
-            bool isReccurent = true,
+            bool isEndless = true,
             int repeat = (int)App.Repeat.Weekly,
             DateTime startDate = new DateTime(),
             DateTime endDate = new DateTime(),
@@ -42,14 +42,14 @@ namespace Room5.ViewModels
               Model.Title = title;
               Model.Day = day;
               Model.Lesson = lesson;
-              Model.IsRecurrent = isReccurent;
+              Model.IsEndless = isReccurent;
               Model.Repeat = repeat;
               Model.Remarks = remarks;*/
             Model = model ?? new Booking();
             Title = title;
             Day = day;
             Lesson = lesson;
-           IsRecurrent = isReccurent;
+           IsEndless = isEndless;
             StartDate = startDate;
             EndDate = endDate;
             Duration = duration;
@@ -220,14 +220,14 @@ namespace Room5.ViewModels
             }
         }
 
-        public bool IsRecurrent
+        public bool IsEndless
         {
-            get => Model.IsRecurrent;
+            get => Model.IsEndless;
             set
             {
-                if (value != Model.IsRecurrent)
+                if (value != Model.IsEndless)
                 {
-                    Model.IsRecurrent = value;
+                    Model.IsEndless = value;
                     IsModified = true;
                 }
             }
@@ -303,7 +303,7 @@ namespace Room5.ViewModels
         {
             get
             {
-                if (IsRecurrent == true)
+                if (IsEndless == true)
                 {
                     return "Collapsed";
                 }
@@ -318,7 +318,7 @@ namespace Room5.ViewModels
         {
             get
             {
-                if (IsRecurrent == false)
+                if (IsEndless == false)
                 {
                     return StartDate.Day + "." + StartDate.Month + ".";
                 }
