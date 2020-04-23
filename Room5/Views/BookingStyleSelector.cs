@@ -26,7 +26,6 @@ namespace Room5.Views
 
     class MondayStyleSelector : BookingStyleSelector
     {
-
         protected override Style SelectStyleCore(object item, DependencyObject container)
         {
             var cell = (item as Telerik.UI.Xaml.Controls.Grid.DataGridCellInfo);
@@ -43,12 +42,91 @@ namespace Room5.Views
 
     class TuesdayStyleSelector : BookingStyleSelector
     {
-      
         protected override Style SelectStyleCore(object item, DependencyObject container)
         {
             var cell = (item as Telerik.UI.Xaml.Controls.Grid.DataGridCellInfo);
             var bookingRow = cell.Item as BookingsRowModel;
             var booking = bookingRow.Tuesday;
+            if (booking.Repeat == (int)App.Repeat.OneTime)
+            {
+                return this.OneTimeStyle;
+            }
+
+            return this.RecurrentStyle;
+        }
+    }
+
+    class WednesdayStyleSelector : BookingStyleSelector
+    {
+        protected override Style SelectStyleCore(object item, DependencyObject container)
+        {
+            var cell = (item as Telerik.UI.Xaml.Controls.Grid.DataGridCellInfo);
+            var bookingRow = cell.Item as BookingsRowModel;
+            var booking = bookingRow.Wednesday;
+            if (booking.Repeat == (int)App.Repeat.OneTime)
+            {
+                return this.OneTimeStyle;
+            }
+
+            return this.RecurrentStyle;
+        }
+    }
+
+    class ThursdayStyleSelector : BookingStyleSelector
+    {
+        protected override Style SelectStyleCore(object item, DependencyObject container)
+        {
+            var cell = (item as Telerik.UI.Xaml.Controls.Grid.DataGridCellInfo);
+            var bookingRow = cell.Item as BookingsRowModel;
+            var booking = bookingRow.Thursday;
+            if (booking.Repeat == (int)App.Repeat.OneTime)
+            {
+                return this.OneTimeStyle;
+            }
+
+            return this.RecurrentStyle;
+        }
+    }
+
+    class FridayStyleSelector : BookingStyleSelector
+    {
+        protected override Style SelectStyleCore(object item, DependencyObject container)
+        {
+            var cell = (item as Telerik.UI.Xaml.Controls.Grid.DataGridCellInfo);
+            var bookingRow = cell.Item as BookingsRowModel;
+            var booking = bookingRow.Friday;
+            if (booking.Repeat == (int)App.Repeat.OneTime)
+            {
+                return this.OneTimeStyle;
+            }
+
+            return this.RecurrentStyle;
+        }
+    }
+
+    class SaturdayStyleSelector : BookingStyleSelector
+    {
+        protected override Style SelectStyleCore(object item, DependencyObject container)
+        {
+            var cell = (item as Telerik.UI.Xaml.Controls.Grid.DataGridCellInfo);
+            var bookingRow = cell.Item as BookingsRowModel;
+            var booking = bookingRow.Saturday;
+            if (booking.Repeat == (int)App.Repeat.OneTime)
+            {
+                return this.OneTimeStyle;
+            }
+
+            return this.RecurrentStyle;
+        }
+    }
+
+    class SundayStyleSelector : BookingStyleSelector
+    {
+        protected override Style SelectStyleCore(object item, DependencyObject container)
+        {
+            var cell = (item as Telerik.UI.Xaml.Controls.Grid.DataGridCellInfo);
+            var bookingRow = cell.Item as BookingsRowModel;
+            var booking = bookingRow.Sunday;
             if (booking.Repeat == (int)App.Repeat.OneTime)
             {
                 return this.OneTimeStyle;

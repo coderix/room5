@@ -77,49 +77,127 @@
 
                 <telerikGrid:RadDataGrid.Resources>
 
+                    <local:MondayStyleSelector x:Key="MondaySelector">
+                        <local:MondayStyleSelector.RecurrentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:MondayStyleSelector.RecurrentStyle>
+                        <local:MondayStyleSelector.OneTimeStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:MondayStyleSelector.OneTimeStyle>
+                    </local:MondayStyleSelector>
+                    
                     <local:TuesdayStyleSelector x:Key="TuesdaySelector">
                         <local:TuesdayStyleSelector.RecurrentStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Foreground" Value="Blue"/>
                                 <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
                             </Style>
                         </local:TuesdayStyleSelector.RecurrentStyle>
                         <local:TuesdayStyleSelector.OneTimeStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Foreground" Value="Black"/>
                                 <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
                             </Style>
                         </local:TuesdayStyleSelector.OneTimeStyle>
                     </local:TuesdayStyleSelector>
 
-                    <local:BookingTemplateSelector x:Key="ThursdayTemplateSelector">
-                        <local:BookingTemplateSelector.NoBookingTemplate>
-                            
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource BodyTextStyle}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </local:BookingTemplateSelector.NoBookingTemplate>
-                        <local:BookingTemplateSelector.RecurrentBookingTemplate>
-                            <DataTemplate>
-                                <StackPanel HorizontalAlignment="left" VerticalAlignment="Center" Orientation="Horizontal">
-                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7A6;"/>
-                                    <TextBlock Text="{Binding Thursday.Info}"  TextWrapping="Wrap"  />
-                                </StackPanel>
-                            </DataTemplate>
-                        </local:BookingTemplateSelector.RecurrentBookingTemplate>
-                    
-                        <local:BookingTemplateSelector.OneTimeBookingTemplate>
-                            <DataTemplate>
-                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="OneTime" Style="{StaticResource BodyTextStyle}"/>
-                             </StackPanel>
-                            </DataTemplate>
-                        </local:BookingTemplateSelector.OneTimeBookingTemplate>
-                        
-                    </local:BookingTemplateSelector>
-                </telerikGrid:RadDataGrid.Resources>
+                    <local:WednesdayStyleSelector x:Key="WednesdaySelector">
+                        <local:WednesdayStyleSelector.RecurrentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:WednesdayStyleSelector.RecurrentStyle>
+                        <local:WednesdayStyleSelector.OneTimeStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:WednesdayStyleSelector.OneTimeStyle>
+                    </local:WednesdayStyleSelector>
+
+
+                    <local:ThursdayStyleSelector x:Key="ThursdaySelector">
+                        <local:ThursdayStyleSelector.RecurrentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:ThursdayStyleSelector.RecurrentStyle>
+                        <local:ThursdayStyleSelector.OneTimeStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:ThursdayStyleSelector.OneTimeStyle>
+                    </local:ThursdayStyleSelector>
+
+                    <local:FridayStyleSelector x:Key="FridaySelector">
+                        <local:FridayStyleSelector.RecurrentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:FridayStyleSelector.RecurrentStyle>
+                        <local:FridayStyleSelector.OneTimeStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:FridayStyleSelector.OneTimeStyle>
+                    </local:FridayStyleSelector>
+
+                    <local:SaturdayStyleSelector x:Key="SaturdaySelector">
+                        <local:SaturdayStyleSelector.RecurrentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:SaturdayStyleSelector.RecurrentStyle>
+                        <local:SaturdayStyleSelector.OneTimeStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:SaturdayStyleSelector.OneTimeStyle>
+                    </local:SaturdayStyleSelector>
+
+                    <local:SundayStyleSelector x:Key="SundaySelector">
+                        <local:SundayStyleSelector.RecurrentStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:SundayStyleSelector.RecurrentStyle>
+                        <local:SundayStyleSelector.OneTimeStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </local:SundayStyleSelector.OneTimeStyle>
+                    </local:SundayStyleSelector>
+
+                                   </telerikGrid:RadDataGrid.Resources>
 
                 <telerikGrid:RadDataGrid.Columns>
                     <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
@@ -133,51 +211,22 @@
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
                     </telerikGrid:DataGridTextColumn>
 
-                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag" SizeMode="Fixed">
-                        <telerikGrid:DataGridTextColumn.CellContentStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </telerikGrid:DataGridTextColumn.CellContentStyle>
+                    <telerikGrid:DataGridTextColumn PropertyName="Monday.Info" Header="Montag" CellContentStyleSelector="{StaticResource MondaySelector}" SizeMode="Fixed">
                        
-                        <telerikGrid:DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="gridPrimitives:DataGridColumnHeader">
-                                <Setter Property="Background" Value="#58622D"/>
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </telerikGrid:DataGridTextColumn.HeaderStyle>
                     </telerikGrid:DataGridTextColumn>
 
 
                     <telerikGrid:DataGridTextColumn PropertyName="Tuesday.Info" Header="Dienstag" CellContentStyleSelector="{StaticResource TuesdaySelector}" SizeMode="Fixed"/>
 
-                    <telerikGrid:DataGridTemplateColumn  Header="Mittwoch" SizeMode="Fixed">
-                        <telerikGrid:DataGridTemplateColumn.CellContentTemplate>
-                            <DataTemplate>
-                                <StackPanel x:Name="WednesdayPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Wednesday.Info}"/>
-                                   
-                                </StackPanel>
-                            </DataTemplate>
-                        </telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                    <telerikGrid:DataGridTextColumn PropertyName="Wednesday.Info"  Header="Mittwoch" CellContentStyleSelector="{StaticResource WednesdaySelector}" SizeMode="Fixed"/>
 
-                       
+                    <telerikGrid:DataGridTextColumn PropertyName="Thursday.Info"  Header="Donnerstag" CellContentStyleSelector="{StaticResource ThursdaySelector}" SizeMode="Fixed"/>
 
-                    </telerikGrid:DataGridTemplateColumn>
+                    <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag" CellContentStyleSelector="{StaticResource FridaySelector}" SizeMode="Fixed"/>
 
-                    <telerikGrid:DataGridTemplateColumn
-                        Header="Donnerstag"
-                        CellContentTemplateSelector="{StaticResource ThursdayTemplateSelector}"
-                        SizeMode="Fixed">
-                       
-                    </telerikGrid:DataGridTemplateColumn>
-                    <telerikGrid:DataGridTextColumn PropertyName="Friday.Info" Header="Freitag" SizeMode="Fixed"/>
-                    <telerikGrid:DataGridTextColumn  PropertyName="Saturday.Info" Header="Samstag"  SizeMode="Fixed" IsVisible="False"/>
-                    <telerikGrid:DataGridTextColumn PropertyName="Sunday.Info" Header="Sonntag"
-                                                    IsVisible="False" SizeMode="Stretch" />
+                    <telerikGrid:DataGridTextColumn  PropertyName="Saturday.Info" Header="Samstag" CellContentStyleSelector="{StaticResource SaturdaySelector}" SizeMode="Fixed" IsVisible="False"/>
+
+                    <telerikGrid:DataGridTextColumn PropertyName="Sunday.Info" Header="Sonntag" CellContentStyleSelector="{StaticResource SundaySelector}"                                                    IsVisible="False" SizeMode="Stretch" />
                     
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
