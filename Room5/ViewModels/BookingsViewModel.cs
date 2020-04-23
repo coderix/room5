@@ -37,14 +37,7 @@ namespace Room5.ViewModels
            
             )
         {
-            // Title = title;
-            /*  Model = new Booking();
-              Model.Title = title;
-              Model.Day = day;
-              Model.Lesson = lesson;
-              Model.IsEndless = isReccurent;
-              Model.Repeat = repeat;
-              Model.Remarks = remarks;*/
+           
             Model = model ?? new Booking();
             Title = title;
             Day = day;
@@ -57,8 +50,6 @@ namespace Room5.ViewModels
             Remarks = remarks;
             RoomId = roomId;
             BelongsTo = belongsTo;
-            
-
 
         }
 
@@ -79,6 +70,7 @@ namespace Room5.ViewModels
         /// </summary>
         internal bool IsModified { get; set; }
 
+       
         public string BookingId
         {
             get => Model.BookingId.ToString();
@@ -140,19 +132,7 @@ namespace Room5.ViewModels
         }
         public int LessonOutput = 0;
 
-        /*public Room Room
-        {
-            get => Model.Room;
-            set
-            {
-                if (value != Model.Room)
-                {
-                    Model.Room = value;
-                    IsModified = true;
-                }
-            }
-        }*/
-
+       
         public int Day
         {
             get => Model.Day;
