@@ -149,7 +149,7 @@ namespace Room5.Views
                 IEnumerable<Booking> roomBookings;
                 // Booking [] roomBookings;
                 //  Booking booking;
-
+                // Datum hochzählen
                 for (int i = 1; i < 11; i++)
                 {   
                     BookingsRowModel r1 = new BookingsRowModel();
@@ -184,10 +184,11 @@ namespace Room5.Views
                         );
                     // in Buchungsliste suchen
 
+                    DateTime currentDate = control.CurrentWeek.Monday;
                     for (int i2 = 1; i2 < 8; i2++)
                     {
                         roomBookings = from b in bookings
-                                       where b.Day == i2 && b.Lesson == i
+                                       where (b.Day == i2 && b.Lesson == i && b.Repeat != (int)App.Repeat.OneTime) || (b.Day == i2 && b.Lesson == i && b.Repeat == (int)App.Repeat.OneTime && b.StartDate.ToShortDateString() == currentDate.ToShortDateString())
                                        select b;
                         if (roomBookings.Count() > 0)
                         {
@@ -205,6 +206,7 @@ namespace Room5.Views
                                     break;
                             }
                         }
+                        currentDate = currentDate.AddDays(1);
                     }
 
                     control.BookingRows.Add(r1);
