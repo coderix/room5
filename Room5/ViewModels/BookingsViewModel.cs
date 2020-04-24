@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -169,7 +170,7 @@ namespace Room5.ViewModels
         {
             get
             {
-                string day;
+               /* string day;
                 switch (Day)
                 {
                     case 1: day = "Montag"; break;
@@ -182,8 +183,10 @@ namespace Room5.ViewModels
 
                     default:
                         return ("");
-                }
-                return day + " " + Lesson + ". Stunde";
+                }*/
+                // return day + " " + Lesson + ". Stunde";
+                CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("de-DE");
+                return StartDate.ToString("D", cultureInfo) + "   -    " + Lesson + ". Stunde";
             }
         }
 
