@@ -15,6 +15,7 @@ namespace Room5.Helpers
         public DateTime Friday;
         public DateTime Saturday;
         public DateTime Sunday;
+        public DateTime LastDayOfTheWeek;
 
         public Week(DateTime monday)
         {
@@ -25,6 +26,7 @@ namespace Room5.Helpers
             Friday = Monday.AddDays(4);
             Saturday = Monday.AddDays(5);
             Sunday = Monday.AddDays(6);
+            LastDayOfTheWeek = Friday;
         }
 
         public string getShortDate(DateTime day)

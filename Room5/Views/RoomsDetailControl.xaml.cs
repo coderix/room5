@@ -30,7 +30,9 @@ namespace Room5.Views
             set
             {
                 _currentWeek = value;
-               CurrentWeekOutput = $"{CurrentWeek.Monday.Day}.{CurrentWeek.Monday.Month}. - {CurrentWeek.Sunday.Day}.{CurrentWeek.Sunday.Month}.";
+            //    return StartDate.ToString("D", App.culture) + "   -    " + Lesson + ". Stunde";
+
+                CurrentWeekOutput = $"{CurrentWeek.Monday.ToString("m", App.culture)} bis {CurrentWeek.LastDayOfTheWeek.ToString("m", App.culture)}";
 
                 if (CurrentWeek.Monday.Day == FirstMonday.Day)
                 {

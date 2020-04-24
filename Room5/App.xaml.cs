@@ -10,6 +10,7 @@ using Room5.Repository;
 using Room5.Models;
 using Windows.ApplicationModel;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Room5
 {
@@ -38,6 +39,7 @@ namespace Room5
             Monthly
         }
 
+        public static CultureInfo culture = CultureInfo.CreateSpecificCulture("de-DE");
         private Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService

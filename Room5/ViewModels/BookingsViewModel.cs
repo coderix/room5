@@ -185,8 +185,8 @@ namespace Room5.ViewModels
                         return ("");
                 }*/
                 // return day + " " + Lesson + ". Stunde";
-                CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("de-DE");
-                return StartDate.ToString("D", cultureInfo) + "   -    " + Lesson + ". Stunde";
+              //  CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("de-DE");
+                return StartDate.ToString("D", App.culture) + "   -    " + Lesson + ". Stunde";
             }
         }
 
