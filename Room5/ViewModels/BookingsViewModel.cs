@@ -301,14 +301,16 @@ namespace Room5.ViewModels
         {
             get
             {
-                if (IsEndless == false)
+              /*  if (IsEndless == false)
                 {
-                    return StartDate.Day + "." + StartDate.Month + ".";
+                    // return StartDate.Day + "." + StartDate.Month + ".";
+                    return StartDate.ToString("m", App.culture);
                 }
                 else
                 {
                     return "";
-                }
+                }*/
+                return StartDate.ToString("m", App.culture);
             }
         }
 

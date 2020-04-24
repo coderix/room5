@@ -18,6 +18,7 @@ namespace Room5.Views
     public sealed partial class RoomsDetailControl : UserControl, INotifyPropertyChanged
     {
         public ObservableCollection<BookingsViewModel> Bookings = new ObservableCollection<BookingsViewModel>();
+        public ObservableCollection<BookingsViewModel> FutureBookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<BookingsRowModel> BookingRows = new ObservableCollection<BookingsRowModel>();
         private BookingsViewModel _selectedBooking;
         // public DateHelper DH = new DateHelper();
@@ -100,6 +101,28 @@ namespace Room5.Views
             }
         }
 
+        private bool _isWeeklyBookingAllowed = false;
+
+        public bool IsWeeklyBookingAllowed
+        {
+            get => _isWeeklyBookingAllowed;
+            set
+            {
+                _isWeeklyBookingAllowed = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool _showFutureBookings = false;
+        public bool ShowFutureBookings
+        {
+            get => _showFutureBookings;
+            set
+            {
+                _showFutureBookings = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _isRadioButtonOneTimeChecked = true;
         public bool IsRadioButtonOneTimeChecked
         {
@@ -120,6 +143,8 @@ namespace Room5.Views
                 OnPropertyChanged();
             }
         }
+
+
 
         public RoomsViewModel MasterMenuItem
         {
@@ -294,6 +319,24 @@ namespace Room5.Views
                 {
                     IsRadioButtonOneTimeChecked = true;
                     IsRadioButtonWeeklyChecked = false;
+                }
+
+                FutureBookings.Clear();
+                List<Booking> fb =  App.Repository.Bookings.GetFutureBookings(SelectedBooking.Model);
+                foreach (var item in fb)
+                {
+                    FutureBookings.Add(new BookingsViewModel(item));
+                }
+                if (FutureBookings.Count > 0)
+                {
+                    ShowFutureBookings = true;
+                    IsWeeklyBookingAllowed = false;
+                    IsRadioButtonOneTimeChecked = true;
+                }
+                else
+                {
+                    ShowFutureBookings = false;
+                    IsWeeklyBookingAllowed = true;
                 }
                 ShowBookingForm = true;
                /* var dialog = new MessageDialog(string.Format(cell.Column.Header.ToString()) + App.Weekdays[cell.Column.Header.ToString()] + " "   + bm.LessonNumber, "COLUMN HEADER: ");

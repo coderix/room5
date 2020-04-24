@@ -43,5 +43,8 @@ namespace Room5.Models
         /// Returns all bookings with a data field matching the start of the given string. 
         /// </summary>
         Task<IEnumerable<Booking>> GetFutureBookingsAsync(Booking booking);
+
+        List<Booking> GetFutureBookings(Booking booking);
+       
     }
 }

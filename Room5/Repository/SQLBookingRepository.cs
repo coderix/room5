@@ -82,5 +82,13 @@ namespace Room5.Repository
                 b.RoomId == booking.RoomId && b.Day == booking.Day && b.Lesson == booking.Lesson && b.StartDate > booking.StartDate)
                 .ToListAsync();
         }
+
+        public List<Booking> GetFutureBookings(Booking booking)
+        {
+            return  _db.Bookings
+                .Where(b =>
+                b.RoomId == booking.RoomId && b.Day == booking.Day && b.Lesson == booking.Lesson && b.StartDate > booking.StartDate)
+                .ToList();
+        }
     }
 }

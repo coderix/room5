@@ -41,13 +41,27 @@
                             <RadioButton x:Name="RepeatRadioButtonOnce" Content="Einmalig" Tag="OneTime" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked"
                       IsChecked="{x:Bind IsRadioButtonOneTimeChecked, Mode=OneWay}"/>
                             <RadioButton x:Name="RepeatRadioButtonWeekly" Content="Wöchentlich" Tag="Weekly" GroupName="GroupRepeat" Checked="RepeatRadioButtonClicked"
-                                         IsChecked="{x:Bind IsRadioButtonWeeklyChecked, Mode=OneWay}"/>
+                                         IsChecked="{x:Bind IsRadioButtonWeeklyChecked, Mode=OneWay}" IsEnabled="{x:Bind IsWeeklyBookingAllowed , Mode=OneWay}"/>
                         </StackPanel>
                       
                     </StackPanel>
-                    <TextBlock x:Name="FormMessages" RelativePanel.RightOf="FormLeft"
-                               Text="Hallo"
-                               Margin="20"/>
+                    <StackPanel x:Name="FormMessages" RelativePanel.RightOf="FormLeft"  x:Load="{x:Bind ShowFutureBookings , Mode=OneWay}" Margin="20,10,10,10">
+                        <TextBlock Text="Der Raum ist belegt am:" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <ListView x:Name="FutureBookingsList"  ItemsSource="{x:Bind FutureBookings}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding DateOutput}" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding Title}"/>
+                                        </StackPanel>
+                                       
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                    
                     <StackPanel x:Name="FormButtons" Orientation="Horizontal" RelativePanel.Below="FormLeft">
                     <Button Content="OK" Margin="0,24" Click="{x:Bind SaveButtonClicked}"/>
                     <Button Content="Abbruch" Margin="24" Click="CancelButtonClicked"/>
