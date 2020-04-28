@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Room5.Core.Models;
 using Room5.ViewModels;
 using Telerik.UI.Xaml.Controls.Grid;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using System.Linq;
-using Windows.UI.Popups;
 using Room5.Models;
 using Room5.Helpers;
 
@@ -21,7 +19,6 @@ namespace Room5.Views
         public ObservableCollection<BookingsViewModel> FutureBookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<BookingsRowModel> BookingRows = new ObservableCollection<BookingsRowModel>();
         private BookingsViewModel _selectedBooking;
-        // public DateHelper DH = new DateHelper();
         public DateTime FirstMonday;
         public Week FirstWeek;
         private Week _currentWeek;

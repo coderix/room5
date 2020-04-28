@@ -148,6 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="ViewModels\AvailableRoomsPageViewModel.cs" />
+    <Compile Include="ViewModels\AvailableRoomsRowModel.cs" />
     <Compile Include="Views\BookingStyleSelector.cs" />
     <Compile Include="Views\BookingTemplateSelector.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
