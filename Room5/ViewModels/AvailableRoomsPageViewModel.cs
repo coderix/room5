@@ -168,7 +168,9 @@ namespace Room5.ViewModels
                 r1.Monday = new List<BookingsViewModel>();
                 r1.Monday.Add(new BookingsViewModel(title: "Montag 1"));
                 r1.Monday.Add(new BookingsViewModel(title: "Montag 2"));
+                AvailableRoomsRows.Add(r1);
             }
+            
         }
     }
 }

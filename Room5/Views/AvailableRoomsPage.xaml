@@ -21,6 +21,19 @@
                                      VerticalAlignment="Center"
                                      Width="110" UserFilterMode="Disabled" SelectionUnit="Cell"  
                                      >
+            <telerikGrid:RadDataGrid.Resources>
+                <local:AvailableRoomsTemplateSelector x:Key="AvailableRoomsTemplateSelector">
+                    <local:AvailableRoomsTemplateSelector.MondayTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="{Binding Flag}" Stretch="UniformToFill" Width="100" Height="100" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </local:AvailableRoomsTemplateSelector.MondayTemplate>
+                  
+                </local:AvailableRoomsTemplateSelector>
+            </telerikGrid:RadDataGrid.Resources>
+            
             <telerikGrid:RadDataGrid.Columns>
                 <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
                     <telerikGrid:DataGridTextColumn.CellContentStyle>
@@ -32,6 +45,9 @@
                         </Style>
                     </telerikGrid:DataGridTextColumn.CellContentStyle>
                 </telerikGrid:DataGridTextColumn>
+                <telerikGrid:DataGridTemplateColumn Header="Montag">
+                  
+                </telerikGrid:DataGridTemplateColumn>
             </telerikGrid:RadDataGrid.Columns>
         </telerikGrid:RadDataGrid>
     </Grid>

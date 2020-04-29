@@ -154,6 +154,7 @@
       <DependentUpon>AvailableRoomsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BookingStyleSelector.cs" />
+    <Compile Include="Views\AvailableRoomsTemplateSelector.cs" />
     <Compile Include="Views\BookingTemplateSelector.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
