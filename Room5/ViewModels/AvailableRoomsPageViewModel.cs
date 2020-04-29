@@ -14,7 +14,7 @@ using Room5.Models;
 using Windows.UI.Xaml.Controls;
 namespace Room5.ViewModels
 {
-    class AvailableRoomsPageViewModel : INotifyPropertyChanged
+    public class AvailableRoomsPageViewModel : INotifyPropertyChanged
     {
         // private MasterDetailsViewState viewState;
        
@@ -156,7 +156,7 @@ namespace Room5.ViewModels
             }
         }
 
-        private async void buildBookingRows()
+        public async Task BuildBookingRows()
         {
             DateTime currentDate = CurrentWeek.Monday;
             AvailableRoomsRows.Clear();

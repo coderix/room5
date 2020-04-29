@@ -5,10 +5,34 @@
     xmlns:local="using:Room5.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:Room5.ViewModels"
+    xmlns:views="using:Room5.Views"
+    xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <TextBlock Text="Moin"/>
+
+        <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
+                                     UserEditMode="None"
+                                     x:Name="bookingsGrid"  AutoGenerateColumns="False"
+                                     UserGroupMode="Disabled"
+                                     VerticalAlignment="Center"
+                                     Width="110" UserFilterMode="Disabled" SelectionUnit="Cell"  
+                                     >
+            <telerikGrid:RadDataGrid.Columns>
+                <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
+                    <telerikGrid:DataGridTextColumn.CellContentStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </telerikGrid:DataGridTextColumn.CellContentStyle>
+                </telerikGrid:DataGridTextColumn>
+            </telerikGrid:RadDataGrid.Columns>
+        </telerikGrid:RadDataGrid>
     </Grid>
 </Page>

@@ -1,30 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Room5.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=234238 dokumentiert.
 
 namespace Room5.Views
 {
-    /// <summary>
-    /// Eine leere Seite, die eigenständig verwendet oder zu der innerhalb eines Rahmens navigiert werden kann.
-    /// </summary>
+   
     public sealed partial class AvailableRoomsPage : Page
     {
+        public AvailableRoomsPageViewModel ViewModel { get; set; } =
+           new AvailableRoomsPageViewModel();
+
+        private async void AvailableRoomsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await ViewModel.BuildBookingRows();
+        }
         public AvailableRoomsPage()
         {
             this.InitializeComponent();
+            DataContext = ViewModel;
+            Loaded += AvailableRoomsPage_Loaded;
         }
     }
 }
