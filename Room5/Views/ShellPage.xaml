@@ -33,6 +33,7 @@
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <winui:NavigationViewItem x:Uid="Shell_Rooms" helpers:NavHelper.NavigateTo="views:RoomsPage" />
+            <winui:NavigationViewItem x:Uid="Shell_AvailableRooms" helpers:NavHelper.NavigateTo="views:AvailableRoomsPage" />
             <winui:NavigationViewItem x:Uid="Shell_Search" helpers:NavHelper.NavigateTo="views:SearchPage" />
             <winui:NavigationViewItem x:Uid="Shell_RoomList" helpers:NavHelper.NavigateTo="views:RoomListPage" />
         </winui:NavigationView.MenuItems>

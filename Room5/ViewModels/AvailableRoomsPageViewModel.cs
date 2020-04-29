@@ -156,10 +156,19 @@ namespace Room5.ViewModels
             }
         }
 
-        private void buildBookingRows()
+        private async void buildBookingRows()
         {
+            DateTime currentDate = CurrentWeek.Monday;
             AvailableRoomsRows.Clear();
-
+            IEnumerable<Booking> bookings = await App.Repository.Bookings.GetAsync();
+            for (int i = 1; i < 11; i++)
+            {
+                AvailableRoomsRowModel r1 = new AvailableRoomsRowModel();
+                r1.LessonNumber = i;
+                r1.Monday = new List<BookingsViewModel>();
+                r1.Monday.Add(new BookingsViewModel(title: "Montag 1"));
+                r1.Monday.Add(new BookingsViewModel(title: "Montag 2"));
+            }
         }
     }
 }

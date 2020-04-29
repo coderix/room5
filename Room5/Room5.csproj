@@ -150,6 +150,9 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="ViewModels\AvailableRoomsPageViewModel.cs" />
     <Compile Include="ViewModels\AvailableRoomsRowModel.cs" />
+    <Compile Include="Views\AvailableRoomsPage.xaml.cs">
+      <DependentUpon>AvailableRoomsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BookingStyleSelector.cs" />
     <Compile Include="Views\BookingTemplateSelector.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AvailableRoomsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

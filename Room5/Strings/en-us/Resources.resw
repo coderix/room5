@@ -137,6 +137,10 @@
     <value>Räume</value>
     <comment>Navigation view item name for Rooms</comment>
   </data>
+  <data name="Shell_AvailableRooms.Content" xml:space="preserve">
+    <value>Belegungen</value>
+    <comment>Navigation view item name for Rooms</comment>
+  </data>
   <data name="Shell_Search.Content" xml:space="preserve">
     <value>Search</value>
     <comment>Navigation view item name for Search</comment>
