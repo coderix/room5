@@ -12,12 +12,14 @@ namespace Room5.Views
     public class AvailableRoomsTemplateSelector : DataTemplateSelector
     {
         public DataTemplate MondayTemplate { get; set; }
+
         protected override Windows.UI.Xaml.DataTemplate SelectTemplateCore(object item, Windows.UI.Xaml.DependencyObject container)
         {
-            return MondayTemplate;
+
+            return this.MondayTemplate;
         }
     }
 
     
-    }
 }
+
