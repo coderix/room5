@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Microsoft.Toolkit.Uwp.UI.Controls;
@@ -30,9 +31,12 @@ namespace Room5.ViewModels
         public void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public ObservableCollection<BookingsViewModel> Bookings = new ObservableCollection<BookingsViewModel>();
+      //  public ObservableCollection<BookingsViewModel> Bookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<BookingsViewModel> FutureBookings = new ObservableCollection<BookingsViewModel>();
         public ObservableCollection<AvailableRoomsRowModel> AvailableRoomsRows = new ObservableCollection<AvailableRoomsRowModel>();
+        public IEnumerable<Room> Rooms;
+        public IEnumerable<Booking> Bookings;
+
         private BookingsViewModel _selectedBooking;
         public DateTime FirstMonday;
         public Week FirstWeek;
@@ -160,17 +164,43 @@ namespace Room5.ViewModels
         {
             DateTime currentDate = CurrentWeek.Monday;
             AvailableRoomsRows.Clear();
-            IEnumerable<Booking> bookings = await App.Repository.Bookings.GetAsync();
+              Bookings = await App.Repository.Bookings.GetAsync();
+              Rooms = await App.Repository.Rooms.GetAsync();
+
+            
             for (int i = 1; i < 11; i++)
             {
+
                 AvailableRoomsRowModel r1 = new AvailableRoomsRowModel();
                 r1.LessonNumber = i;
-                r1.Monday = new List<BookingsViewModel>();
-                r1.Monday.Add(new BookingsViewModel(title: "Montag 1"));
-                r1.Monday.Add(new BookingsViewModel(title: "Montag 2"));
+                r1.Monday = buildList(lesson: i, day: 1, date: currentDate);
+               /* r1.Monday.Add(new BookingsViewModel(title: "Montag 1"));
+                r1.Monday.Add(new BookingsViewModel(title: "Montag 2"));*/
                 AvailableRoomsRows.Add(r1);
             }
+
             
+            
+        }
+
+        public List<BookingsViewModel> buildList(int lesson, int day, DateTime date)
+        {
+            List<BookingsViewModel> list = new List<BookingsViewModel>();
+            foreach (var room  in Rooms)
+            {
+                IEnumerable<Booking> bs = from b in Bookings
+                                          where (b.Day == day
+                                          && b.Lesson == lesson
+                                          && b.Repeat != (int)App.Repeat.OneTime)
+                 || (b.Day == day && b.Lesson == lesson && b.Repeat == (int)App.Repeat.OneTime && b.StartDate.ToShortDateString() == date.ToShortDateString())
+                select b;
+
+                if (bs.Count() == 0)
+                {
+                    list.Add(new BookingsViewModel(title:"" ,lesson:lesson,day:day,startDate: date, roomId: room.RoomId));
+                }
+            }
+            return list;
         }
     }
 }

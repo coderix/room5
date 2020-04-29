@@ -34,7 +34,7 @@
                                                     <Button Click="RoomClicked">
                                                         <StackPanel>
                                                         <TextBlock Text="{Binding BookingId}" Visibility="Collapsed"/>
-                                                        <TextBlock Text="{Binding Title}"/>
+                                                        <TextBlock Text="{Binding RoomId}"/>
                                                         </StackPanel>
                                                     </Button> 
                                                     
