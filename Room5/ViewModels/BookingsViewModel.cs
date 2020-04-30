@@ -314,6 +314,10 @@ namespace Room5.ViewModels
             }
         }
 
+        public string RoomName { get => _roomName; set => _roomName = value; }
+
+        private string _roomName;
+
         
 
 

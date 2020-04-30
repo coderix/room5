@@ -191,13 +191,19 @@ namespace Room5.ViewModels
                 IEnumerable<Booking> bs = from b in Bookings
                                           where (b.Day == day
                                           && b.Lesson == lesson
-                                          && b.Repeat != (int)App.Repeat.OneTime)
-                 || (b.Day == day && b.Lesson == lesson && b.Repeat == (int)App.Repeat.OneTime && b.StartDate.ToShortDateString() == date.ToShortDateString())
+                                          && b.Repeat != (int)App.Repeat.OneTime
+                                          && b.RoomId == room.RoomId)
+                 || (b.Day == day && b.Lesson == lesson
+                 && b.Repeat == (int)App.Repeat.OneTime
+                 && b.StartDate.ToShortDateString() == date.ToShortDateString()
+                 && b.RoomId == room.RoomId)
                 select b;
 
                 if (bs.Count() == 0)
                 {
-                    list.Add(new BookingsViewModel(title:"" ,lesson:lesson,day:day,startDate: date, roomId: room.RoomId));
+                    BookingsViewModel bv = new BookingsViewModel(title: "", lesson: lesson, day: day, startDate: date, roomId: room.RoomId);
+                    bv.RoomName = room.RoomName;
+                    list.Add(bv);
                 }
             }
             return list;

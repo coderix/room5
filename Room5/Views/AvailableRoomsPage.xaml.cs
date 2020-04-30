@@ -29,9 +29,9 @@ namespace Room5.Views
             Button btn = (Button)e.OriginalSource;
             StackPanel panel = (StackPanel)btn.Content;
             UIElementCollection list = panel.Children;
-            TextBlock tb = (TextBlock)list[0];
+            TextBlock tb = (TextBlock)list[1];
             String s1 = tb.Text;
-            var dialog = new MessageDialog($"Sender: {s1}");
+            var dialog = new MessageDialog($"Lesson: {s1}");
             await dialog.ShowAsync();
         }
     }
