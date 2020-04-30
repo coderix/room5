@@ -12,6 +12,7 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 
 using Room5.Helpers;
 using Room5.Models;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 namespace Room5.ViewModels
 {
@@ -213,6 +214,74 @@ namespace Room5.ViewModels
         {
             DateTime date = Convert.ToDateTime(startDate);
             SelectedBooking = new BookingsViewModel(day: day, lesson: lesson,startDate: date, roomId: Guid.Parse(roomId));
+
+            FutureBookings.Clear();
+            List<Booking> fb = App.Repository.Bookings.GetFutureBookings(SelectedBooking.Model);
+            foreach (var item in fb)
+            {
+                FutureBookings.Add(new BookingsViewModel(item));
+            }
+            if (FutureBookings.Count > 0)
+            {
+                ShowFutureBookings = true;
+                IsWeeklyBookingAllowed = false;
+                IsRadioButtonOneTimeChecked = true;
+            }
+            else
+            {
+                ShowFutureBookings = false;
+                IsWeeklyBookingAllowed = true;
+            }
+            ShowBookingForm = true;
+
+        }
+
+        public async void SaveButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(SelectedBooking.Title))
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = "Titel",
+                    Content = "Bitte geben Sie der Buchung einen Titel",
+                    CloseButtonText = "Ok"
+                };
+
+                ContentDialogResult result = await dialog.ShowAsync();
+
+            }
+            else
+            {
+                await App.Repository.Bookings.UpsertAsync(SelectedBooking.Model);
+                await BuildBookingRows();
+                ShowBookingForm = false;
+            }
+
+        }
+        public void CancelButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ShowBookingForm = false;
+        }
+
+        public void RepeatRadioButtonClicked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb != null && rb.Tag != null)
+            {
+                string mode = rb.Tag.ToString();
+                switch (mode)
+                {
+                    case "OneTime":
+                        SelectedBooking.Repeat = (int)App.Repeat.OneTime;
+                        break;
+                    case "Weekly":
+                        SelectedBooking.Repeat = (int)App.Repeat.Weekly;
+                        break;
+                    default:
+                        SelectedBooking.Repeat = (int)App.Repeat.Weekly;
+                        break;
+                }
+            }
         }
     }
 }

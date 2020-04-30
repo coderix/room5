@@ -16,9 +16,58 @@
         HorizontalAlignment="Stretch"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         VerticalScrollMode="Enabled">
-        <Grid>
+        <StackPanel Orientation="Vertical">
 
-            <TextBlock Text="Moin"/>
+            <TextBlock  Style="{StaticResource TitleTextBlockStyle}" Text="Verfügbare Räume" HorizontalAlignment="Center"/>
+
+            <Grid Background="White"
+                x:Name="BookingForm"
+                 x:Load="{x:Bind ViewModel.ShowBookingForm, Mode=OneWay}"
+                 Margin="0,30,0,0" BorderBrush="Black" BorderThickness="1,1,1,1">
+                <RelativePanel>
+                    <TextBlock x:Name="FormHeader" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind ViewModel.SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
+                    <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader" Orientation="Vertical">
+                        <TextBox Header ="Info"
+                             Margin="0,24,0,0"
+                             MaxLength="32"
+                             Width="400"
+                            
+                             HorizontalAlignment="Left"
+                            Text="{x:Bind ViewModel.SelectedBooking.Info, Mode=TwoWay}" />
+                        <TextBlock Text="Häufigkeit" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton x:Name="RepeatRadioButtonOnce" Content="Einmalig" Tag="OneTime" GroupName="GroupRepeat" Checked="ViewModel.RepeatRadioButtonClicked"
+                      IsChecked="{x:Bind ViewModel.IsRadioButtonOneTimeChecked, Mode=OneWay}"/>
+                            <RadioButton x:Name="RepeatRadioButtonWeekly" Content="Wöchentlich" Tag="Weekly" GroupName="GroupRepeat" Checked="ViewModel.RepeatRadioButtonClicked"
+                                         IsChecked="{x:Bind ViewModel.IsRadioButtonWeeklyChecked, Mode=OneWay}" IsEnabled="{x:Bind ViewModel.IsWeeklyBookingAllowed , Mode=OneWay}"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <StackPanel x:Name="FormMessages" RelativePanel.RightOf="FormLeft"  x:Load="{x:Bind ViewModel.ShowFutureBookings , Mode=OneWay}" Margin="20,10,10,10">
+                        <TextBlock Text="Der Raum ist belegt am:" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <ListView x:Name="FutureBookingsList"  ItemsSource="{x:Bind ViewModel.FutureBookings}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding DateOutput}" Margin="0,0,10,0"/>
+                                            <TextBlock Text="{Binding Title}"/>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+
+                    <StackPanel x:Name="FormButtons" Orientation="Horizontal" RelativePanel.Below="FormLeft">
+                        <Button Content="OK" Margin="0,24" Click="{x:Bind ViewModel.SaveButtonClicked}"/>
+                        <Button Content="Abbruch" Margin="24" Click="{x:Bind ViewModel.CancelButtonClicked}"/>
+
+                    </StackPanel>
+                </RelativePanel>
+            </Grid>
+
 
             <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
                                      UserEditMode="None"
@@ -72,12 +121,12 @@
                             </Style>
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
                     </telerikGrid:DataGridTextColumn>
-                    
+
                     <telerikGrid:DataGridTemplateColumn Header="Montag" CellContentTemplateSelector="{StaticResource AvailableRoomsTemplateSelector}">
 
                     </telerikGrid:DataGridTemplateColumn>
                 </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
-        </Grid>
+        </StackPanel>
     </ScrollViewer>
 </Page>
