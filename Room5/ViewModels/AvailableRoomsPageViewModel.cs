@@ -208,5 +208,11 @@ namespace Room5.ViewModels
             }
             return list;
         }
+
+        public void prepareForm(string roomId, int lesson, int day, string startDate)
+        {
+            DateTime date = Convert.ToDateTime(startDate);
+            SelectedBooking = new BookingsViewModel(day: day, lesson: lesson,startDate: date, roomId: Guid.Parse(roomId));
+        }
     }
 }

@@ -24,15 +24,27 @@ namespace Room5.Views
             Loaded += AvailableRoomsPage_Loaded;
         }
 
-        private async void RoomClicked(object sender, RoutedEventArgs e)
+        private  void RoomClicked(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)e.OriginalSource;
             StackPanel panel = (StackPanel)btn.Content;
             UIElementCollection list = panel.Children;
-            TextBlock tb = (TextBlock)list[1];
-            String s1 = tb.Text;
-            var dialog = new MessageDialog($"Lesson: {s1}");
-            await dialog.ShowAsync();
+            TextBlock tb0 = (TextBlock)list[0];
+            String roomId = tb0.Text;
+
+            TextBlock tb1 = (TextBlock)list[1];
+            int lesson = int.Parse(tb1.Text);
+
+            TextBlock tb2 = (TextBlock)list[2];
+            int day = int.Parse(tb2.Text);
+
+            TextBlock tb3 = (TextBlock)list[3];
+            String startDate = tb3.Text;
+
+            ViewModel.prepareForm(roomId, lesson, day, startDate);
+
+          /*  var dialog = new MessageDialog($"Sender: {s1}");
+            await dialog.ShowAsync();*/
         }
     }
 }
