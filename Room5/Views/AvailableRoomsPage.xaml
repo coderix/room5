@@ -23,9 +23,9 @@
             <Grid Background="White"
                 x:Name="BookingForm"
                  x:Load="{x:Bind ViewModel.ShowBookingForm, Mode=OneWay}"
-                 Margin="0,30,0,0" BorderBrush="Black" BorderThickness="1,1,1,1">
+                 Margin="10,30,10,10" BorderBrush="Black" BorderThickness="1,1,1,1" HorizontalAlignment="Center">
                 <RelativePanel>
-                    <TextBlock x:Name="FormHeader" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind ViewModel.SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
+                    <TextBlock x:Name="FormHeader" Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind ViewModel.SelectedBooking.RoomDayAndLessonOutput, Mode=OneWay}"/>
                     <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader" Orientation="Vertical">
                         <TextBox Header ="Info"
                              Margin="0,24,0,0"
@@ -37,9 +37,9 @@
                         <TextBlock Text="Häufigkeit" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
                         <StackPanel Orientation="Horizontal">
                             <RadioButton x:Name="RepeatRadioButtonOnce" Content="Einmalig" Tag="OneTime" GroupName="GroupRepeat" Checked="ViewModel.RepeatRadioButtonClicked"
-                      IsChecked="{x:Bind ViewModel.IsRadioButtonOneTimeChecked, Mode=OneWay}"/>
+                      IsChecked="{x:Bind ViewModel.IsRadioButtonOneTimeChecked, Mode=TwoWay}"/>
                             <RadioButton x:Name="RepeatRadioButtonWeekly" Content="Wöchentlich" Tag="Weekly" GroupName="GroupRepeat" Checked="ViewModel.RepeatRadioButtonClicked"
-                                         IsChecked="{x:Bind ViewModel.IsRadioButtonWeeklyChecked, Mode=OneWay}" IsEnabled="{x:Bind ViewModel.IsWeeklyBookingAllowed , Mode=OneWay}"/>
+                                         IsChecked="{x:Bind ViewModel.IsRadioButtonWeeklyChecked, Mode=TwoWay}" IsEnabled="{x:Bind ViewModel.IsWeeklyBookingAllowed , Mode=OneWay}"/>
                         </StackPanel>
 
                     </StackPanel>
@@ -69,64 +69,68 @@
             </Grid>
 
 
-            <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
+         
+
+                <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
                                      UserEditMode="None"
                                      x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
                                      VerticalAlignment="Center"
-                                     Width="210" UserFilterMode="Disabled" SelectionUnit="Cell"  
-                                     >
-                <telerikGrid:RadDataGrid.Resources>
-                    <local:AvailableRoomsTemplateSelector x:Key="AvailableRoomsTemplateSelector">
-                        <local:AvailableRoomsTemplateSelector.MondayTemplate>
-                            <DataTemplate >
-                                <StackPanel>
-                                    <ListView x:Name="RoomList"  ItemsSource="{Binding Monday}" IsItemClickEnabled="True">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel>
+                                     Width="210" UserFilterMode="Disabled" SelectionUnit="Cell"
+                                      >
+                    <telerikGrid:RadDataGrid.Resources>
+                        <local:AvailableRoomsTemplateSelector x:Key="AvailableRoomsTemplateSelector">
+                            <local:AvailableRoomsTemplateSelector.MondayTemplate>
+                                <DataTemplate >
+                                    <StackPanel>
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Monday}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
 
-                                                    <Button Click="RoomClicked">
-                                                        <StackPanel>
-                                                            <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
-                                                            <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
-                                                            <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
-                                                            <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
-                                                            <TextBlock Text="{Binding RoomName}"/>
-                                                        </StackPanel>
-                                                    </Button>
+                                                        <Button Click="RoomClicked">
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding RoomName}"/>
+                                                            </StackPanel>
+                                                            
+                                                        </Button>
 
 
 
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
 
-                                </StackPanel>
-                            </DataTemplate>
-                        </local:AvailableRoomsTemplateSelector.MondayTemplate>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:AvailableRoomsTemplateSelector.MondayTemplate>
 
-                    </local:AvailableRoomsTemplateSelector>
-                </telerikGrid:RadDataGrid.Resources>
+                        </local:AvailableRoomsTemplateSelector>
+                    </telerikGrid:RadDataGrid.Resources>
 
-                <telerikGrid:RadDataGrid.Columns>
-                    <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
-                        <telerikGrid:DataGridTextColumn.CellContentStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="Red"/>
-                                <Setter Property="FontStyle" Value="Italic"/>
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                        </telerikGrid:DataGridTextColumn.CellContentStyle>
-                    </telerikGrid:DataGridTextColumn>
+                    <telerikGrid:RadDataGrid.Columns>
+                        <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
+                            <telerikGrid:DataGridTextColumn.CellContentStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                    <Setter Property="FontStyle" Value="Italic"/>
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </telerikGrid:DataGridTextColumn.CellContentStyle>
+                        </telerikGrid:DataGridTextColumn>
 
-                    <telerikGrid:DataGridTemplateColumn Header="Montag" CellContentTemplateSelector="{StaticResource AvailableRoomsTemplateSelector}">
+                        <telerikGrid:DataGridTemplateColumn Header="Montag" CellContentTemplateSelector="{StaticResource AvailableRoomsTemplateSelector}">
 
-                    </telerikGrid:DataGridTemplateColumn>
-                </telerikGrid:RadDataGrid.Columns>
-            </telerikGrid:RadDataGrid>
-        </StackPanel>
+                        </telerikGrid:DataGridTemplateColumn>
+                    </telerikGrid:RadDataGrid.Columns>
+                </telerikGrid:RadDataGrid>
+            </StackPanel>
+       
     </ScrollViewer>
 </Page>

@@ -92,9 +92,27 @@ namespace Room5.ViewModels
             set
             {
                 _showBookingForm = value;
+
+                /*if (value == true)
+                {
+                    ShowMainContent = false;
+                }*/
+               
                 OnPropertyChanged();
             }
         }
+
+        private bool _showMainContent = true;
+        public bool ShowMainContent
+        {
+            get => _showMainContent;
+            set
+            {
+                _showMainContent = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private bool _showPreviousButton = false;
         public bool ShowPreviousButton
@@ -210,10 +228,11 @@ namespace Room5.ViewModels
             return list;
         }
 
-        public void prepareForm(string roomId, int lesson, int day, string startDate)
+        public void prepareForm(string roomId, int lesson, int day, string startDate, string roomName)
         {
             DateTime date = Convert.ToDateTime(startDate);
             SelectedBooking = new BookingsViewModel(day: day, lesson: lesson,startDate: date, roomId: Guid.Parse(roomId));
+            SelectedBooking.RoomName = roomName;
 
             FutureBookings.Clear();
             List<Booking> fb = App.Repository.Bookings.GetFutureBookings(SelectedBooking.Model);
@@ -231,8 +250,11 @@ namespace Room5.ViewModels
             {
                 ShowFutureBookings = false;
                 IsWeeklyBookingAllowed = true;
+                IsRadioButtonWeeklyChecked = true;
+                IsRadioButtonOneTimeChecked = false;
             }
             ShowBookingForm = true;
+            ShowMainContent = false;
 
         }
 

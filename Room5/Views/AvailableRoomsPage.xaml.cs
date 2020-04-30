@@ -41,7 +41,11 @@ namespace Room5.Views
             TextBlock tb3 = (TextBlock)list[3];
             String startDate = tb3.Text;
 
-            ViewModel.prepareForm(roomId, lesson, day, startDate);
+            TextBlock tb4= (TextBlock)list[4];
+            String roomName = tb4.Text;
+
+
+            ViewModel.prepareForm(roomId, lesson, day, startDate,roomName);
 
           /*  var dialog = new MessageDialog($"Sender: {s1}");
             await dialog.ShowAsync();*/
