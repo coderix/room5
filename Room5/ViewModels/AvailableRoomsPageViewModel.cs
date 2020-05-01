@@ -92,12 +92,16 @@ namespace Room5.ViewModels
             set
             {
                 _showBookingForm = value;
-
-                /*if (value == true)
+                ShowMainContent = !value;
+               /* if (value == true)
                 {
                     ShowMainContent = false;
+                }
+                else
+                {
+                    ShowMainContent = true;
                 }*/
-               
+
                 OnPropertyChanged();
             }
         }
@@ -254,8 +258,7 @@ namespace Room5.ViewModels
                 IsRadioButtonOneTimeChecked = false;
             }
             ShowBookingForm = true;
-            ShowMainContent = false;
-
+           
         }
 
         public async void SaveButtonClicked(object sender, RoutedEventArgs e)

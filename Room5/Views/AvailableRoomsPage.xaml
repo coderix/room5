@@ -10,6 +10,7 @@
     xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
     <ScrollViewer
         Name="ForegroundElement"
         Padding="{StaticResource DetailPageMargin}"
@@ -69,14 +70,15 @@
             </Grid>
 
 
-         
 
+           
                 <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
                                      UserEditMode="None"
                                      x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
                                      VerticalAlignment="Center"
                                      Width="210" UserFilterMode="Disabled" SelectionUnit="Cell"
+                                         x:Load="{x:Bind ViewModel.ShowMainContent, Mode=OneWay}"
                                       >
                     <telerikGrid:RadDataGrid.Resources>
                         <local:AvailableRoomsTemplateSelector x:Key="AvailableRoomsTemplateSelector">
