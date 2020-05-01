@@ -18,9 +18,6 @@
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         VerticalScrollMode="Enabled">
         <StackPanel>
-          
-
-
              <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" />
             <Grid Background="White"
                 x:Name="BookingForm"

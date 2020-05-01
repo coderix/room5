@@ -82,12 +82,12 @@
                                      x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
                                      VerticalAlignment="Center"
-                                     Width="210" UserFilterMode="Disabled" SelectionUnit="Cell"
+                                     Width="850" UserFilterMode="Disabled" SelectionUnit="Cell"
                                    
                                       >
                 <telerikGrid:RadDataGrid.Resources>
-                    <local:AvailableRoomsTemplateSelector x:Key="AvailableRoomsTemplateSelector">
-                        <local:AvailableRoomsTemplateSelector.MondayTemplate>
+                    <local:AvailableRoomsMondaySelector x:Key="AvailableRoomsMondaySelector">
+                        <local:AvailableRoomsMondaySelector.MondayTemplate>
                             <DataTemplate >
                                 <StackPanel>
                                     <ListView x:Name="RoomList"  ItemsSource="{Binding Monday}" IsItemClickEnabled="True">
@@ -105,9 +105,6 @@
                                                         </StackPanel>
 
                                                     </Button>
-
-
-
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -115,10 +112,40 @@
 
                                 </StackPanel>
                             </DataTemplate>
-                        </local:AvailableRoomsTemplateSelector.MondayTemplate>
+                        </local:AvailableRoomsMondaySelector.MondayTemplate>
 
-                    </local:AvailableRoomsTemplateSelector>
-                </telerikGrid:RadDataGrid.Resources>
+                    </local:AvailableRoomsMondaySelector>
+
+                    <local:AvailableRoomsTuesdaySelector x:Key="AvailableRoomsTuesdaySelector">
+                            <local:AvailableRoomsTuesdaySelector.TuesdayTemplate>
+                                <DataTemplate >
+                                    <StackPanel>
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Monday}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <Button Click="RoomClicked">
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding RoomName}"/>
+                                                            </StackPanel>
+
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:AvailableRoomsTuesdaySelector.TuesdayTemplate>
+
+                        </local:AvailableRoomsTuesdaySelector>
+                    </telerikGrid:RadDataGrid.Resources>
 
                 <telerikGrid:RadDataGrid.Columns>
                     <telerikGrid:DataGridTextColumn PropertyName="LessonNumber" Header="Stunde" SizeMode="Fixed" >
@@ -132,10 +159,12 @@
                         </telerikGrid:DataGridTextColumn.CellContentStyle>
                     </telerikGrid:DataGridTextColumn>
 
-                    <telerikGrid:DataGridTemplateColumn Header="Montag" CellContentTemplateSelector="{StaticResource AvailableRoomsTemplateSelector}">
+                    <telerikGrid:DataGridTemplateColumn Header="Montag" CellContentTemplateSelector="{StaticResource AvailableRoomsMondaySelector}"/>
+                       <telerikGrid:DataGridTemplateColumn Header="Dienstag" CellContentTemplateSelector="{StaticResource AvailableRoomsTuesdaySelector}"/>
 
-                    </telerikGrid:DataGridTemplateColumn>
-                </telerikGrid:RadDataGrid.Columns>
+
+
+                    </telerikGrid:RadDataGrid.Columns>
             </telerikGrid:RadDataGrid>
             </StackPanel>
         </StackPanel>

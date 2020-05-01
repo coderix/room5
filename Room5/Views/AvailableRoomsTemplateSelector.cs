@@ -9,17 +9,25 @@ namespace Room5.Views
     {
       //  public DataTemplate RecurrentBookingTemplate { get; set; }
     }*/
-    public class AvailableRoomsTemplateSelector : DataTemplateSelector
+    public class AvailableRoomsMondaySelector : DataTemplateSelector
     {
         public DataTemplate MondayTemplate { get; set; }
 
         protected override Windows.UI.Xaml.DataTemplate SelectTemplateCore(object item, Windows.UI.Xaml.DependencyObject container)
         {
-
             return this.MondayTemplate;
         }
     }
+    public class AvailableRoomsTuesdaySelector : DataTemplateSelector
+    {
+        public DataTemplate TuesdayTemplate { get; set; }
 
-    
+        protected override Windows.UI.Xaml.DataTemplate SelectTemplateCore(object item, Windows.UI.Xaml.DependencyObject container)
+        {
+            return this.TuesdayTemplate;
+        }
+    }
+
+
 }
 

@@ -7,5 +7,6 @@ namespace Room5.ViewModels
     {
         public int LessonNumber { get; set; }
         public List<BookingsViewModel> Monday { get; set; }
+        public List<BookingsViewModel> Tuesday { get; set; }
     }
 }
