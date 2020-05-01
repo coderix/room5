@@ -120,7 +120,7 @@
                             <local:AvailableRoomsTuesdaySelector.TuesdayTemplate>
                                 <DataTemplate >
                                     <StackPanel>
-                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Monday}" IsItemClickEnabled="True">
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Tuesday}" IsItemClickEnabled="True">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel>
@@ -145,6 +145,153 @@
                             </local:AvailableRoomsTuesdaySelector.TuesdayTemplate>
 
                         </local:AvailableRoomsTuesdaySelector>
+                    
+                        <local:AvailableRoomsWednesdaySelector x:Key="AvailableRoomsWednesdaySelector">
+                            <local:AvailableRoomsWednesdaySelector.WednesdayTemplate>
+                                <DataTemplate >
+                                    <StackPanel>
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Wednesday}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <Button Click="RoomClicked">
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding RoomName}"/>
+                                                            </StackPanel>
+
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:AvailableRoomsWednesdaySelector.WednesdayTemplate>
+                        </local:AvailableRoomsWednesdaySelector>
+
+                        <local:AvailableRoomsThursdaySelector x:Key="AvailableRoomsThursdaySelector">
+                            <local:AvailableRoomsThursdaySelector.ThursdayTemplate>
+                                <DataTemplate >
+                                    <StackPanel>
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Thursday}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <Button Click="RoomClicked">
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding RoomName}"/>
+                                                            </StackPanel>
+
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:AvailableRoomsThursdaySelector.ThursdayTemplate>
+                        </local:AvailableRoomsThursdaySelector>
+
+                        <local:AvailableRoomsFridaySelector x:Key="AvailableRoomsFridaySelector">
+                            <local:AvailableRoomsFridaySelector.FridayTemplate>
+                                <DataTemplate >
+                                    <StackPanel>
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Friday}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <Button Click="RoomClicked">
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding RoomName}"/>
+                                                            </StackPanel>
+
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:AvailableRoomsFridaySelector.FridayTemplate>
+                        </local:AvailableRoomsFridaySelector>
+
+                        <local:AvailableRoomsSaturdaySelector x:Key="AvailableRoomsSaturdaySelector">
+                            <local:AvailableRoomsSaturdaySelector.SaturdayTemplate>
+                                <DataTemplate >
+                                    <StackPanel>
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Saturday}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <Button Click="RoomClicked">
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding RoomName}"/>
+                                                            </StackPanel>
+
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:AvailableRoomsSaturdaySelector.SaturdayTemplate>
+                        </local:AvailableRoomsSaturdaySelector>
+
+                        <local:AvailableRoomsSundaySelector x:Key="AvailableRoomsSundaySelector">
+                            <local:AvailableRoomsSundaySelector.SundayTemplate>
+                                <DataTemplate >
+                                    <StackPanel>
+                                        <ListView x:Name="RoomList"  ItemsSource="{Binding Sunday}" IsItemClickEnabled="True">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <Button Click="RoomClicked">
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding RoomId}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Lesson}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding Day}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding StartDate}" Visibility="Collapsed"/>
+                                                                <TextBlock Text="{Binding RoomName}"/>
+                                                            </StackPanel>
+
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </local:AvailableRoomsSundaySelector.SundayTemplate>
+                        </local:AvailableRoomsSundaySelector>
+
+
                     </telerikGrid:RadDataGrid.Resources>
 
                 <telerikGrid:RadDataGrid.Columns>
@@ -160,7 +307,13 @@
                     </telerikGrid:DataGridTextColumn>
 
                     <telerikGrid:DataGridTemplateColumn Header="Montag" CellContentTemplateSelector="{StaticResource AvailableRoomsMondaySelector}"/>
-                       <telerikGrid:DataGridTemplateColumn Header="Dienstag" CellContentTemplateSelector="{StaticResource AvailableRoomsTuesdaySelector}"/>
+                    <telerikGrid:DataGridTemplateColumn Header="Dienstag" CellContentTemplateSelector="{StaticResource AvailableRoomsTuesdaySelector}"/>
+                     <telerikGrid:DataGridTemplateColumn Header="Mittwoch" CellContentTemplateSelector="{StaticResource AvailableRoomsWednesdaySelector}"/>
+                     <telerikGrid:DataGridTemplateColumn Header="Donnerstag" CellContentTemplateSelector="{StaticResource AvailableRoomsThursdaySelector}"/>
+                     <telerikGrid:DataGridTemplateColumn Header="Freitag" CellContentTemplateSelector="{StaticResource AvailableRoomsFridaySelector}"/>
+                      <telerikGrid:DataGridTemplateColumn Header="Samstag" CellContentTemplateSelector="{StaticResource AvailableRoomsSaturdaySelector}" IsVisible="False"/>
+                      <telerikGrid:DataGridTemplateColumn Header="Sonntag" CellContentTemplateSelector="{StaticResource AvailableRoomsSundaySelector}" IsVisible="False"/>
+
 
 
 

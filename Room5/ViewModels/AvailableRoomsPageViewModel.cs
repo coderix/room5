@@ -202,8 +202,12 @@ namespace Room5.ViewModels
                 AvailableRoomsRowModel r1 = new AvailableRoomsRowModel();
                 r1.LessonNumber = i;
                 r1.Monday = buildList(lesson: i, day: 1, date: currentDate);
-              //  AvailableRoomsRows.Add(r1);
-                r1.Tuesday = buildList(lesson: i, day: 1, date: currentDate.AddDays(1));
+                r1.Tuesday = buildList(lesson: i, day: 2, date: currentDate.AddDays(1));
+                r1.Wednesday = buildList(lesson: i, day: 3, date: currentDate.AddDays(2));
+                r1.Thursday = buildList(lesson: i, day: 4, date: currentDate.AddDays(3));
+                r1.Friday = buildList(lesson: i, day: 5, date: currentDate.AddDays(4));
+                r1.Saturday = buildList(lesson: i, day: 6, date: currentDate.AddDays(5));
+                r1.Sunday = buildList(lesson: i, day: 7, date: currentDate.AddDays(4));
                 AvailableRoomsRows.Add(r1);
             }
 
