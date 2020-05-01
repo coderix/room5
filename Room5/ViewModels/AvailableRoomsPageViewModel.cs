@@ -85,6 +85,19 @@ namespace Room5.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public string RoomName
+        {
+            get => _roomName;
+            set
+            {
+                _roomName = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+        private string _roomName;
         private bool _showBookingForm = false;
         public bool ShowBookingForm
         {
@@ -93,15 +106,7 @@ namespace Room5.ViewModels
             {
                 _showBookingForm = value;
                 ShowMainContent = !value;
-               /* if (value == true)
-                {
-                    ShowMainContent = false;
-                }
-                else
-                {
-                    ShowMainContent = true;
-                }*/
-
+              
                 OnPropertyChanged();
             }
         }
@@ -237,6 +242,7 @@ namespace Room5.ViewModels
             DateTime date = Convert.ToDateTime(startDate);
             SelectedBooking = new BookingsViewModel(day: day, lesson: lesson,startDate: date, roomId: Guid.Parse(roomId));
             SelectedBooking.RoomName = roomName;
+            RoomName = roomName;
 
             FutureBookings.Clear();
             List<Booking> fb = App.Repository.Bookings.GetFutureBookings(SelectedBooking.Model);

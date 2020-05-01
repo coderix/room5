@@ -178,8 +178,9 @@ namespace Room5.ViewModels
         {
             get
             {
-                return RoomName + StartDate.ToString("D", App.culture) + "   -    " + Lesson + ". Stunde";
+                return RoomName + "hallo" + StartDate.ToString("D", App.culture) + "   -    " + Lesson + ". Stunde";
             }
+            
         }
 
         public int Lesson
@@ -306,7 +307,13 @@ namespace Room5.ViewModels
             }
         }
 
-        public string RoomName { get => _roomName; set => _roomName = value; }
+        public string RoomName { get => _roomName;
+            set
+            {
+                _roomName = value;
+                
+            }
+        }
 
         private string _roomName;
 
