@@ -99,6 +99,7 @@ namespace Room5.ViewModels
 
         private string _roomName;
         private bool _showBookingForm = false;
+
         public bool ShowBookingForm
         {
             get => _showBookingForm;

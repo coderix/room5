@@ -72,6 +72,18 @@ namespace Room5.Views
             set
             {
                 _showBookingForm = value;
+                ShowMainContent = !value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _showMainContent = true;
+        public bool ShowMainContent
+        {
+            get => _showMainContent;
+            set
+            {
+                _showMainContent = value;
                 OnPropertyChanged();
             }
         }
@@ -402,6 +414,12 @@ namespace Room5.Views
         private void PreviousClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             CurrentWeek = DateHelper.PreviousWeek(CurrentWeek.Monday);
+            buildBookingRows();
+        }
+
+        public  void FirstWeekClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            CurrentWeek = DateHelper.getWeek(FirstMonday);
             buildBookingRows();
         }
 
