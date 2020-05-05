@@ -57,7 +57,7 @@
     </Page.Resources>
 
     <StackPanel x:Name="ContentArea">
-        <CommandBar>
+        <CommandBar HorizontalAlignment="Left"  >
             <AppBarButton
                     Click="{x:Bind ViewModel.CreateNewRoom}"
                     Icon="Add"
@@ -73,12 +73,7 @@
                     Icon="Delete"   
                     Label="Löschen"
                     ToolTipService.ToolTip="Raum löschen"/>
-            <AppBarButton
-                    Click="{x:Bind ViewModel.WriteTestDataAsync}"
-                    Icon="Clear"  
-                    Label="Testdaten"
-                    ToolTipService.ToolTip="Alles Löschen und Testdaten schreiben"/>
-
+           
 
         </CommandBar>
         <StackPanel

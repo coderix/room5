@@ -53,6 +53,10 @@
                 </StackPanel>
             </StackPanel>
 
+            <Button Content="Testdaten anlegen"
+                      ToolTipService.ToolTip="Alles Löschen und Testdaten schreiben"
+                    Click="{x:Bind ViewModel.WriteTestDataAsync}"/>
+
             <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource XSmallTopMargin}">
