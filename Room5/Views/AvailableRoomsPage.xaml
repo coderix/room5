@@ -77,10 +77,17 @@
             <TextBlock  Style="{StaticResource  PageTitleStyle}" Text="Verfügbare Räume" HorizontalAlignment="Center" Margin="10,10,10,10" TextDecorations="Underline"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,40,0,40" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <SymbolIcon x:Name="PreviousButton"  Symbol="Previous" Tapped="ViewModel.PreviousClicked"  x:Load="{x:Bind ViewModel.ShowPreviousButton, Mode=OneWay}"/>
+                    <SymbolIcon x:Name="FirstWeekButton"  Symbol="Previous" Tapped="ViewModel.FirstWeekClicked"
+                    ToolTipService.ToolTip="Zur aktuellen Woche"
+                                x:Load="{x:Bind ViewModel.ShowPreviousButton, Mode=OneWay}" Margin="0,0,10,0"/>
+                    <SymbolIcon x:Name="PreviousButton"
+                                ToolTipService.ToolTip="Zur vorherigen Woche"
+                                Symbol="Back" Tapped="ViewModel.PreviousClicked"  x:Load="{x:Bind ViewModel.ShowPreviousButton, Mode=OneWay}"/>
+                   
                     <TextBlock Text="{x:Bind ViewModel.CurrentWeekOutput, Mode=OneWay}"
                            Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,10,0"></TextBlock>
-                    <SymbolIcon Symbol="Next" Tapped="ViewModel.NextClicked"/>
+                    <SymbolIcon Symbol="Forward" Tapped="ViewModel.NextClicked"
+                                ToolTipService.ToolTip="Zur folgenden Woche"/>
                 </StackPanel>
 
                 <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
@@ -88,7 +95,7 @@
                                      x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
                                      VerticalAlignment="Center"
-                                     Width="850" UserFilterMode="Disabled" SelectionUnit="Cell"
+                                     Width="850" UserFilterMode="Disabled" SelectionUnit="Cell" ToolTipService.ToolTip="Zur aktuellen Woche"
                                    
                                       >
                 <telerikGrid:RadDataGrid.Resources>

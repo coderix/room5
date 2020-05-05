@@ -226,6 +226,12 @@ namespace Room5.ViewModels
             await BuildBookingRows();
         }
 
+        public async void FirstWeekClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            CurrentWeek = DateHelper.getWeek(FirstMonday);
+            await BuildBookingRows();
+        }
+
         public List<BookingsViewModel> buildList(int lesson, int day, DateTime date)
         {
             List<BookingsViewModel> list = new List<BookingsViewModel>();
