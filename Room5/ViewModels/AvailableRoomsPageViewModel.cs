@@ -188,6 +188,7 @@ namespace Room5.ViewModels
             }
         }
 
+
         public async Task BuildBookingRows()
         {
             DateTime currentDate = CurrentWeek.Monday;
@@ -210,9 +211,19 @@ namespace Room5.ViewModels
                 r1.Sunday = buildList(lesson: i, day: 7, date: currentDate.AddDays(4));
                 AvailableRoomsRows.Add(r1);
             }
+            
+        }
 
-            
-            
+        public async void NextClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            CurrentWeek = DateHelper.NextWeek(CurrentWeek.Monday);
+            await BuildBookingRows();
+        }
+
+        public async void PreviousClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            CurrentWeek = DateHelper.PreviousWeek(CurrentWeek.Monday);
+            await BuildBookingRows();
         }
 
         public List<BookingsViewModel> buildList(int lesson, int day, DateTime date)

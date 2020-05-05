@@ -22,7 +22,7 @@
             <Grid Background="White"
                 x:Name="BookingForm"
                  x:Load="{x:Bind ViewModel.ShowBookingForm, Mode=OneWay}"
-                 Margin="10,30,10,10">
+                 Margin="10,30,10,10" HorizontalAlignment="Center">
                 <RelativePanel>
 
                     <TextBlock x:Name="FormHeader" Style="{StaticResource  HeaderTextBlockStyle}" Text="{x:Bind ViewModel.RoomName, Mode=OneWay}" HorizontalAlignment="Center"/>
@@ -74,10 +74,16 @@
             <StackPanel x:Name="Maincontent" x:Load="{x:Bind ViewModel.ShowMainContent, Mode=OneWay}">
             
 
-            <TextBlock  Style="{StaticResource TitleTextBlockStyle}" Text="Verfügbare Räume" HorizontalAlignment="Center" Margin="10,10,10,10"/>
+            <TextBlock  Style="{StaticResource  PageTitleStyle}" Text="Verfügbare Räume" HorizontalAlignment="Center" Margin="10,10,10,10" TextDecorations="Underline"/>
 
+                <StackPanel Orientation="Horizontal" Margin="0,40,0,40" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <SymbolIcon x:Name="PreviousButton"  Symbol="Previous" Tapped="ViewModel.PreviousClicked"  x:Load="{x:Bind ViewModel.ShowPreviousButton, Mode=OneWay}"/>
+                    <TextBlock Text="{x:Bind ViewModel.CurrentWeekOutput, Mode=OneWay}"
+                           Style="{StaticResource TitleTextBlockStyle}" Margin="10,0,10,0"></TextBlock>
+                    <SymbolIcon Symbol="Next" Tapped="ViewModel.NextClicked"/>
+                </StackPanel>
 
-            <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
+                <telerikGrid:RadDataGrid ItemsSource="{x:Bind ViewModel.AvailableRoomsRows}"
                                      UserEditMode="None"
                                      x:Name="bookingsGrid"  AutoGenerateColumns="False"
                                      UserGroupMode="Disabled"
