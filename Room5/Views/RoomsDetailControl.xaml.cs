@@ -224,7 +224,7 @@ namespace Room5.Views
                     for (int i2 = 1; i2 < 8; i2++)
                     {
                         roomBookings = from b in bookings
-                                       where (b.Day == i2 && b.Lesson == i && b.Repeat != (int)App.Repeat.OneTime) || (b.Day == i2 && b.Lesson == i && b.Repeat == (int)App.Repeat.OneTime && b.StartDate.ToShortDateString() == currentDate.ToShortDateString())
+                                       where (b.Day == i2 && b.Lesson == i && b.Repeat != (int)App.Repeat.OneTime) && b.StartDate <= currentDate || (b.Day == i2 && b.Lesson == i && b.Repeat == (int)App.Repeat.OneTime && b.StartDate.ToShortDateString() == currentDate.ToShortDateString())
                                        select b;
                         if (roomBookings.Count() > 0)
                         {

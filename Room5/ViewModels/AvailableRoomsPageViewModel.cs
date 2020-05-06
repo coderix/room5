@@ -243,6 +243,7 @@ namespace Room5.ViewModels
                                           && b.Lesson == lesson
                                           && b.Repeat != (int)App.Repeat.OneTime
                                           && b.RoomId == room.RoomId)
+                                          && b.StartDate <= date
                  || (b.Day == day && b.Lesson == lesson
                  && b.Repeat == (int)App.Repeat.OneTime
                  && b.StartDate.ToShortDateString() == date.ToShortDateString()
