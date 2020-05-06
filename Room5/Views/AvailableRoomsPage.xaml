@@ -19,17 +19,17 @@
         VerticalScrollMode="Enabled">
         <StackPanel Orientation="Vertical">
 
-            <Grid Background="White"
-                x:Name="BookingForm"
+           
+                <StackPanel   x:Name="BookingForm"
                  x:Load="{x:Bind ViewModel.ShowBookingForm, Mode=OneWay}"
                  Margin="10,30,10,10" HorizontalAlignment="Center">
-                <RelativePanel>
-
-                    <TextBlock x:Name="FormHeader" Style="{StaticResource  HeaderTextBlockStyle}" Text="{x:Bind ViewModel.RoomName, Mode=OneWay}" HorizontalAlignment="Center"/>
+                <StackPanel x:Name="FormHeader">
+                    <TextBlock x:Name="FormHeader1" Style="{StaticResource  HeaderTextBlockStyle}" Text="{x:Bind ViewModel.RoomName, Mode=OneWay}" HorizontalAlignment="Center"/>
 
                     <TextBlock x:Name="FormHeader2" RelativePanel.Below="FormHeader" Style="{StaticResource  SubheaderTextBlockStyle}" HorizontalAlignment="Center" Text="{x:Bind ViewModel.SelectedBooking.DayAndLessonOutput, Mode=OneWay}"/>
-                    
-                    <StackPanel x:Name="FormLeft" RelativePanel.Below="FormHeader2" Orientation="Vertical">
+                </StackPanel>
+                <StackPanel x:Name="Form" Orientation="Horizontal">
+                     <StackPanel x:Name="FormLeft"  Orientation="Vertical">
                         <TextBox Header ="Info"
                              Margin="0,24,0,0"
                              MaxLength="32"
@@ -45,8 +45,14 @@
                                          IsChecked="{x:Bind ViewModel.IsRadioButtonWeeklyChecked, Mode=TwoWay}" IsEnabled="{x:Bind ViewModel.IsWeeklyBookingAllowed , Mode=OneWay}"/>
                         </StackPanel>
 
+                        <StackPanel x:Name="FormButtons" Orientation="Horizontal" >
+                            <Button Content="OK" Margin="0,24" Click="{x:Bind ViewModel.SaveButtonClicked}"/>
+                            <Button Content="Abbruch" Margin="24" Click="{x:Bind ViewModel.CancelButtonClicked}"/>
+
+                        </StackPanel>
+
                     </StackPanel>
-                    <StackPanel x:Name="FormMessages" RelativePanel.RightOf="FormLeft"  x:Load="{x:Bind ViewModel.ShowFutureBookings , Mode=OneWay}" Margin="20,10,10,10">
+                    <StackPanel x:Name="FormMessages"   x:Load="{x:Bind ViewModel.ShowFutureBookings , Mode=OneWay}" Margin="20,10,10,10">
                         <TextBlock Text="Der Raum ist belegt am:" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
                         <ListView x:Name="FutureBookingsList"  ItemsSource="{x:Bind ViewModel.FutureBookings}">
                             <ListView.ItemTemplate>
@@ -63,14 +69,10 @@
                         </ListView>
                     </StackPanel>
 
-                    <StackPanel x:Name="FormButtons" Orientation="Horizontal" RelativePanel.Below="FormLeft">
-                        <Button Content="OK" Margin="0,24" Click="{x:Bind ViewModel.SaveButtonClicked}"/>
-                        <Button Content="Abbruch" Margin="24" Click="{x:Bind ViewModel.CancelButtonClicked}"/>
-
-                    </StackPanel>
-                </RelativePanel>
-            </Grid>
-
+                    
+                </StackPanel>
+            </StackPanel>
+           
             <StackPanel x:Name="Maincontent" x:Load="{x:Bind ViewModel.ShowMainContent, Mode=OneWay}">
             
 
