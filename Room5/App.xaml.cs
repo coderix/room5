@@ -85,6 +85,8 @@ namespace Room5
         {
             // string demoDatabasePath = Package.Current.InstalledLocation.Path + @"\Assets\Repository.db";
             string databasePath = ApplicationData.Current.LocalFolder.Path + @"\Room5.db";
+         //funktioniert frühestens mit ef core 3.1.4
+         //   string databasePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\room5\Room5.db";
             /* if (!File.Exists(databasePath))
              {
                  File.Copy(demoDatabasePath, databasePath);
