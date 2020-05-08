@@ -15,7 +15,7 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <StackPanel
             x:Name="ContentArea">
-            <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <TextBlock Text="Einstellungen" Style="{ThemeResource  PageTitleStyle}" HorizontalAlignment="Center" />
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
 
                 <TextBlock Text="Datenbank" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
@@ -25,7 +25,19 @@
                     <RadioButton x:Name="btnMysql" Content="Mysql-Server" Tag="mysql" GroupName="GroupDatabase" 
                                          IsChecked="{x:Bind ViewModel.IsBtnMysqlDatabaseChecked, Mode=TwoWay}"/>
                 </StackPanel>
-                <TextBlock x:Uid="Settings_Theme" />
+                <StackPanel x:Name="mysqlPanel" Margin="0,10,0,10">
+                    <TextBox Header="Server" Width="400" HorizontalAlignment="Left" ToolTipService.ToolTip="Der Name des Datenbankservers" Margin="0,0,0,10" />
+                    <TextBox Header="Port" Width="100" HorizontalAlignment="Left" ToolTipService.ToolTip="Der Port des Datenbankservers" Margin="0,0,0,10" />
+                    <TextBox Header="Datenbank" Width="400" HorizontalAlignment="Left" ToolTipService.ToolTip="Der Name des Datenbank" PlaceholderText="Room" Margin="0,0,0,10"/>
+                    <TextBox Header="Benutzername" Width="400" HorizontalAlignment="Left" ToolTipService.ToolTip="Der Benutzername des Datenbankervers" Margin="0,0,0,10" />
+                    <PasswordBox Header="Passwort" Width="400" HorizontalAlignment="Left" ToolTipService.ToolTip="Passwort des Datenbankbenutzers" Margin="0,0,0,10"/>
+
+                    <StackPanel x:Name="FormButtons" Orientation="Horizontal">
+                        <Button Content="OK" Margin="0,24" Click="{x:Bind ViewModel.BtnSaveMysqlClicked}"/>
+                        <Button Content="Abbruch" Margin="24" Click="ViewModel.BtnCancelMysqlClickedClicked"/>
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock x:Uid="Settings_Theme" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,10,0,10"/>
 
                 <StackPanel Margin="{StaticResource XSmallTopMargin}">
                     <RadioButton

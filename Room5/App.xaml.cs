@@ -109,7 +109,7 @@ namespace Room5
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(Views.RoomsPage), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(this, typeof(Views.SettingsPage), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()
