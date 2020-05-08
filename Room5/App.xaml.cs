@@ -12,6 +12,7 @@ using Windows.ApplicationModel;
 using System.Collections.Generic;
 using System.Globalization;
 using Pomelo.EntityFrameworkCore.MySql;
+using Windows.UI.Xaml.Controls;
 
 namespace Room5
 {
@@ -64,7 +65,17 @@ namespace Room5
             var database = (string)localSettings.Values["database"];
             if (database == "mysql")
             {
-                MysqlDatabase();
+                try
+                {
+                    MysqlDatabase();
+                }
+                catch (Exception e)
+                {
+                    ShowErrorDialog(e);
+                    localSettings.Values["database"] = "sqlite";
+                    SqliteDatabase();
+                }
+               
             }
             else
             {
@@ -77,6 +88,18 @@ namespace Room5
                 await ActivationService.ActivateAsync(args);
             }
            
+        }
+
+        public async void ShowErrorDialog(Exception e)
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Fehler beim Datenbankzugriff",
+                Content = e.ToString(),
+                PrimaryButtonText = "OK"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -96,7 +119,6 @@ namespace Room5
 
         public static void MysqlDatabase()
         {
-            //string connection = "server=192.168.178.31;user=root;password=Dyslexia - sibley - 1backer - Recopy5 - 3tassel - sheet7;port=3307";
             string connection = "server=DS218P;database=room;user=room;password=talky-polka-pause6-3selector-countable-Freebie9;port=3307";
             DbContextOptionsBuilder<Room5Context> dbOptions = new DbContextOptionsBuilder<Room5Context>().UseMySql(connection,
         mysqlOptions =>
