@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -12,8 +14,14 @@ using Windows.UI.Xaml.Controls;
 namespace Room5.ViewModels
 {
     // WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
-    public class SettingsViewModel : Observable
+    public class SettingsViewModel : Observable, INotifyPropertyChanged
     {
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        public new void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private bool firstCall = true;
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 
         public ElementTheme ElementTheme
@@ -54,11 +62,24 @@ namespace Room5.ViewModels
 
         public SettingsViewModel()
         {
+            if ((string)App.localSettings.Values["database"] == "sqlite")
+            {
+                IsBtnLocalDatabaseChecked = true;
+                IsBtnMysqlDatabaseChecked = false;
+            }
+            else
+            {
+                IsBtnLocalDatabaseChecked = false;
+                IsBtnMysqlDatabaseChecked = true;
+            }
+            
+            firstCall = false;
         }
 
         public async Task InitializeAsync()
         {
             VersionDescription = GetVersionDescription();
+           
             await Task.CompletedTask;
         }
 
@@ -72,6 +93,67 @@ namespace Room5.ViewModels
             return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
 
+        private bool _isBtnLocalDatabaseChecked = true;
+        public bool IsBtnLocalDatabaseChecked
+        {
+            get => _isBtnLocalDatabaseChecked;
+            set
+            {
+                _isBtnLocalDatabaseChecked = value;
+                if (value == true)
+                {
+                    App.localSettings.Values["database"] = "sqlite";
+                    if (firstCall == false)
+                    {
+                        ShowRestartDialog();
+                    }
+                   
+                }
+               
+                this.OnPropertyChanged();
+            }
+        }
+
+        private bool _isBtnMysqlDatabaseChecked = true;
+        public bool IsBtnMysqlDatabaseChecked
+        {
+            get => _isBtnMysqlDatabaseChecked;
+            set
+            {
+                _isBtnMysqlDatabaseChecked = value;
+                if (value == true)
+                {
+                    App.localSettings.Values["database"] = "mysql";
+                    if (firstCall == false)
+                    {
+                        ShowRestartDialog();
+                    }
+                }
+               
+                this.OnPropertyChanged();
+            }
+        }
+
+        public async void ShowRestartDialog()
+        {
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Datenbankänderung",
+                Content = "Bitte starten Sie das Programm neu, um die Änderung anzuwenden.",
+                PrimaryButtonText = "OK"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
+        }
+        public void DatabaseButtonClicked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb != null && rb.Tag != null)
+            {
+                string database = rb.Tag.ToString();
+                App.localSettings.Values["database"] = database;
+            }
+        }
         public async Task WriteTestDataAsync()
         {
             ContentDialog dialog = new ContentDialog

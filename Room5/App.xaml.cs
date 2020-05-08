@@ -19,8 +19,9 @@ namespace Room5
     {
         public static IRoom5Repository Repository { get; set; }
 
+       public static Windows.Storage.ApplicationDataContainer localSettings =
+    Windows.Storage.ApplicationData.Current.LocalSettings;
 
-        
         public static IDictionary<string, int> Weekdays = new Dictionary<string, int>()
         {
             {"Montag", 1 },
@@ -59,8 +60,18 @@ namespace Room5
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            MysqlDatabase();
-            // SqliteDatabase();
+          //  localSettings.Values["database"] = "mysql";
+            var database = (string)localSettings.Values["database"];
+            if (database == "mysql")
+            {
+                MysqlDatabase();
+            }
+            else
+            {
+                SqliteDatabase();
+            }
+            
+            //
             if (!args.PrelaunchActivated)
             {
                 await ActivationService.ActivateAsync(args);

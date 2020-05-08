@@ -17,6 +17,14 @@
             x:Name="ContentArea">
             <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+
+                <TextBlock Text="Datenbank" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="btnLocalDatabase" Content="Lokale Datenbank" Tag="sqlite" GroupName="GroupDatabase" 
+                      IsChecked="{x:Bind ViewModel.IsBtnLocalDatabaseChecked, Mode=TwoWay}" Margin="0,0,10,0"/>
+                    <RadioButton x:Name="btnMysql" Content="Mysql-Server" Tag="mysql" GroupName="GroupDatabase" 
+                                         IsChecked="{x:Bind ViewModel.IsBtnMysqlDatabaseChecked, Mode=TwoWay}"/>
+                </StackPanel>
                 <TextBlock x:Uid="Settings_Theme" />
 
                 <StackPanel Margin="{StaticResource XSmallTopMargin}">
@@ -52,6 +60,8 @@
                     </RadioButton>
                 </StackPanel>
             </StackPanel>
+
+            
 
             <Button Content="Testdaten anlegen"
                       ToolTipService.ToolTip="Alles Löschen und Testdaten schreiben"
