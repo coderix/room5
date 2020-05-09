@@ -134,6 +134,48 @@ namespace Room5.ViewModels
             }
         }
 
+        public string MysqlServer { get => _mysqlServer;
+            set {  _mysqlServer = value; OnPropertyChanged(); }
+        }
+        private string _mysqlServer;
+
+        public string MysqlPort
+        {
+            get => _mysqlPort;
+            set { _mysqlPort = value; OnPropertyChanged(); }
+        }
+        private string _mysqlPort;
+
+        public string MysqlDatabase
+        {
+            get => _mysqlDatabase;
+            set { _mysqlDatabase = value; OnPropertyChanged(); }
+        }
+        private string _mysqlDatabase;
+
+        public string MysqlUser
+        {
+            get => _mysqlUser;
+            set { _mysqlUser = value; OnPropertyChanged(); }
+        }
+        private string _mysqlUser;
+
+        public string MysqlPassword
+        {
+            get => _mysqlPassword;
+            set { _mysqlPassword = value; OnPropertyChanged(); }
+        }
+        private string _mysqlPassword;
+
+        public void BtnSaveMysqlClicked(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        public void BtnCancelMysqlClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         public async void ShowRestartDialog()
         {
             ContentDialog dialog = new ContentDialog
