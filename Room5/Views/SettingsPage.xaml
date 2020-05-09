@@ -19,13 +19,14 @@
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
 
                 <TextBlock Text="Datenbank" Margin="0,24,0,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBlock Text="Damit Änderungen an der Datenbankkonfiguration wirksam werden, muss das Programm hinterher neu gestartet werden" Style="{StaticResource BodyTextStyle}" Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
                     <RadioButton x:Name="btnLocalDatabase" Content="Lokale Datenbank" Tag="sqlite" GroupName="GroupDatabase" 
                       IsChecked="{x:Bind ViewModel.IsBtnLocalDatabaseChecked, Mode=TwoWay}" Margin="0,0,10,0"/>
                     <RadioButton x:Name="btnMysql" Content="Mysql-Server" Tag="mysql" GroupName="GroupDatabase" 
                                          IsChecked="{x:Bind ViewModel.IsBtnMysqlDatabaseChecked, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel x:Name="mysqlPanel" Margin="0,10,0,10">
+                <StackPanel x:Name="mysqlPanel" Margin="0,10,0,10" x:Load="{x:Bind ViewModel.ShowMysqlForm,Mode=OneWay}">
                     <TextBox Header="Server" Width="400" HorizontalAlignment="Left" ToolTipService.ToolTip="Der Name des Datenbankservers" Margin="0,0,0,10"
                              Text= "{x:Bind ViewModel.MysqlServer,Mode=TwoWay}"/>
                     <TextBox Header="Port" Width="100" HorizontalAlignment="Left" ToolTipService.ToolTip="Der Port des Datenbankservers" Margin="0,0,0,10"

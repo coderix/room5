@@ -103,10 +103,8 @@ namespace Room5.ViewModels
                 if (value == true)
                 {
                     App.localSettings.Values["database"] = "sqlite";
-                    if (firstCall == false)
-                    {
-                        ShowRestartDialog();
-                    }
+                    ShowMysqlForm = false;
+                    
                    
                 }
                
@@ -123,37 +121,46 @@ namespace Room5.ViewModels
                 _isBtnMysqlDatabaseChecked = value;
                 if (value == true)
                 {
+                    
                     App.localSettings.Values["database"] = "mysql";
-                   /* if (firstCall == false)
-                    {
-                        ShowRestartDialog();
-                    }*/
-                    Windows.Storage.ApplicationDataCompositeValue mysqlSettings;
-
-                    mysqlSettings = (Windows.Storage.ApplicationDataCompositeValue)App.localSettings.Values["mysqlSettings"];
-                    if (mysqlSettings == null)
-                    {
-                        Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
-                        composite["server"] = string.Empty;
-                        composite["database"] = string.Empty;
-                        composite["user"] = string.Empty;
-                        composite["password"] = string.Empty;
-                        composite["port"] = "3307";
-
-                        App.localSettings.Values["mysqlSettings"] = composite;
-                        mysqlSettings = (Windows.Storage.ApplicationDataCompositeValue)App.localSettings.Values["mysqlSettings"];
-                    }
-
-                    MysqlServer = mysqlSettings["server"].ToString();
-                    MysqlDatabase = mysqlSettings["database"].ToString();
-                    MysqlUser = mysqlSettings["user"].ToString();
-                    MysqlPassword = mysqlSettings["password"].ToString();
-                    MysqlPort = mysqlSettings["port"].ToString();
+                    readMysqlSettings();
+                    ShowMysqlForm = true;
+                    
                 }
                
                 this.OnPropertyChanged();
             }
         }
+
+        private void readMysqlSettings()
+        {
+            Windows.Storage.ApplicationDataCompositeValue mysqlSettings;
+
+            mysqlSettings = (Windows.Storage.ApplicationDataCompositeValue)App.localSettings.Values["mysqlSettings"];
+            if (mysqlSettings == null)
+            {
+                Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
+                composite["server"] = string.Empty;
+                composite["database"] = string.Empty;
+                composite["user"] = string.Empty;
+                composite["password"] = string.Empty;
+                composite["port"] = "3307";
+
+                App.localSettings.Values["mysqlSettings"] = composite;
+                mysqlSettings = (Windows.Storage.ApplicationDataCompositeValue)App.localSettings.Values["mysqlSettings"];
+            }
+
+            MysqlServer = mysqlSettings["server"].ToString();
+            MysqlDatabase = mysqlSettings["database"].ToString();
+            MysqlUser = mysqlSettings["user"].ToString();
+            MysqlPassword = mysqlSettings["password"].ToString();
+            MysqlPort = mysqlSettings["port"].ToString();
+        }
+
+       
+
+
+
 
         public string MysqlServer { get => _mysqlServer;
             set {  _mysqlServer = value; OnPropertyChanged(); }
@@ -186,9 +193,15 @@ namespace Room5.ViewModels
             get => _mysqlPassword;
             set { _mysqlPassword = value; OnPropertyChanged(); }
         }
+
+        private bool _showMysqlForm;
+        public bool ShowMysqlForm { get => _showMysqlForm;
+            set { _showMysqlForm = value; OnPropertyChanged(); }
+        }
+
         private string _mysqlPassword;
 
-        public void BtnSaveMysqlClicked(object sender, RoutedEventArgs e)
+        public async void BtnSaveMysqlClicked(object sender, RoutedEventArgs e)
         {
             Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
             composite["server"] = MysqlServer;
@@ -198,13 +211,22 @@ namespace Room5.ViewModels
             composite["port"] = MysqlPort;
 
             App.localSettings.Values["mysqlSettings"] = composite;
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Einstellungen gesichert",
+                Content = "Bitte starten Sie das Programm neu, um die Änderung anzuwenden.",
+                PrimaryButtonText = "OK"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
         }
         public void BtnCancelMysqlClicked(object sender, RoutedEventArgs e)
         {
-
+            readMysqlSettings();
         }
 
-        public async void ShowRestartDialog()
+      /*  public async void ShowRestartDialog()
         {
             ContentDialog dialog = new ContentDialog
             {
@@ -214,7 +236,7 @@ namespace Room5.ViewModels
             };
 
             ContentDialogResult result = await dialog.ShowAsync();
-        }
+        }*/
         public void DatabaseButtonClicked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;

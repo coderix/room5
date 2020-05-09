@@ -96,7 +96,7 @@ namespace Room5
             ContentDialog dialog = new ContentDialog
             {
                 Title = "Fehler beim Datenbankzugriff",
-                Content = e.ToString(),
+                Content = "Bitte kontrollieren Sie die Einstellungen" + Environment.NewLine + e.ToString(),
                 PrimaryButtonText = "OK"
             };
 
