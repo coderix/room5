@@ -20,8 +20,9 @@ namespace Room5
     {
         public static IRoom5Repository Repository { get; set; }
 
-       public static Windows.Storage.ApplicationDataContainer localSettings =
-    Windows.Storage.ApplicationData.Current.LocalSettings;
+       public static Windows.Storage.ApplicationDataContainer localSettings =  Windows.Storage.ApplicationData.Current.LocalSettings;
+
+        public static Windows.Storage.ApplicationDataCompositeValue mysqlSettings =  new Windows.Storage.ApplicationDataCompositeValue();
 
         public static IDictionary<string, int> Weekdays = new Dictionary<string, int>()
         {
@@ -119,14 +120,29 @@ namespace Room5
 
         public static void MysqlDatabase()
         {
-            string connection = "server=DS218P;database=room;user=room;password=talky-polka-pause6-3selector-countable-Freebie9;port=3307";
-            DbContextOptionsBuilder<Room5Context> dbOptions = new DbContextOptionsBuilder<Room5Context>().UseMySql(connection,
-        mysqlOptions =>
-        {
-            /* mysqlOptions
-                 .ServerVersion(new Version(5, 7, 17), ServerType.MySql);*/
-        });
-            Repository = new SQLRoom5Repository(dbOptions);
+            string connection;
+           // connection = "server=DS218P;database=room;user=room;password=talky-polka-pause6-3selector-countable-Freebie9;port=3307";
+            Windows.Storage.ApplicationDataCompositeValue composite = (Windows.Storage.ApplicationDataCompositeValue)localSettings.Values["mysqlSettings"];
+            if (composite == null)
+            {
+                SqliteDatabase();
+            }
+            else
+            {
+                connection = "server=" + composite["server"].ToString() + ";" 
+                    + "database=" + composite["database"].ToString() + ";"
+                    + "user=" + composite["user"].ToString() + ";"
+                    + "password=" + composite["password"].ToString() + ";"
+                    + "port=" + composite["port"].ToString() + ";"
+
+                    ;
+
+                DbContextOptionsBuilder<Room5Context> dbOptions = new DbContextOptionsBuilder<Room5Context>().UseMySql(connection,
+                     mysqlOptions =>  { });
+
+                Repository = new SQLRoom5Repository(dbOptions);
+            }
+           
         }
 
 

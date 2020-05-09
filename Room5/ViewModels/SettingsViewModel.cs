@@ -124,10 +124,31 @@ namespace Room5.ViewModels
                 if (value == true)
                 {
                     App.localSettings.Values["database"] = "mysql";
-                    if (firstCall == false)
+                   /* if (firstCall == false)
                     {
                         ShowRestartDialog();
+                    }*/
+                    Windows.Storage.ApplicationDataCompositeValue mysqlSettings;
+
+                    mysqlSettings = (Windows.Storage.ApplicationDataCompositeValue)App.localSettings.Values["mysqlSettings"];
+                    if (mysqlSettings == null)
+                    {
+                        Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
+                        composite["server"] = string.Empty;
+                        composite["database"] = string.Empty;
+                        composite["user"] = string.Empty;
+                        composite["password"] = string.Empty;
+                        composite["port"] = "3307";
+
+                        App.localSettings.Values["mysqlSettings"] = composite;
+                        mysqlSettings = (Windows.Storage.ApplicationDataCompositeValue)App.localSettings.Values["mysqlSettings"];
                     }
+
+                    MysqlServer = mysqlSettings["server"].ToString();
+                    MysqlDatabase = mysqlSettings["database"].ToString();
+                    MysqlUser = mysqlSettings["user"].ToString();
+                    MysqlPassword = mysqlSettings["password"].ToString();
+                    MysqlPort = mysqlSettings["port"].ToString();
                 }
                
                 this.OnPropertyChanged();
@@ -169,7 +190,14 @@ namespace Room5.ViewModels
 
         public void BtnSaveMysqlClicked(object sender, RoutedEventArgs e)
         {
-           
+            Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
+            composite["server"] = MysqlServer;
+            composite["database"] = MysqlDatabase;
+            composite["user"] = MysqlUser;
+            composite["password"] = MysqlPassword;
+            composite["port"] = MysqlPort;
+
+            App.localSettings.Values["mysqlSettings"] = composite;
         }
         public void BtnCancelMysqlClicked(object sender, RoutedEventArgs e)
         {
