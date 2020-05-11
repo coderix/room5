@@ -18,6 +18,7 @@ namespace Room5
 {
     public sealed partial class App : Application
     {
+        public static DbContextOptionsBuilder<Room5Context> DbOptions;
         public static IRoom5Repository Repository { get; set; }
 
        public static Windows.Storage.ApplicationDataContainer localSettings =  Windows.Storage.ApplicationData.Current.LocalSettings;
@@ -157,8 +158,8 @@ namespace Room5
              {
                  File.Copy(demoDatabasePath, databasePath);
              }*/
-            DbContextOptionsBuilder<Room5Context> dbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + databasePath);
-            Repository = new SQLRoom5Repository(dbOptions);
+            DbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + databasePath);
+            Repository = new SQLRoom5Repository(DbOptions);
         }
     }
 }

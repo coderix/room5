@@ -3,8 +3,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
+using Microsoft.EntityFrameworkCore;
 using Room5.Helpers;
+using Room5.Repository;
 using Room5.Services;
 
 using Windows.ApplicationModel;
@@ -122,7 +123,7 @@ namespace Room5.ViewModels
                 if (value == true)
                 {
                     
-                    App.localSettings.Values["database"] = "mysql";
+                  //  App.localSettings.Values["database"] = "mysql";
                     readMysqlSettings();
                     ShowMysqlForm = true;
                     
@@ -203,6 +204,29 @@ namespace Room5.ViewModels
 
         public async void BtnSaveMysqlClicked(object sender, RoutedEventArgs e)
         {
+            string connection = "server=" + MysqlServer  + ";database=" + MysqlDatabase + ";user=" + MysqlUser + ";password=" + MysqlPassword + ";port=" + MysqlPort;
+
+            try
+            {
+                App.DbOptions = new DbContextOptionsBuilder<Room5Context>().UseMySql(connection,
+                     mysqlOptions => { }); 
+                App.Repository = new SQLRoom5Repository(App.DbOptions);
+            }
+            catch (MySql.Data.MySqlClient.MySqlException  ex)
+            {
+               // string innerMessage = ex.InnerException.Message;
+                string msg = ex.Message;
+                ShowMysqlErrorDialog(msg);
+                return;
+
+            }
+            catch (Exception ex)
+            {
+               
+                ShowMysqlErrorDialog(ex.Message + ex.ToString());
+                return;
+
+            }
             Windows.Storage.ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
             composite["server"] = MysqlServer;
             composite["database"] = MysqlDatabase;
@@ -215,6 +239,30 @@ namespace Room5.ViewModels
             {
                 Title = "Einstellungen gesichert",
                 Content = "Bitte starten Sie das Programm neu, um die Änderung anzuwenden.",
+                PrimaryButtonText = "OK"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+        }
+
+        public async void ShowMysqlErrorDialog(String msg)
+        {
+            string title;
+            if (msg.Contains("Unable to connect to any"))
+            {
+                title = "Keine Verbindung zum Datenbankserver";
+                msg = "Mögliche Ursachen: keine Netzverbindung zum Server (funktioniert das Netzwerk?, läuft der Server?), falscher Servername oder falscher Port";
+            }
+            else
+            {
+                title = "Keine Verbindung zur Datenbank";
+                msg = "Bitte überprüfen Sie Datenbankname, Benutzername und Passwort";
+            }
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = title,
+                Content = msg ,
                 PrimaryButtonText = "OK"
             };
 

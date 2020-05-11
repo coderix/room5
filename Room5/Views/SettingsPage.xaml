@@ -1,6 +1,6 @@
 ﻿<Page
-    x:Class="Room5.Views.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    x:Class="Room5.Views.SettingsPage"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helper="using:Room5.Helpers"
@@ -39,8 +39,8 @@
                                    Password = "{x:Bind ViewModel.MysqlPassword,Mode=TwoWay}"/>
 
                     <StackPanel x:Name="FormButtons" Orientation="Horizontal">
-                        <Button Content="OK" Margin="0,24" Click="{x:Bind ViewModel.BtnSaveMysqlClicked}"/>
-                        <Button Content="Abbruch" Margin="24" Click="ViewModel.BtnCancelMysqlClicked"/>
+                        <Button Content="Testen und Speichern" Margin="0,24" Click="{x:Bind ViewModel.BtnSaveMysqlClicked}"/>
+                        <Button Content="Änderungen zurücknehmen" Margin="24" Click="ViewModel.BtnCancelMysqlClicked"/>
                     </StackPanel>
                 </StackPanel>
                 <TextBlock x:Uid="Settings_Theme" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,10,0,10"/>
