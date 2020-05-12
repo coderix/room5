@@ -63,6 +63,11 @@ namespace Room5
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
+             //
+            if (!args.PrelaunchActivated)
+            {
+                await ActivationService.ActivateAsync(args);
+            }
           //  localSettings.Values["database"] = "mysql";
             var database = (string)localSettings.Values["database"];
             if (database == "mysql")
@@ -73,9 +78,8 @@ namespace Room5
                 }
                 catch (Exception e)
                 {
-                    ShowErrorDialog(e);
-                    localSettings.Values["database"] = "sqlite";
-                    SqliteDatabase();
+                    ShowMysqlErrorDialog(e.Message);
+                   
                 }
                
             }
@@ -84,14 +88,33 @@ namespace Room5
                 SqliteDatabase();
             }
             
-            //
-            if (!args.PrelaunchActivated)
-            {
-                await ActivationService.ActivateAsync(args);
-            }
+           
            
         }
 
+        public async void ShowMysqlErrorDialog(String msg)
+        {
+            string title;
+            if (msg.Contains("Unable to connect to any"))
+            {
+                title = "Keine Verbindung zum Datenbankserver";
+                msg = "Mögliche Ursachen: keine Netzverbindung zum Server (funktioniert das Netzwerk?, läuft der Server?), falscher Servername oder falscher Port";
+            }
+            else
+            {
+                title = "Keine Verbindung zur Datenbank";
+                msg = "Bitte überprüfen Sie Datenbankname, Benutzername und Passwort";
+            }
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = title,
+                Content = msg,
+                PrimaryButtonText = "OK"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+        }
         public async void ShowErrorDialog(Exception e)
         {
             ContentDialog dialog = new ContentDialog
