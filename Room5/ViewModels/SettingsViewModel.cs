@@ -105,14 +105,42 @@ namespace Room5.ViewModels
                 {
                     App.localSettings.Values["database"] = "sqlite";
                     ShowMysqlForm = false;
-                    
-                   
+                    ShowSqliteForm = true;
+                    var database = (string)App.localSettings.Values["database"];
+                    if (database == "sqlite")
+                    {
+                        ShowBtnActivateSqlite = false;
+                        SqliteMessage = "Lokale Datenbank ist aktiviert";
+                    }
+                    else
+                    {
+                        ShowBtnActivateSqlite = true;
+                        SqliteMessage = "Lokale Datenbank ist nicht aktiviert";
+                    }
                 }
                
                 this.OnPropertyChanged();
             }
         }
 
+        private string _sqliteMessage;
+        public string SqliteMessage
+        {
+            get
+            {
+                return _sqliteMessage;
+            }
+            set
+            {
+                _sqliteMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ActivateSqlite() {
+            App.localSettings.Values["database"] = "sqlite";
+            OnPropertyChanged();
+        }
         private bool _isBtnMysqlDatabaseChecked = true;
         public bool IsBtnMysqlDatabaseChecked
         {
@@ -123,10 +151,11 @@ namespace Room5.ViewModels
                 if (value == true)
                 {
                     
-                  //  App.localSettings.Values["database"] = "mysql";
+                 
                     readMysqlSettings();
                     ShowMysqlForm = true;
-                    
+                    ShowSqliteForm = false;
+
                 }
                
                 this.OnPropertyChanged();
@@ -195,6 +224,20 @@ namespace Room5.ViewModels
             set { _mysqlPassword = value; OnPropertyChanged(); }
         }
 
+        private bool _showSqliteForm;
+        public bool ShowSqliteForm
+        {
+            get => _showSqliteForm;
+            set { _showSqliteForm = value; OnPropertyChanged(); }
+        }
+
+        private bool _showBtnActivateSqlite;
+        public bool ShowBtnActivateSqlite
+        {
+            get => _showBtnActivateSqlite;
+            set { _showBtnActivateSqlite = value; OnPropertyChanged(); }
+        }
+
         private bool _showMysqlForm;
         public bool ShowMysqlForm { get => _showMysqlForm;
             set { _showMysqlForm = value; OnPropertyChanged(); }
@@ -235,9 +278,10 @@ namespace Room5.ViewModels
             composite["port"] = MysqlPort;
 
             App.localSettings.Values["mysqlSettings"] = composite;
+            App.localSettings.Values["database"] = "mysql";
             ContentDialog dialog = new ContentDialog
             {
-                Title = "Einstellungen gesichert",
+                Title = "Mysql OK",
                 Content = "Bitte starten Sie das Programm neu, um die Änderung anzuwenden.",
                 PrimaryButtonText = "OK"
             };
