@@ -28,9 +28,9 @@
                 </StackPanel>
                 <StackPanel x:Name="sqlitePanel" Margin="0,10,0,10" x:Load="{x:Bind ViewModel.ShowSqliteForm,Mode=OneWay}">
 
-                    <TextBlock Text="{x:Bind ViewModel.SqliteMessage}"/>
+                    <TextBlock Text="{x:Bind ViewModel.SqliteMessage,Mode=OneWay}"/>
                     <StackPanel x:Name="SqliteFormButtons" Orientation="Horizontal">
-                        <Button x:Name="BtnActivateSqlite" Content="Aktivieren" x:Load="{x:Bind ViewModel.ShowBtnActivateSqlite}" Margin="0,24" Click="{x:Bind ViewModel.BtnSaveMysqlClicked}"/>
+                        <Button x:Name="BtnActivateSqlite" Content="Aktivieren" x:Load="{x:Bind ViewModel.ShowBtnActivateSqlite, Mode=OneWay}" Margin="0,24" Click="{x:Bind ViewModel.BtnActivateSqliteClicked}"/>
                       
                     </StackPanel>
                 </StackPanel>

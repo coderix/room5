@@ -67,11 +67,17 @@ namespace Room5.ViewModels
             {
                 IsBtnLocalDatabaseChecked = true;
                 IsBtnMysqlDatabaseChecked = false;
+                ShowMysqlForm = false;
+                ShowSqliteForm = true;
+                ShowBtnActivateSqlite = false;
             }
             else
             {
                 IsBtnLocalDatabaseChecked = false;
                 IsBtnMysqlDatabaseChecked = true;
+                ShowMysqlForm = true;
+                ShowSqliteForm = false;
+                ShowBtnActivateSqlite = true;
             }
             
             firstCall = false;
@@ -103,7 +109,7 @@ namespace Room5.ViewModels
                 _isBtnLocalDatabaseChecked = value;
                 if (value == true)
                 {
-                    App.localSettings.Values["database"] = "sqlite";
+                   // App.localSettings.Values["database"] = "sqlite";
                     ShowMysqlForm = false;
                     ShowSqliteForm = true;
                     var database = (string)App.localSettings.Values["database"];
@@ -137,8 +143,20 @@ namespace Room5.ViewModels
             }
         }
 
-        public void ActivateSqlite() {
+        public async void  BtnActivateSqliteClicked(object sender, RoutedEventArgs e) {
             App.localSettings.Values["database"] = "sqlite";
+            App.DbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + App.DatabasePath);
+            App.Repository = new SQLRoom5Repository(App.DbOptions);
+            ShowBtnActivateSqlite = false;
+            SqliteMessage = "Lokale Datenbank ist aktiviert";
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Lokale Datenbank OK",
+                Content = "Die lokale Datenbank ist aktiviert.",
+                PrimaryButtonText = "OK"
+            };
+
+            ContentDialogResult result = await dialog.ShowAsync();
             OnPropertyChanged();
         }
         private bool _isBtnMysqlDatabaseChecked = true;
@@ -279,10 +297,11 @@ namespace Room5.ViewModels
 
             App.localSettings.Values["mysqlSettings"] = composite;
             App.localSettings.Values["database"] = "mysql";
+            ShowBtnActivateSqlite = true;
             ContentDialog dialog = new ContentDialog
             {
                 Title = "Mysql OK",
-                Content = "Bitte starten Sie das Programm neu, um die Änderung anzuwenden.",
+                Content = "Die MySql-Datenbank ist jetzt aktiviert.",
                 PrimaryButtonText = "OK"
             };
 

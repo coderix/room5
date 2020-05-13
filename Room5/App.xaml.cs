@@ -20,6 +20,8 @@ namespace Room5
     {
         public static DbContextOptionsBuilder<Room5Context> DbOptions;
         public static IRoom5Repository Repository { get; set; }
+        public static string DatabasePath;
+        public static string error = "";
 
        public static Windows.Storage.ApplicationDataContainer localSettings =  Windows.Storage.ApplicationData.Current.LocalSettings;
 
@@ -64,10 +66,7 @@ namespace Room5
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
              //
-            if (!args.PrelaunchActivated)
-            {
-                await ActivationService.ActivateAsync(args);
-            }
+            
           //  localSettings.Values["database"] = "mysql";
             var database = (string)localSettings.Values["database"];
             if (database == "mysql")
@@ -78,7 +77,7 @@ namespace Room5
                 }
                 catch (Exception e)
                 {
-                    ShowMysqlErrorDialog(e.Message);
+                    error = "Fehler bei der der Verbindung zur Mysql-Datenbank";
                    
                 }
                
@@ -87,44 +86,13 @@ namespace Room5
             {
                 SqliteDatabase();
             }
-            
-           
-           
-        }
-
-        public async void ShowMysqlErrorDialog(String msg)
-        {
-            string title;
-            if (msg.Contains("Unable to connect to any"))
+            if (!args.PrelaunchActivated)
             {
-                title = "Keine Verbindung zum Datenbankserver";
-                msg = "Mögliche Ursachen: keine Netzverbindung zum Server (funktioniert das Netzwerk?, läuft der Server?), falscher Servername oder falscher Port";
+                await ActivationService.ActivateAsync(args);
             }
-            else
-            {
-                title = "Keine Verbindung zur Datenbank";
-                msg = "Bitte überprüfen Sie Datenbankname, Benutzername und Passwort";
-            }
-            ContentDialog dialog = new ContentDialog
-            {
-                Title = title,
-                Content = msg,
-                PrimaryButtonText = "OK"
-            };
 
-            ContentDialogResult result = await dialog.ShowAsync();
 
-        }
-        public async void ShowErrorDialog(Exception e)
-        {
-            ContentDialog dialog = new ContentDialog
-            {
-                Title = "Fehler beim Datenbankzugriff",
-                Content = "Bitte kontrollieren Sie die Einstellungen" + Environment.NewLine + e.ToString(),
-                PrimaryButtonText = "OK"
-            };
 
-            ContentDialogResult result = await dialog.ShowAsync();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
@@ -134,7 +102,15 @@ namespace Room5
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(Views.SettingsPage), new Lazy<UIElement>(CreateShell));
+            if (error != "")
+            {
+                return new ActivationService(this, typeof(Views.SettingsPage), new Lazy<UIElement>(CreateShell));
+            }
+            else
+            {
+                return new ActivationService(this, typeof(Views.RoomsPage), new Lazy<UIElement>(CreateShell));
+            }
+            return new ActivationService(this, typeof(Views.RoomsPage), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()
@@ -174,14 +150,15 @@ namespace Room5
         public static void SqliteDatabase()
         {
             // string demoDatabasePath = Package.Current.InstalledLocation.Path + @"\Assets\Repository.db";
-            string databasePath = ApplicationData.Current.LocalFolder.Path + @"\Room5.db";
-         //funktioniert frühestens mit ef core 3.1.4
-         //   string databasePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\room5\Room5.db";
+
+            //funktioniert frühestens mit ef core 3.1.4
+            //   string databasePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\room5\Room5.db";
             /* if (!File.Exists(databasePath))
              {
                  File.Copy(demoDatabasePath, databasePath);
              }*/
-            DbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + databasePath);
+            DatabasePath = ApplicationData.Current.LocalFolder.Path + @"\Room5.db";
+            DbOptions = new DbContextOptionsBuilder<Room5Context>().UseSqlite("Data Source=" + DatabasePath);
             Repository = new SQLRoom5Repository(DbOptions);
         }
     }
