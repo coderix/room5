@@ -63,7 +63,7 @@
                 </RelativePanel>
             </Grid>
             <StackPanel x:Name="Maincontent" x:Load="{x:Bind ShowMainContent, Mode=OneWay}">
-                <StackPanel Orientation="Horizontal" Margin="0,40,0,40" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,10" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <SymbolIcon x:Name="FirstWeekButton"  Symbol="Previous" Tapped="FirstWeekClicked"
                     ToolTipService.ToolTip="Zur aktuellen Woche"
                                 x:Load="{x:Bind ShowPreviousButton, Mode=OneWay}" Margin="0,0,10,0"/>
