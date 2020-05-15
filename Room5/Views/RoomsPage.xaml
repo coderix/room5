@@ -56,6 +56,7 @@
         </DataTemplate>
     </Page.Resources>
 
+    <ScrollViewer>
     <StackPanel x:Name="ContentArea">
         <CommandBar HorizontalAlignment="Left"  >
             <AppBarButton
@@ -125,4 +126,5 @@
         </controls:MasterDetailsView>
         <TextBlock Text="Hallo"></TextBlock>
     </StackPanel>
+    </ScrollViewer>
 </Page>

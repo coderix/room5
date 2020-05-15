@@ -11,13 +11,9 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <ScrollViewer
-        Name="ForegroundElement"
-        Padding="{StaticResource DetailPageMargin}"
-        HorizontalAlignment="Stretch"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        VerticalScrollMode="Enabled">
-        <StackPanel>
+   
+       
+        <StackPanel  Name="ForegroundElement">
              <TextBlock Style="{StaticResource HeaderTextBlockStyle}" Text="{x:Bind MasterMenuItem.RoomName, Mode=OneWay}" HorizontalAlignment="Center" />
             <Grid Background="White"
                 x:Name="BookingForm"
@@ -243,5 +239,5 @@
 
             </StackPanel>
         </StackPanel>
-    </ScrollViewer>
+  
 </UserControl>

@@ -256,7 +256,7 @@ namespace Room5.Views
             control = d as RoomsDetailControl;
             buildBookingRows();
             
-            control.ForegroundElement.ChangeView(0, 0, 1);
+         //   control.ForegroundElement.ChangeView(0, 0, 1);
             
         }
 
