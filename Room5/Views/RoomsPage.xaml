@@ -77,17 +77,21 @@
            
 
         </CommandBar>
+        
         <StackPanel
                 x:Name="editRoomPanel"
-                 Orientation="Horizontal"
-                x:Load="{x:Bind ViewModel.ShowRoomEditPanel, Mode=OneWay}" Margin="50,50,0,50"
+                 Orientation="Vertical"
+                x:Load="{x:Bind ViewModel.ShowRoomEditPanel, Mode=OneWay}" Margin="10,50,0,50" Width="400" HorizontalAlignment="Left" BorderBrush="{ThemeResource SystemBaseMediumLowColor}" BorderThickness="5,5,5,5"
              >
-           
+
+
+            <TextBox Text ="Raumname Bearbeiten" HorizontalAlignment="Center" FontWeight="Bold" IsReadOnly="True" BorderThickness="0,0,0,0"/>
+            <StackPanel Orientation="Horizontal">
             <TextBox
-           
+             MaxLength="20"
              PlaceholderText="Name"
              Margin="8,8,16,8"
-             MinWidth="120"
+             MinWidth="240"
              Text="{x:Bind ViewModel.RoomName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <AppBarButton
@@ -103,6 +107,8 @@
                     ToolTipService.ToolTip="Speichern">
 
             </AppBarButton>
+            </StackPanel>
+            
         </StackPanel>
 
       
@@ -124,7 +130,7 @@
 
            
         </controls:MasterDetailsView>
-        <TextBlock Text="Hallo"></TextBlock>
+       
     </StackPanel>
     </ScrollViewer>
 </Page>
