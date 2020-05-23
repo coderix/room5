@@ -125,7 +125,7 @@ namespace Room5.ViewModels
                     /*
                      * hide the form after selecting another room
                      */
-                  //  CancelEditRoom();
+                    CancelEditRoom();
                    
                     OnPropertyChanged();
                 }
