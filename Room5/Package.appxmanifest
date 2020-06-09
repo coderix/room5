@@ -9,14 +9,14 @@
 
   <Identity
     Name="7034B81C-F5B9-433E-ABC6-BB398A9D7B5C"
-    Publisher="CN=dirk"
+    Publisher="CN=dirk, O=Dirk Neumann, C=DE"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="7034B81C-F5B9-433E-ABC6-BB398A9D7B5C" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Room5</DisplayName>
-    <PublisherDisplayName>dirk</PublisherDisplayName>
+    <PublisherDisplayName>Dirk Neumann</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
