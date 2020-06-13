@@ -329,7 +329,8 @@ namespace Room5.ViewModels
                 PrimaryButtonText = "OK"
             };
 
-            ContentDialogResult result = await dialog.ShowAsync();
+            // ContentDialogResult result =
+                await dialog.ShowAsync();
 
         }
         public void BtnCancelMysqlClicked(object sender, RoutedEventArgs e)
